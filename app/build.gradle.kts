@@ -2,7 +2,6 @@ plugins {
     id("com.android.application")
     id("kotlin-android")
     kotlin("kapt")
-    id("dagger.hilt.android.plugin")
 }
 
 android {
@@ -42,16 +41,9 @@ android {
     kapt {
         correctErrorTypes = true
     }
-
-    hilt {
-        enableExperimentalClasspathAggregation = true
-    }
 }
 
 dependencies {
-
-    implementation(project(Modules.domain))
-    implementation(project(Modules.data))
 
     implementation(Androidx.app_compat)
     implementation(Androidx.constraintlayout)
@@ -63,8 +55,10 @@ dependencies {
 
     implementation(Google.material)
 
-    implementation(DI.hilt)
-    kapt(DI.hitl_android_compiler)
+    implementation(DI.dagger)
+    kapt(DI.dagger_compiler)
+    implementation(DI.dagger_android_support)
+    kapt(DI.dagger_android_processor)
 
     implementation(Extensions.view_binding_property_delegate)
 

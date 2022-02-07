@@ -35,7 +35,6 @@ object Build {
 
     const val android_build_tools = "com.android.tools.build:gradle:$android_build_tools_version"
     const val kotlin_gradle_plugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Kotlin.version}"
-    const val hilt_build_plugin = "com.google.dagger:hilt-android-gradle-plugin:${DI.version}"
 }
 
 
@@ -49,9 +48,10 @@ object AdapterDelegate {
 object DI {
     const val version = "2.40.5"
 
-    const val hilt = "com.google.dagger:hilt-android:$version"
-    const val hitl_android_compiler = "com.google.dagger:hilt-android-compiler:$version"
-    const val hilt_lifecycle_viewmodel = "androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha03"
+    const val dagger = "com.google.dagger:dagger:$version"
+    const val dagger_compiler = "com.google.dagger:dagger-compiler:$version"
+    const val dagger_android_support = "com.google.dagger:dagger-android-support:$version"
+    const val dagger_android_processor = "com.google.dagger:dagger-android-processor:$version"
 }
 
 object Extensions {
@@ -60,6 +60,23 @@ object Extensions {
     private const val view_binding_property_delegate_version = "1.5.3"
     const val view_binding_property_delegate =
         "com.github.kirich1409:viewbindingpropertydelegate-noreflection:$view_binding_property_delegate_version"
+}
+
+object Network {
+    private const val version_retrofit = "2.8.0"
+    private const val version_okhttp = "5.0.0-alpha.4"
+
+    const val retrofit = "com.squareup.retrofit2:retrofit:$version_retrofit"
+    const val retrofit_converter = "com.squareup.retrofit2:converter-gson:$version_retrofit"
+    const val okhttp = "com.squareup.okhttp3:logging-interceptor:$version_okhttp"
+}
+
+object DB {
+    private const val version = "2.4.1"
+
+    const val room = "androidx.room:room-runtime:$version"
+    const val room_ktx = "androidx.room:room-ktx:$version"
+    const val room_compiler = "androidx.room:room-compiler:$version"
 }
 
 object Google {
@@ -73,8 +90,6 @@ object Kotlin {
 
 object Modules {
     const val app = ":app"
-    const val data = ":data"
-    const val domain = ":domain"
 }
 
 object Shimmer {

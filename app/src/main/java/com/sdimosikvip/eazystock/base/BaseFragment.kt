@@ -4,14 +4,19 @@ import android.os.Bundle
 import android.view.View
 import androidx.annotation.LayoutRes
 import androidx.annotation.StringRes
-import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.viewbinding.ViewBinding
 import com.google.android.material.snackbar.Snackbar
+import dagger.android.support.DaggerFragment
+import javax.inject.Inject
 
 abstract class BaseFragment(
     @StringRes val tittleRes: Int,
     @LayoutRes layoutId: Int
-) : Fragment(layoutId) {
+) : DaggerFragment(layoutId) {
+
+    @Inject
+    lateinit var viewModelFactory: ViewModelProvider.Factory
 
     protected abstract val binding: ViewBinding
 

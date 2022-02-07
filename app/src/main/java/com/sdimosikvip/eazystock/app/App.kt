@@ -1,8 +1,20 @@
 package com.sdimosikvip.eazystock.app
 
-import android.app.Application
-import dagger.hilt.android.HiltAndroidApp
+import android.content.Context
+import com.sdimosikvip.eazystock.di.AppComponent
+import com.sdimosikvip.eazystock.di.DaggerAppComponent
+import dagger.android.AndroidInjector
+import dagger.android.DaggerApplication
 
-@HiltAndroidApp
-class App : Application() {
+
+class App : DaggerApplication() {
+
+    override fun applicationInjector(): AndroidInjector<out DaggerApplication> =
+        DaggerAppComponent.factory().create(this)
 }
+
+val Context.appComponent: AppComponent
+    get() = when (this) {
+        is App -> appComponent
+        else -> applicationContext.appComponent
+    }

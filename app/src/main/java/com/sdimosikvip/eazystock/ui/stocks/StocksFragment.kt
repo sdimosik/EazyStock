@@ -11,9 +11,8 @@ import com.sdimosikvip.eazystock.model.Stock
 import com.sdimosikvip.eazystock.ui.adapters.AsyncListDifferAdapter
 import com.sdimosikvip.eazystock.ui.adapters.delegates.StocksDelegates
 import com.sdimosikvip.eazystock.utils.setup
-import dagger.hilt.android.AndroidEntryPoint
 
-@AndroidEntryPoint
+
 class StocksFragment() : BaseFragment(
     tittleRes = R.string.stocks_fragment_name,
     layoutId = R.layout.fragment_stocks
@@ -24,7 +23,9 @@ class StocksFragment() : BaseFragment(
     }
 
     override val binding by viewBinding(FragmentStocksBinding::bind)
-    private val stocksViewModel: StocksViewModel by viewModels()
+    private val stocksViewModel: StocksViewModel by viewModels {
+        viewModelFactory
+    }
     private val adapter by lazy {
         AsyncListDifferAdapter(
             AdapterDelegatesManager(StocksDelegates.lightAndDarkAdapterDelegate())

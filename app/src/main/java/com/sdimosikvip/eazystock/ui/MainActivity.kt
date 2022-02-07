@@ -2,7 +2,6 @@ package com.sdimosikvip.eazystock.ui
 
 import android.os.Bundle
 import android.view.WindowManager
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
@@ -14,11 +13,10 @@ import com.sdimosikvip.eazystock.databinding.ActivityMainBinding
 import com.sdimosikvip.eazystock.ui.MainActivity.Companion.COUNT_VIEWPAGER_FRAGMENT
 import com.sdimosikvip.eazystock.ui.favourite.FavouriteFragment
 import com.sdimosikvip.eazystock.ui.stocks.StocksFragment
-import dagger.hilt.android.AndroidEntryPoint
+import dagger.android.support.DaggerAppCompatActivity
 
 
-@AndroidEntryPoint
-class MainActivity() : AppCompatActivity(R.layout.activity_main) {
+class MainActivity() : DaggerAppCompatActivity(R.layout.activity_main) {
 
     companion object {
         const val MAIN_RESULT = "com.sdimosikvip.eazystock.ui.MAIN_RESULT_KEY"
