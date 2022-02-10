@@ -79,6 +79,14 @@ object DB {
     const val room_compiler = "androidx.room:room-compiler:$version"
 }
 
+object Multithreading {
+    private const val coroutines_version = "1.6.0"
+
+    const val coroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version"
+    const val coroutines_android =
+        "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version"
+}
+
 object Google {
     private const val materialVersion = "1.5.0"
     const val material = "com.google.android.material:material:$materialVersion"
@@ -90,6 +98,8 @@ object Kotlin {
 
 object Modules {
     const val app = ":app"
+    const val data = ":data"
+    const val domain = ":domain"
 }
 
 object Shimmer {

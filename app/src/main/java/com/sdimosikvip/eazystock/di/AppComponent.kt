@@ -3,6 +3,8 @@ package com.sdimosikvip.eazystock.di
 import android.content.Context
 import com.sdimosikvip.eazystock.app.App
 import com.sdimosikvip.eazystock.di.modules.AppModule
+import com.sdimosikvip.eazystock.di.modules.DataModule
+import com.sdimosikvip.eazystock.di.modules.DomainModule
 import com.sdimosikvip.eazystock.di.modules.MainActivityModule
 import dagger.BindsInstance
 import dagger.Component
@@ -15,7 +17,9 @@ import javax.inject.Singleton
     modules = [
         AndroidInjectionModule::class,
         AppModule::class,
-        MainActivityModule::class
+        MainActivityModule::class,
+        DomainModule::class,
+        DataModule::class
     ]
 )
 interface AppComponent : AndroidInjector<App> {

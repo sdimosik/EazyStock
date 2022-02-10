@@ -17,5 +17,7 @@
     <color name="plus_price">#24B25D</color>
     <color name="minus_price">#B22424</color>
 
+    <color name="shimmer">#8E8E8E</color>
+
 
 </resources>

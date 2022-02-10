@@ -1,6 +1,7 @@
 package com.sdimosikvip.eazystock.di.modules
 
 import com.sdimosikvip.eazystock.ui.favourite.FavouriteFragment
+import com.sdimosikvip.eazystock.ui.home.HomeFragment
 import com.sdimosikvip.eazystock.ui.stocks.StocksFragment
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
@@ -14,4 +15,7 @@ interface FragmentBuildersModule {
 
     @ContributesAndroidInjector
     fun contributeFavouriteFragment(): FavouriteFragment
+
+    @ContributesAndroidInjector
+    fun contributeHomeFragment(): HomeFragment
 }

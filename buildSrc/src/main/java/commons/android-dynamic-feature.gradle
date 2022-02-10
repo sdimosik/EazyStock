@@ -1,0 +1,58 @@
+package commons
+
+plugins {
+    id 'com.android.dynamic-feature'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'kotlin-parcelize'
+}
+
+android {
+    compileSdk Android.compileSdk
+
+    defaultConfig {
+        minSdk Android.minSdk
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation project(Modules.app)
+    implementation project(Modules.core)
+    implementation project(Modules.common)
+
+    implementation Androidx.app_compat
+    implementation Androidx.constraintlayout
+    implementation Androidx.core_ktx
+    implementation Androidx.lifecycle_livedata_ktx
+    implementation Androidx.lifecycle_viewmodel_ktx
+    implementation Androidx.navigation_fragment_ktx
+    implementation Androidx.navigation_ui_ktx
+
+    implementation Google.material
+
+    implementation DI.dagger
+    implementation DI.dagger_android_support
+    kapt DI.dagger_compiler
+    kapt DI.dagger_android_processor
+
+    implementation Extensions.view_binding_property_delegate
+
+    implementation Shimmer.facebook_shimmer
+    implementation Shimmer.shimmer_recyclerview
+
+    implementation AdapterDelegate.dsl
+    implementation AdapterDelegate.viewbinding
+
+    androidTestImplementation UnitTest.junit4
+    androidTestImplementation UnitTest.junit_ext
+
+    androidTestImplementation UITest.espresso
+}

@@ -4,10 +4,12 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.hannesdorfmann.adapterdelegates4.AdapterDelegatesManager
+import com.sdimosikvip.domain.common.ResultResponse
 import com.sdimosikvip.eazystock.R
 import com.sdimosikvip.eazystock.base.BaseFragment
 import com.sdimosikvip.eazystock.databinding.FragmentStocksBinding
-import com.sdimosikvip.eazystock.model.Stock
+import com.sdimosikvip.eazystock.mapper.StockDomainToStockUIMapper
+import com.sdimosikvip.eazystock.model.StockUI
 import com.sdimosikvip.eazystock.ui.adapters.AsyncListDifferAdapter
 import com.sdimosikvip.eazystock.ui.adapters.delegates.StocksDelegates
 import com.sdimosikvip.eazystock.utils.setup
@@ -36,16 +38,7 @@ class StocksFragment() : BaseFragment(
         super.setupViews()
 
         with(binding) {
-            shimmerRecyclerView.setup(adapter, R.layout.item_stock)
-
-            adapter.items = listOf(
-                Stock(1, "YNDX 1", "Yandex", "1545 Р", "+34 Р (1,15%)"),
-                Stock(2, "YNDX 2", "Yandex", "1545 Р", "+34 Р (1,15%)"),
-                Stock(3, "YNDX 3", "Yandex", "1545 Р", "+34 Р (1,15%)"),
-                Stock(4, "YNDX 4", "Yandex", "1545 Р", "+34 Р (1,15%)")
-            )
-
-            shimmerRecyclerView.hideShimmer()
+            shimmerRecyclerView.setup(adapter, R.layout.shimmer_item_stock)
         }
     }
 
@@ -55,5 +48,22 @@ class StocksFragment() : BaseFragment(
         stocksViewModel.text.observe(viewLifecycleOwner, Observer {
             binding.textHome.text = it
         })
+
+        stocksViewModel.stock.observe(viewLifecycleOwner) {
+            when (it.status) {
+                ResultResponse.Status.LOADING -> {
+                    binding.shimmerRecyclerView.showShimmer()
+                }
+                ResultResponse.Status.SUCCESS -> {
+                    with(it.data!!) {
+                        adapter.items = listOf(StockDomainToStockUIMapper().transformToDomain(this))
+                    }
+                    binding.shimmerRecyclerView.hideShimmer()
+                }
+                ResultResponse.Status.ERROR -> {
+                    binding.shimmerRecyclerView.hideShimmer()
+                }
+            }
+        }
     }
 }

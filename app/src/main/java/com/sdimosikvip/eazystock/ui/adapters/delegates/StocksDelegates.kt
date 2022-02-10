@@ -4,13 +4,13 @@ import com.hannesdorfmann.adapterdelegates4.dsl.adapterDelegateViewBinding
 import com.sdimosikvip.eazystock.R
 import com.sdimosikvip.eazystock.base.BaseDiffItem
 import com.sdimosikvip.eazystock.databinding.ItemStockBinding
-import com.sdimosikvip.eazystock.model.Stock
+import com.sdimosikvip.eazystock.model.StockUI
 
 
 object StocksDelegates {
 
     fun lightAndDarkAdapterDelegate() =
-        adapterDelegateViewBinding<Stock, BaseDiffItem, ItemStockBinding>(
+        adapterDelegateViewBinding<StockUI, BaseDiffItem, ItemStockBinding>(
             { layoutInflater, parent -> ItemStockBinding.inflate(layoutInflater, parent, false) }
         ) {
             bind {
