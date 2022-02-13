@@ -4,6 +4,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.bumptech.glide.Glide
+import com.bumptech.glide.RequestManager
 import com.hannesdorfmann.adapterdelegates4.AdapterDelegatesManager
 import com.sdimosikvip.domain.common.ResultResponse
 import com.sdimosikvip.eazystock.R
@@ -28,9 +29,14 @@ class StocksFragment() : BaseFragment(
     private val stocksViewModel: StocksViewModel by viewModels {
         viewModelFactory
     }
-    private val adapter by lazy {
+
+    private val glide: RequestManager by lazy {
+        Glide.with(this)
+    }
+
+    private val adapter: AsyncListDifferAdapter by lazy {
         AsyncListDifferAdapter(
-            AdapterDelegatesManager(StocksDelegates.lightAndDarkAdapterDelegate(Glide.with(this)))
+            AdapterDelegatesManager(StocksDelegates.lightAndDarkAdapterDelegate(glide))
         )
     }
 

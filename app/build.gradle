@@ -83,6 +83,7 @@ dependencies {
 
     implementation Images.glide
     kapt(Images.glide_compiler)
+    implementation Images.lottie_anim
 
     androidTestImplementation UnitTest.junit4
     androidTestImplementation UnitTest.junit_ext

@@ -1,6 +1,11 @@
 package com.sdimosikvip.eazystock.ui.adapters.delegates
 
+import android.graphics.drawable.Drawable
 import com.bumptech.glide.RequestManager
+import com.bumptech.glide.load.DataSource
+import com.bumptech.glide.load.engine.GlideException
+import com.bumptech.glide.request.RequestListener
+import com.bumptech.glide.request.target.Target
 import com.hannesdorfmann.adapterdelegates4.dsl.adapterDelegateViewBinding
 import com.sdimosikvip.eazystock.R
 import com.sdimosikvip.eazystock.base.BaseDiffItem
@@ -26,7 +31,32 @@ object StocksDelegates {
                     currentPriceTextview.text = item.price
                     dayDeltaPriceTextview.text = item.deltaDayPrice
 
-                    glide.load(item.logo).into(logoImageview)
+
+                    glide.load(item.logo)
+                        .listener(object : RequestListener<Drawable> {
+
+                            override fun onLoadFailed(
+                                e: GlideException?,
+                                model: Any?,
+                                target: Target<Drawable>?,
+                                isFirstResource: Boolean
+                            ): Boolean {
+                                logoImageview.setImageResource(R.drawable.fail_load_stock_image)
+                                return false
+                            }
+
+                            override fun onResourceReady(
+                                resource: Drawable?,
+                                model: Any?,
+                                target: Target<Drawable>?,
+                                dataSource: DataSource?,
+                                isFirstResource: Boolean
+                            ): Boolean {
+                                return false
+                            }
+
+                        })
+                        .into(logoImageview)
                 }
             }
         }

@@ -112,10 +112,13 @@ object Shimmer {
 }
 
 object Images {
-    private const val version = "4.13.0"
+    private const val glide_version = "4.13.0"
+    private const val lottie_anim_version = "4.2.2"
 
-    const val glide = "com.github.bumptech.glide:glide:4.13.0"
-    const val glide_compiler = "com.github.bumptech.glide:compiler:4.13.0"
+    const val glide = "com.github.bumptech.glide:glide:$glide_version"
+    const val glide_compiler = "com.github.bumptech.glide:compiler:$glide_version"
+
+    const val lottie_anim = "com.airbnb.android:lottie:$lottie_anim_version"
 }
 
 object UITest {
