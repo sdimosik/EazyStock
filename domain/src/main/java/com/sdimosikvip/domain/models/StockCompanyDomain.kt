@@ -7,7 +7,7 @@ data class StockCompanyDomain(
     val finnhubIndustry: String,
     val ipo: String,
     val logo: String,
-    val marketCapitalization: Int,
+    val marketCapitalization: Double,
     val name: String,
     val phone: String,
     val shareOutstanding: Double,

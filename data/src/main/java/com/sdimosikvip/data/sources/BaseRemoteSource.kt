@@ -18,11 +18,11 @@ abstract class BaseRemoteSource {
                 val response = call()
                 if (response.isSuccessful) {
                     val body = response.body()
-                    if (body != null) return@withContext ResultResponse.success(
-                        mapper.transformToDomain(
-                            body
+                    if (body != null) {
+                        return@withContext ResultResponse.success(
+                            mapper.transformToDomain(body)
                         )
-                    )
+                    }
                 }
                 return@withContext errorNetwork(" ${response.code()} ${response.message()}")
             } catch (e: Exception) {

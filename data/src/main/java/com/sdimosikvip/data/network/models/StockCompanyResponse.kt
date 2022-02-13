@@ -17,7 +17,7 @@ data class StockCompanyResponse(
     @SerializedName("logo")
     val logo: String,
     @SerializedName("marketCapitalization")
-    val marketCapitalization: Int,
+    val marketCapitalization: Double,
     @SerializedName("name")
     val name: String,
     @SerializedName("phone")
