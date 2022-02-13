@@ -1,5 +1,6 @@
 package com.sdimosikvip.eazystock.ui.adapters.delegates
 
+import com.bumptech.glide.RequestManager
 import com.hannesdorfmann.adapterdelegates4.dsl.adapterDelegateViewBinding
 import com.sdimosikvip.eazystock.R
 import com.sdimosikvip.eazystock.base.BaseDiffItem
@@ -9,7 +10,7 @@ import com.sdimosikvip.eazystock.model.StockUI
 
 object StocksDelegates {
 
-    fun lightAndDarkAdapterDelegate() =
+    fun lightAndDarkAdapterDelegate(glide: RequestManager) =
         adapterDelegateViewBinding<StockUI, BaseDiffItem, ItemStockBinding>(
             { layoutInflater, parent -> ItemStockBinding.inflate(layoutInflater, parent, false) }
         ) {
@@ -24,6 +25,8 @@ object StocksDelegates {
                     companyTextview.text = item.company
                     currentPriceTextview.text = item.price
                     dayDeltaPriceTextview.text = item.deltaDayPrice
+
+                    glide.load(item.logo).into(logoImageview)
                 }
             }
         }

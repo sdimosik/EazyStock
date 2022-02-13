@@ -111,6 +111,13 @@ object Shimmer {
         "com.todkars:shimmer-recyclerview:$shimmer_recyclerview_version"
 }
 
+object Images {
+    private const val version = "4.13.0"
+
+    const val glide = "com.github.bumptech.glide:glide:4.13.0"
+    const val glide_compiler = "com.github.bumptech.glide:compiler:4.13.0"
+}
+
 object UITest {
     private const val espresso_version = "3.4.0"
     const val espresso = "androidx.test.espresso:espresso-core:$espresso_version"

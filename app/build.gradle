@@ -81,6 +81,9 @@ dependencies {
     implementation AdapterDelegate.dsl
     implementation AdapterDelegate.viewbinding
 
+    implementation Images.glide
+    kapt(Images.glide_compiler)
+
     androidTestImplementation UnitTest.junit4
     androidTestImplementation UnitTest.junit_ext
 

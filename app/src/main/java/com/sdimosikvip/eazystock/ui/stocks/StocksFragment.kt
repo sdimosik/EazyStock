@@ -3,13 +3,13 @@ package com.sdimosikvip.eazystock.ui.stocks
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import by.kirich1409.viewbindingdelegate.viewBinding
+import com.bumptech.glide.Glide
 import com.hannesdorfmann.adapterdelegates4.AdapterDelegatesManager
 import com.sdimosikvip.domain.common.ResultResponse
 import com.sdimosikvip.eazystock.R
 import com.sdimosikvip.eazystock.base.BaseFragment
 import com.sdimosikvip.eazystock.databinding.FragmentStocksBinding
 import com.sdimosikvip.eazystock.mapper.StockDomainToStockUIMapper
-import com.sdimosikvip.eazystock.model.StockUI
 import com.sdimosikvip.eazystock.ui.adapters.AsyncListDifferAdapter
 import com.sdimosikvip.eazystock.ui.adapters.delegates.StocksDelegates
 import com.sdimosikvip.eazystock.utils.setup
@@ -30,7 +30,7 @@ class StocksFragment() : BaseFragment(
     }
     private val adapter by lazy {
         AsyncListDifferAdapter(
-            AdapterDelegatesManager(StocksDelegates.lightAndDarkAdapterDelegate())
+            AdapterDelegatesManager(StocksDelegates.lightAndDarkAdapterDelegate(Glide.with(this)))
         )
     }
 
