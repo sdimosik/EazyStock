@@ -11,7 +11,17 @@ import com.sdimosikvip.eazystock.databinding.FragmentHomeBinding
 import com.sdimosikvip.eazystock.ui.MainActivity
 import com.sdimosikvip.eazystock.ui.favourite.FavouriteFragment
 import com.sdimosikvip.eazystock.ui.stocks.StocksFragment
+import kotlin.jvm.Throws
 
+private val screens = listOf(
+    StocksFragment::class.java,
+    FavouriteFragment::class.java
+)
+
+private val screensTittle = listOf(
+    R.string.tittle_stocks,
+    R.string.tittle_favourite
+)
 
 class HomeFragment() : BaseFragment(
     tittleRes = R.string.fragment_home_name,
@@ -19,9 +29,6 @@ class HomeFragment() : BaseFragment(
 ) {
 
     override val binding by viewBinding(FragmentHomeBinding::bind)
-    private val viewModel: HomeViewModel by viewModels {
-        viewModelFactory
-    }
     private val adapter by lazy {
         ViewPagerAdapter(this)
     }
@@ -39,23 +46,25 @@ class HomeFragment() : BaseFragment(
     }
 }
 
-fun getOrderFragment(position: Int): BaseFragment {
-    return when (position) {
-        0 -> StocksFragment()
-        1 -> FavouriteFragment()
-        else -> throw IllegalArgumentException("Illegal position: $position")
-    }
+private fun isValidPosition(position: Int): Boolean {
+    return position >= 0 && position < screens.size
 }
 
-fun getOrderFragmentTittleId(position: Int): Int {
-    return when (position) {
-        0 -> R.string.stocks_fragment_name
-        1 -> R.string.favourite_fragment_name
-        else -> throw IllegalArgumentException("Illegal position: $position")
+private fun getOrderFragment(position: Int): BaseFragment {
+    if (!isValidPosition(position)) {
+        throw IllegalArgumentException("Illegal position: $position")
     }
+    return screens[position].newInstance()
 }
 
-class ViewPagerAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
+private fun getOrderFragmentTittleId(position: Int): Int {
+    if (!isValidPosition(position)) {
+        throw IllegalArgumentException("Illegal position: $position")
+    }
+    return screensTittle[position]
+}
+
+private class ViewPagerAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
 
     override fun getItemCount(): Int = MainActivity.COUNT_VIEWPAGER_FRAGMENT
 
