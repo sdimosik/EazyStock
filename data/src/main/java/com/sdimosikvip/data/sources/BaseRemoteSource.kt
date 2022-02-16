@@ -1,6 +1,6 @@
 package com.sdimosikvip.data.sources
 
-import com.sdimosikvip.domain.common.ResultResponse
+import com.sdimosikvip.domain.common.Outcome
 import com.sdimosikvip.domain.mapper.BaseMapper
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext
@@ -12,14 +12,14 @@ abstract class BaseRemoteSource {
         dispatcher: CoroutineDispatcher,
         mapper: BaseMapper<R, D>,
         call: suspend () -> Response<R>
-    ): ResultResponse<D> {
+    ): Outcome<D> {
         return withContext(dispatcher) {
             try {
                 val response = call()
                 if (response.isSuccessful) {
                     val body = response.body()
                     if (body != null) {
-                        return@withContext ResultResponse.success(
+                        return@withContext Outcome.success(
                             mapper.transformToDomain(body)
                         )
                     }
@@ -31,8 +31,8 @@ abstract class BaseRemoteSource {
         }
     }
 
-    private fun <D> errorNetwork(message: String): ResultResponse<D> {
-        return ResultResponse.error(
+    private fun <D> errorNetwork(message: String): Outcome<D> {
+        return Outcome.error(
             "Network call has failed for a following reason: $message"
         )
     }

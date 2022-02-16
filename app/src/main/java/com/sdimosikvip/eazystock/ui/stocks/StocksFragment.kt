@@ -6,7 +6,7 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import com.bumptech.glide.Glide
 import com.bumptech.glide.RequestManager
 import com.hannesdorfmann.adapterdelegates4.AdapterDelegatesManager
-import com.sdimosikvip.domain.common.ResultResponse
+import com.sdimosikvip.domain.common.Outcome
 import com.sdimosikvip.eazystock.R
 import com.sdimosikvip.eazystock.base.BaseFragment
 import com.sdimosikvip.eazystock.databinding.FragmentStocksBinding
@@ -57,16 +57,16 @@ class StocksFragment() : BaseFragment(
 
         stocksViewModel.stock.observe(viewLifecycleOwner) {
             when (it.status) {
-                ResultResponse.Status.LOADING -> {
+                Outcome.Status.LOADING -> {
                     binding.shimmerRecyclerView.showShimmer()
                 }
-                ResultResponse.Status.SUCCESS -> {
+                Outcome.Status.SUCCESS -> {
                     with(it.data!!) {
                         adapter.items = listOf(StockDomainToStockUIMapper().transformToDomain(this))
                     }
                     binding.shimmerRecyclerView.hideShimmer()
                 }
-                ResultResponse.Status.ERROR -> {
+                Outcome.Status.ERROR -> {
                     binding.shimmerRecyclerView.hideShimmer()
                 }
             }

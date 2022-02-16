@@ -1,7 +1,7 @@
 package com.sdimosikvip.data.repository
 
 import com.sdimosikvip.data.sources.StockRemoteSource
-import com.sdimosikvip.domain.common.ResultResponse
+import com.sdimosikvip.domain.common.Outcome
 import com.sdimosikvip.domain.models.StockCompanyDomain
 import com.sdimosikvip.domain.repository.StockRepository
 import kotlinx.coroutines.flow.Flow
@@ -13,8 +13,8 @@ class StockRepositoryImpl(
 
     override suspend fun getStock(
         ticker: String
-    ): Flow<ResultResponse<StockCompanyDomain>> = flow {
-        emit(ResultResponse.loading())
+    ): Flow<Outcome<StockCompanyDomain>> = flow {
+        emit(Outcome.loading())
         emit(remoteDataSource.getCompanyStock(ticker))
     }
 }
