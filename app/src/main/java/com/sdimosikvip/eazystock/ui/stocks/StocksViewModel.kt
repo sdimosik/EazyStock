@@ -29,7 +29,7 @@ class StocksViewModel @Inject constructor(
                 .onCompletion {
                     hideLoading()
                 }
-                .collectLatest {
+                .collect {
                     _stock.value = StockDomainToStockUIMapper().transform(it)
                 }
         }
