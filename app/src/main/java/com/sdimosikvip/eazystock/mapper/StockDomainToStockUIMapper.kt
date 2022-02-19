@@ -4,6 +4,7 @@ import com.sdimosikvip.domain.mapper.BaseMapper
 import com.sdimosikvip.domain.models.StockCompanyDomain
 import com.sdimosikvip.eazystock.model.StockUI
 
+// TODO
 class StockDomainToStockUIMapper : BaseMapper<StockCompanyDomain, StockUI> {
     override fun transform(type: StockCompanyDomain): StockUI =
         StockUI(
@@ -12,7 +13,8 @@ class StockDomainToStockUIMapper : BaseMapper<StockCompanyDomain, StockUI> {
             company = type.name,
             price = "TODO",
             deltaDayPrice = "TODO",
+            isPositiveDelta = true,
             logo = type.logo,
-            secondId = type.ticker
+            secondId = type.ticker,
         )
 }

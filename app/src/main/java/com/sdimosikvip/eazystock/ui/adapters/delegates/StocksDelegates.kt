@@ -31,6 +31,11 @@ object StocksDelegates {
                     currentPriceTextview.text = item.price
                     dayDeltaPriceTextview.text = item.deltaDayPrice
 
+                    if (item.isPositiveDelta) {
+                        dayDeltaPriceTextview.setTextColor(getColor(R.color.plus_price))
+                    } else {
+                        dayDeltaPriceTextview.setTextColor(getColor(R.color.minus_price))
+                    }
 
                     glide.load(item.logo)
                         .listener(object : RequestListener<Drawable> {

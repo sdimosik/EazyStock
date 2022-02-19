@@ -11,6 +11,7 @@ data class StockUI(
     val price: String,
     val deltaDayPrice: String,
     val logo: String,
+    val isPositiveDelta: Boolean,
 
     override val secondId: String = "",
     override val firstId: Long = 0,
