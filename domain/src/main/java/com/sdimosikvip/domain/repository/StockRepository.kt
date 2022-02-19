@@ -1,6 +1,6 @@
 package com.sdimosikvip.domain.repository
 
-import com.sdimosikvip.domain.common.Outcome
+import com.sdimosikvip.domain.Outcome
 import com.sdimosikvip.domain.models.StockCompanyDomain
 import kotlinx.coroutines.flow.Flow
 

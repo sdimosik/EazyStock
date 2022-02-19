@@ -1,8 +1,11 @@
 package com.sdimosikvip.eazystock.di.modules
 
+import android.content.Context
 import com.sdimosikvip.data.BuildConfig
+import com.sdimosikvip.data.network.ConnectionManager
 import com.sdimosikvip.data.network.StockService
 import com.sdimosikvip.data.network.interceptors.AuthInterceptor
+import com.sdimosikvip.data.network.interceptors.NetworkStatusInterceptor
 import com.sdimosikvip.data.network.mapper.StockCompanyMapper
 import com.sdimosikvip.data.network.models.StockCompanyResponse
 import com.sdimosikvip.data.repository.StockRepositoryImpl
@@ -34,9 +37,11 @@ class DataModule {
     @Singleton
     @Provides
     fun provideOkHttpClient(
-        loggingInterceptor: HttpLoggingInterceptor
+        loggingInterceptor: HttpLoggingInterceptor,
+        context: Context
     ): OkHttpClient {
         return OkHttpClient.Builder()
+            .addInterceptor(NetworkStatusInterceptor(ConnectionManager(context)))
             .addInterceptor(loggingInterceptor)
             .addInterceptor(AuthInterceptor(BuildConfig.API_TOKEN))
             .build()
@@ -51,7 +56,6 @@ class DataModule {
             .client(okHttpClient)
             .build()
             .create(StockService::class.java)
-
     }
 
     @Provides

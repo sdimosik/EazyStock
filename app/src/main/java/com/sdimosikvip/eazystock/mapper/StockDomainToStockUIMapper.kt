@@ -5,7 +5,7 @@ import com.sdimosikvip.domain.models.StockCompanyDomain
 import com.sdimosikvip.eazystock.model.StockUI
 
 class StockDomainToStockUIMapper : BaseMapper<StockCompanyDomain, StockUI> {
-    override fun transformToDomain(type: StockCompanyDomain): StockUI =
+    override fun transform(type: StockCompanyDomain): StockUI =
         StockUI(
             isFirstId = false,
             ticker = type.ticker,

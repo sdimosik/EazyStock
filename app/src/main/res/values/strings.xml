@@ -100,4 +100,6 @@
     <string name="title_feature_top_stock_list">Module Top Stock List</string>
     <string name="title_feature_favourite_stock_list">Module Favourite Stock List</string>
     <string name="fragment_home_name">Home</string>
+    <string name="network_no_connection_error_message">No internet connection</string>
+    <string name="generic_error_message">something went wrong</string>
 </resources>

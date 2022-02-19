@@ -11,7 +11,6 @@ import com.sdimosikvip.eazystock.databinding.FragmentHomeBinding
 import com.sdimosikvip.eazystock.ui.MainActivity
 import com.sdimosikvip.eazystock.ui.favourite.FavouriteFragment
 import com.sdimosikvip.eazystock.ui.stocks.StocksFragment
-import kotlin.jvm.Throws
 
 private val screens = listOf(
     StocksFragment::class.java,
@@ -29,6 +28,9 @@ class HomeFragment() : BaseFragment(
 ) {
 
     override val binding by viewBinding(FragmentHomeBinding::bind)
+    private val viewModel: HomeViewModel by viewModels {
+        viewModelFactory
+    }
     private val adapter by lazy {
         ViewPagerAdapter(this)
     }

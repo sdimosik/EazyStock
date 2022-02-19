@@ -6,7 +6,7 @@ import com.sdimosikvip.domain.models.StockCompanyDomain
 
 class StockCompanyMapper : BaseMapper<StockCompanyResponse, StockCompanyDomain> {
     
-    override fun transformToDomain(type: StockCompanyResponse): StockCompanyDomain = StockCompanyDomain(
+    override fun transform(type: StockCompanyResponse): StockCompanyDomain = StockCompanyDomain(
         country = type.country,
         currency = type.currency,
         exchange = type.exchange,

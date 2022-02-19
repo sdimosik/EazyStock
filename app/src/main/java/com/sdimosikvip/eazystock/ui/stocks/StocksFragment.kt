@@ -1,16 +1,14 @@
 package com.sdimosikvip.eazystock.ui.stocks
 
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.bumptech.glide.Glide
 import com.bumptech.glide.RequestManager
 import com.hannesdorfmann.adapterdelegates4.AdapterDelegatesManager
-import com.sdimosikvip.domain.common.Outcome
 import com.sdimosikvip.eazystock.R
 import com.sdimosikvip.eazystock.base.BaseFragment
+import com.sdimosikvip.eazystock.base.BaseViewModel
 import com.sdimosikvip.eazystock.databinding.FragmentStocksBinding
-import com.sdimosikvip.eazystock.mapper.StockDomainToStockUIMapper
 import com.sdimosikvip.eazystock.ui.adapters.AsyncListDifferAdapter
 import com.sdimosikvip.eazystock.ui.adapters.delegates.StocksDelegates
 import com.sdimosikvip.eazystock.utils.setup
@@ -51,25 +49,29 @@ class StocksFragment() : BaseFragment(
     override fun subscribe() {
         super.subscribe()
 
-        stocksViewModel.text.observe(viewLifecycleOwner, Observer {
-            binding.textHome.text = it
-        })
-
-        stocksViewModel.stock.observe(viewLifecycleOwner) {
-            when (it.status) {
-                Outcome.Status.LOADING -> {
+        stocksViewModel.state.observe(viewLifecycleOwner) {
+            when (it) {
+                is BaseViewModel.State.Init -> {
+                    // shimmer
                     binding.shimmerRecyclerView.showShimmer()
                 }
-                Outcome.Status.SUCCESS -> {
-                    with(it.data!!) {
-                        adapter.items = listOf(StockDomainToStockUIMapper().transformToDomain(this))
+                is BaseViewModel.State.IsLoading -> {
+                    // loading line (как в тинькофф)
+                    if (it.isLoading) {
+                        binding.shimmerRecyclerView.showShimmer()
+                    } else {
+                        binding.shimmerRecyclerView.hideShimmer()
                     }
-                    binding.shimmerRecyclerView.hideShimmer()
                 }
-                Outcome.Status.ERROR -> {
-                    binding.shimmerRecyclerView.hideShimmer()
+                is BaseViewModel.State.ShowToast -> {
+                    // красивый toast с инфой
+                    showError(binding.root, getString(it.messageRes))
                 }
             }
+        }
+
+        stocksViewModel.stock.observe(viewLifecycleOwner) {
+            adapter.items = listOf(it)
         }
     }
 }
