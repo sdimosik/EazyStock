@@ -86,6 +86,7 @@ dependencies {
     implementation Images.lottie_anim
 
     implementation Other.alert
+    implementation Other.toast
 
     androidTestImplementation UnitTest.junit4
     androidTestImplementation UnitTest.junit_ext

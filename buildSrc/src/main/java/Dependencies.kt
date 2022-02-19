@@ -136,5 +136,8 @@ object UnitTest {
 
 object Other {
     private const val alert_version = "7.2.4"
+    private const val toast_version = "2.4.0"
+
     const val alert = "com.github.tapadoo:alerter:$alert_version"
+    const val toast = "io.github.muddz:styleabletoast:$toast_version"
 }

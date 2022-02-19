@@ -62,8 +62,7 @@ class StocksFragment() : BaseFragment(
                     }
                 }
                 is BaseViewModel.State.ShowToast -> {
-                    // красивый toast с инфой
-                    //showError(binding.root, getString(it.messageRes))
+                    showError(binding.root, getString(it.messageRes))
                 }
             }
         }

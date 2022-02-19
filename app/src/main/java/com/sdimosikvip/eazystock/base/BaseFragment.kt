@@ -2,12 +2,15 @@ package com.sdimosikvip.eazystock.base
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.annotation.LayoutRes
 import androidx.annotation.StringRes
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewbinding.ViewBinding
 import com.google.android.material.snackbar.Snackbar
+import com.sdimosikvip.eazystock.R
 import dagger.android.support.DaggerFragment
+import io.github.muddz.styleabletoast.StyleableToast
 import javax.inject.Inject
 
 abstract class BaseFragment(
@@ -31,6 +34,7 @@ abstract class BaseFragment(
     protected open fun subscribe() {}
 
     protected fun showError(view: View, msg: String) {
-        Snackbar.make(view, msg, Snackbar.LENGTH_SHORT).show()
+        StyleableToast.makeText(requireContext(), msg, Toast.LENGTH_SHORT, R.style.ErrorToast)
+            .show()
     }
 }
