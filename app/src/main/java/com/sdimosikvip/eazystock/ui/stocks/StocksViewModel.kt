@@ -3,18 +3,19 @@ package com.sdimosikvip.eazystock.ui.stocks
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.sdimosikvip.domain.interactor.GetStockUseCase
+import com.sdimosikvip.domain.interactor.RecommendationStockInteractor
 import com.sdimosikvip.eazystock.base.BaseViewModel
-import com.sdimosikvip.eazystock.mapper.StockDomainToStockUIMapper
+import com.sdimosikvip.eazystock.mapper.stockCompanyAndPriceDomainToUI
 import com.sdimosikvip.eazystock.model.StockUI
-import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.async
+import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class StocksViewModel @Inject constructor(
-    private val getStockUseCase: GetStockUseCase
+    private val recommendationStockInteractor: RecommendationStockInteractor
 ) : BaseViewModel() {
 
     private val _stock = MutableLiveData<StockUI>()
@@ -22,16 +23,26 @@ class StocksViewModel @Inject constructor(
 
     init {
         viewModelScope.launch(handlerException) {
-            getStockUseCase.execute("AAPL")
-                .onStart {
-                    setLoading()
-                }
-                .onCompletion {
-                    hideLoading()
-                }
-                .collect {
-                    _stock.value = StockDomainToStockUIMapper().transform(it)
-                }
+
+             flow {
+                 val companyStockDeferred =
+                     async { recommendationStockInteractor.getCompanyInfo("AAPL") }
+                 val priceStockDeferred =
+                     async { recommendationStockInteractor.getPriceInfo("AAPL") }
+                 emit(
+                     stockCompanyAndPriceDomainToUI(
+                         companyStockDeferred.await(),
+                         priceStockDeferred.await()
+                     )
+                 )
+             }.onStart {
+                 setLoading()
+             }.onCompletion {
+                 hideLoading()
+             }.collect {
+                 _stock.value = it
+             }
         }
+
     }
 }

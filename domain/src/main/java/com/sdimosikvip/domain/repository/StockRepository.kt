@@ -1,9 +1,11 @@
 package com.sdimosikvip.domain.repository
 
 import com.sdimosikvip.domain.models.StockCompanyDomain
-import kotlinx.coroutines.flow.Flow
+import com.sdimosikvip.domain.models.StockPriceDomain
 
 interface StockRepository {
 
-    suspend fun getStock(ticker: String): Flow<StockCompanyDomain>
+    suspend fun getCompanyStock(ticker: String): StockCompanyDomain
+
+    suspend fun getPriceStock(ticker: String): StockPriceDomain
 }

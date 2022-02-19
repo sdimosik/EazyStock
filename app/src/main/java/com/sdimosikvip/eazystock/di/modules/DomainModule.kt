@@ -1,7 +1,7 @@
 package com.sdimosikvip.eazystock.di.modules
 
-import com.sdimosikvip.domain.interactor.GetStockUseCase
-import com.sdimosikvip.domain.interactor.GetStockUseCaseImpl
+import com.sdimosikvip.domain.interactor.RecommendationStockInteractor
+import com.sdimosikvip.domain.interactor.RecommendationStockInteractorImpl
 import com.sdimosikvip.domain.repository.StockRepository
 import dagger.Module
 import dagger.Provides
@@ -12,7 +12,8 @@ class DomainModule {
 
     @Provides
     @Reusable
-    fun provideGetStockUseCase(
+    fun provideRecommendationStockInteractor(
         stockRepository: StockRepository
-    ): GetStockUseCase = GetStockUseCaseImpl(stockRepository)
+    ): RecommendationStockInteractor =
+        RecommendationStockInteractorImpl(stockRepository)
 }

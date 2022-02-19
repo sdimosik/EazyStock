@@ -1,18 +1,22 @@
 package com.sdimosikvip.domain.interactor
 
 import com.sdimosikvip.domain.models.StockCompanyDomain
+import com.sdimosikvip.domain.models.StockPriceDomain
 import com.sdimosikvip.domain.repository.StockRepository
-import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
-interface GetStockUseCase {
-    suspend fun execute(ticker: String): Flow<StockCompanyDomain>
+interface RecommendationStockInteractor {
+    suspend fun getCompanyInfo(ticker: String): StockCompanyDomain
+    suspend fun getPriceInfo(ticker: String): StockPriceDomain
 }
 
-class GetStockUseCaseImpl @Inject constructor(
+class RecommendationStockInteractorImpl @Inject constructor(
     private val stockRepository: StockRepository
-) : GetStockUseCase {
+) : RecommendationStockInteractor {
 
-    override suspend fun execute(ticker: String): Flow<StockCompanyDomain> =
-        stockRepository.getStock(ticker)
+    override suspend fun getCompanyInfo(ticker: String): StockCompanyDomain =
+        stockRepository.getCompanyStock(ticker)
+
+    override suspend fun getPriceInfo(ticker: String): StockPriceDomain =
+        stockRepository.getPriceStock(ticker)
 }

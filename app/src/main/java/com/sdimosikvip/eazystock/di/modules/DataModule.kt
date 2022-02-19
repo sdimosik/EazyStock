@@ -7,12 +7,15 @@ import com.sdimosikvip.data.network.StockService
 import com.sdimosikvip.data.network.interceptors.AuthInterceptor
 import com.sdimosikvip.data.network.interceptors.NetworkStatusInterceptor
 import com.sdimosikvip.data.network.mapper.StockCompanyMapper
+import com.sdimosikvip.data.network.mapper.StockPriceMapper
 import com.sdimosikvip.data.network.models.StockCompanyResponse
+import com.sdimosikvip.data.network.models.StockPriceResponse
 import com.sdimosikvip.data.repository.StockRepositoryImpl
 import com.sdimosikvip.data.sources.StockRemoteSource
 import com.sdimosikvip.data.sources.StockRemoteSourceImpl
 import com.sdimosikvip.domain.mapper.BaseMapper
 import com.sdimosikvip.domain.models.StockCompanyDomain
+import com.sdimosikvip.domain.models.StockPriceDomain
 import com.sdimosikvip.domain.repository.StockRepository
 import dagger.Module
 import dagger.Provides
@@ -63,10 +66,15 @@ class DataModule {
         StockCompanyMapper()
 
     @Provides
+    fun provideStockPriceResponseToStockPriceDomain(): BaseMapper<StockPriceResponse, StockPriceDomain> =
+        StockPriceMapper()
+
+    @Provides
     fun provideStockRemoteSource(
         stockService: StockService,
-        stockCompanyMapper: BaseMapper<StockCompanyResponse, StockCompanyDomain>
-    ): StockRemoteSource = StockRemoteSourceImpl(stockService, stockCompanyMapper)
+        stockCompanyMapper: BaseMapper<StockCompanyResponse, StockCompanyDomain>,
+        stockPriceMapper: BaseMapper<StockPriceResponse, StockPriceDomain>,
+    ): StockRemoteSource = StockRemoteSourceImpl(stockService, stockCompanyMapper, stockPriceMapper)
 
     @Provides
     @Reusable
