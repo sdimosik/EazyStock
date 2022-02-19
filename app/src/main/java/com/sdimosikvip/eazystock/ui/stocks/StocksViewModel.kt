@@ -3,11 +3,11 @@ package com.sdimosikvip.eazystock.ui.stocks
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.sdimosikvip.domain.Outcome
 import com.sdimosikvip.domain.interactor.GetStockUseCase
 import com.sdimosikvip.eazystock.base.BaseViewModel
 import com.sdimosikvip.eazystock.mapper.StockDomainToStockUIMapper
 import com.sdimosikvip.eazystock.model.StockUI
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
@@ -29,16 +29,8 @@ class StocksViewModel @Inject constructor(
                 .onCompletion {
                     hideLoading()
                 }
-                .collect {
-                    when (it) {
-                        is Outcome.Success -> {
-                            _stock.value = StockDomainToStockUIMapper().transform(it.value)
-                        }
-                        is Outcome.Failure -> {
-                            hideLoading()
-                            setToastMessage(getMessageExceptionRes(it.cause))
-                        }
-                    }
+                .collectLatest {
+                    _stock.value = StockDomainToStockUIMapper().transform(it)
                 }
         }
     }
