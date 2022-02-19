@@ -11,7 +11,7 @@
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/main__tab_layout"
         style="@style/AppTabLayout"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dp">
 
@@ -26,7 +26,6 @@
             tools:text="Favorite" />
 
     </com.google.android.material.tabs.TabLayout>
-
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/main__view_pager"

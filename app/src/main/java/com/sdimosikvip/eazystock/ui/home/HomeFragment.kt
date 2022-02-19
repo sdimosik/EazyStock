@@ -8,7 +8,6 @@ import com.google.android.material.tabs.TabLayoutMediator
 import com.sdimosikvip.eazystock.R
 import com.sdimosikvip.eazystock.base.BaseFragment
 import com.sdimosikvip.eazystock.databinding.FragmentHomeBinding
-import com.sdimosikvip.eazystock.ui.MainActivity
 import com.sdimosikvip.eazystock.ui.favourite.FavouriteFragment
 import com.sdimosikvip.eazystock.ui.stocks.StocksFragment
 
@@ -21,6 +20,8 @@ private val screensTittle = listOf(
     R.string.tittle_stocks,
     R.string.tittle_favourite
 )
+
+const val COUNT_VIEWPAGER_FRAGMENT = 2
 
 class HomeFragment() : BaseFragment(
     tittleRes = R.string.fragment_home_name,
@@ -68,7 +69,7 @@ private fun getOrderFragmentTittleId(position: Int): Int {
 
 private class ViewPagerAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
 
-    override fun getItemCount(): Int = MainActivity.COUNT_VIEWPAGER_FRAGMENT
+    override fun getItemCount(): Int = COUNT_VIEWPAGER_FRAGMENT
 
     override fun createFragment(position: Int): Fragment {
         return getOrderFragment(position)

@@ -133,3 +133,8 @@ object UnitTest {
     const val junit4 = "junit:junit:$junit_version"
     const val junit_ext = "androidx.test.ext:junit:$junit_ext_version"
 }
+
+object Other {
+    private const val alert_version = "7.2.4"
+    const val alert = "com.github.tapadoo:alerter:$alert_version"
+}

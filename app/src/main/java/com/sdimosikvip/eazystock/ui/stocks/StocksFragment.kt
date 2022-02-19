@@ -52,11 +52,9 @@ class StocksFragment() : BaseFragment(
         stocksViewModel.state.observe(viewLifecycleOwner) {
             when (it) {
                 is BaseViewModel.State.Init -> {
-                    // shimmer
                     binding.shimmerRecyclerView.showShimmer()
                 }
                 is BaseViewModel.State.IsLoading -> {
-                    // loading line (как в тинькофф)
                     if (it.isLoading) {
                         binding.shimmerRecyclerView.showShimmer()
                     } else {
@@ -65,7 +63,7 @@ class StocksFragment() : BaseFragment(
                 }
                 is BaseViewModel.State.ShowToast -> {
                     // красивый toast с инфой
-                    showError(binding.root, getString(it.messageRes))
+                    //showError(binding.root, getString(it.messageRes))
                 }
             }
         }
