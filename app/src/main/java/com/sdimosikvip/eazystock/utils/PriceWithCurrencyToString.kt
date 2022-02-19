@@ -14,8 +14,8 @@ fun getSymbol(currency: String): String {
 
 fun deltaWithPercentToString(delta: Double, percent: Double, currency: String): String {
     return if (delta >= 0) {
-        "+${getSymbol(currency)}${abs(delta.round(2))} (${abs(percent.round(2))}%)"
+        "+${getSymbol(currency)}${abs(delta.round(2))} (+${abs(percent.round(2))}%)"
     } else {
-        "-${getSymbol(currency)}${abs(delta.round(2))} (${abs(percent.round(2))}%)"
+        "-${getSymbol(currency)}${abs(delta.round(2))} (-${abs(percent.round(2))}%)"
     }
 }

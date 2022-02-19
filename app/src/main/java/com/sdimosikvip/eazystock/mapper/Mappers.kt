@@ -6,8 +6,7 @@ import com.sdimosikvip.eazystock.model.StockUI
 import com.sdimosikvip.eazystock.utils.deltaWithPercentToString
 import com.sdimosikvip.eazystock.utils.priceWithCurrencyToString
 
-// TODO price
-//  поставить ограничения на textview
+
 fun stockCompanyAndPriceDomainToUI(
     stockCompanyDomain: StockCompanyDomain,
     stockPriceDomain: StockPriceDomain

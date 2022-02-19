@@ -33,6 +33,9 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="14dp"
             android:layout_marginTop="12dp"
+            android:ellipsize="end"
+            android:maxWidth="100dp"
+            android:singleLine="true"
             app:layout_constraintBottom_toTopOf="@+id/company_textview"
             app:layout_constraintStart_toEndOf="@+id/logo_imageview"
             app:layout_constraintTop_toTopOf="parent"
@@ -45,6 +48,9 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="14dp"
             android:layout_marginBottom="12dp"
+            android:ellipsize="end"
+            android:maxWidth="125dp"
+            android:singleLine="true"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/logo_imageview"
             tools:text="Yandex, LCC" />
@@ -56,10 +62,13 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="14dp"
             android:layout_marginEnd="16dp"
+            android:ellipsize="end"
+            android:maxWidth="150dp"
+            android:singleLine="true"
             app:layout_constraintBottom_toTopOf="@+id/day_delta_price_textview"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="4 764,6 Р" />
+            tools:text="₽4 764,64" />
 
         <TextView
             android:id="@+id/day_delta_price_textview"
@@ -68,10 +77,13 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="14dp"
+            android:ellipsize="end"
+            android:maxWidth="150dp"
+            android:singleLine="true"
             android:textColor="@color/plus_price"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            tools:text="+55 Р (1,15%)" />
+            tools:text="+₽55 (+1,15%)" />
 
         <ImageView
             android:id="@+id/is_favourite_imageview"
