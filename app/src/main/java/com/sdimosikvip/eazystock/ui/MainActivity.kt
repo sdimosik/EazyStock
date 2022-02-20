@@ -1,20 +1,13 @@
 package com.sdimosikvip.eazystock.ui
 
-import android.annotation.SuppressLint
 import android.os.Bundle
-import android.view.Gravity
+import android.view.View
 import android.view.WindowManager
-import androidx.core.view.setPadding
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.sdimosikvip.eazystock.R
 import com.sdimosikvip.eazystock.databinding.ActivityMainBinding
 import com.sdimosikvip.eazystock.utils.connection.ConnectionLiveData
-import com.tapadoo.alerter.Alert
-import com.tapadoo.alerter.Alerter
 import dagger.android.support.DaggerAppCompatActivity
-import okhttp3.Response
-import okhttp3.WebSocket
-import okhttp3.WebSocketListener
 import javax.inject.Inject
 
 
@@ -26,16 +19,18 @@ class MainActivity() : DaggerAppCompatActivity(R.layout.activity_main) {
 
     private val binding by viewBinding(ActivityMainBinding::bind)
 
-    @Inject
-    lateinit var connectionLiveData: ConnectionLiveData
+
+    private val connectionLiveData: ConnectionLiveData by lazy {
+        ConnectionLiveData(application)
+    }
 
     override fun onStart() {
         super.onStart()
-        connectionLiveData.observe(this) { isConnected ->
+        connectionLiveData.observe(this){ isConnected ->
             if (isConnected) {
-                Alerter.clearCurrent(this)
+                binding.internetConnectionInfo.visibility = View.GONE
             } else {
-                showAlert()
+                binding.internetConnectionInfo.visibility = View.VISIBLE
             }
         }
     }
@@ -62,18 +57,6 @@ class MainActivity() : DaggerAppCompatActivity(R.layout.activity_main) {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)*/
-    }
-
-    @SuppressLint("ResourceAsColor")
-    private fun showAlert() {
-        Alerter.create(this)
-            .setLayoutGravity(Gravity.BOTTOM)
-            .setBackgroundColorRes(R.color.black)
-            .setTitle(getString(R.string.network_no_connection_error_message))
-            .enableInfiniteDuration(true)
-            .setIcon(R.drawable.ic_shocked_emoji)
-            .setIconColorFilter(R.color.transparent)
-            .show()
     }
 
     private fun changeColorOnStatusBar() {

@@ -18,7 +18,7 @@ import com.sdimosikvip.eazystock.utils.setup
 class StocksFragment() : BaseFragment(
     tittleRes = R.string.stocks_fragment_name,
     layoutId = R.layout.fragment_stocks
-), SwipeRefreshLayout.OnRefreshListener {
+    ), SwipeRefreshLayout.OnRefreshListener {
 
     companion object {
         const val TITTLE_ID = R.string.stocks_fragment_name

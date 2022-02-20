@@ -57,7 +57,7 @@ private fun getOrderFragment(position: Int): BaseFragment {
     if (!isValidPosition(position)) {
         throw IllegalArgumentException("Illegal position: $position")
     }
-    return screens[position].newInstance()
+    return screens[position].newInstance() as BaseFragment
 }
 
 private fun getOrderFragmentTittleId(position: Int): Int {
