@@ -7,7 +7,7 @@ import com.sdimosikvip.eazystock.utils.deltaWithPercentToString
 import com.sdimosikvip.eazystock.utils.priceWithCurrencyToString
 
 
-fun stockCompanyAndPriceDomainToUI(
+fun StockCompanyAndPriceDomainToUI(
     stockCompanyDomain: StockCompanyDomain,
     stockPriceDomain: StockPriceDomain
 ): StockUI = StockUI(

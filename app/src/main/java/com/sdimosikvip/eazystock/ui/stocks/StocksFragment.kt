@@ -68,7 +68,7 @@ class StocksFragment() : BaseFragment(
         }
 
         stocksViewModel.stock.observe(viewLifecycleOwner) {
-            adapter.items = listOf(it)
+            adapter.items = it
         }
     }
 }

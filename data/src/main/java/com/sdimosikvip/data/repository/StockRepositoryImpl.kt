@@ -3,6 +3,7 @@ package com.sdimosikvip.data.repository
 import com.sdimosikvip.data.sources.StockRemoteSource
 import com.sdimosikvip.domain.models.StockCompanyDomain
 import com.sdimosikvip.domain.models.StockPriceDomain
+import com.sdimosikvip.domain.models.TickersDomain
 import com.sdimosikvip.domain.repository.StockRepository
 import com.sdimosikvip.domain.requireValue
 import kotlinx.coroutines.CoroutineDispatcher
@@ -24,4 +25,7 @@ class StockRepositoryImpl @Inject constructor(
         ticker: String
     ): StockPriceDomain =
         withContext(defaultDispatcher) { remoteDataSource.getPriceStock(ticker).requireValue() }
+
+    override suspend fun getMostWatchedTickers(): TickersDomain =
+        withContext(defaultDispatcher) { remoteDataSource.getMostWatcherTickers().requireValue() }
 }

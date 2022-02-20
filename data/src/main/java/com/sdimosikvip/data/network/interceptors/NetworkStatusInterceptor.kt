@@ -1,4 +1,4 @@
-package com.sdimosikvip.data.network.finnhub.interceptors
+package com.sdimosikvip.data.network.interceptors
 
 import com.sdimosikvip.data.network.ConnectionManager
 import com.sdimosikvip.domain.NoConnectionException

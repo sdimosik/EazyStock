@@ -14,8 +14,13 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
 
-        buildConfigField "String", "API_TOKEN", "\"c14k75n48v6st2752cn0\""
-        buildConfigField "String", "BASE_URL", "\"https://finnhub.io/api/v1/\""
+        buildConfigField "String", "PARAMETR_API_TOKET_MBOUM", "\"apikey\""
+        buildConfigField "String", "API_TOKEN_MBOUM", "\"S8YoEbPR1DM2JCBffBYMt7x9TuFAkskk0VUtWNK2D5qmMTk3VGqqKcPDxsol\""
+        buildConfigField "String", "BASE_URL_MBOUM", "\"https://mboum.com/api/v1/\""
+
+        buildConfigField "String", "PARAMETR_API_TOKET_FINNHUB", "\"token\""
+        buildConfigField "String", "API_TOKEN_FINNHUB", "\"c14k75n48v6st2752cn0\""
+        buildConfigField "String", "BASE_URL_FINNHUB", "\"https://finnhub.io/api/v1/\""
     }
 
     buildTypes {
