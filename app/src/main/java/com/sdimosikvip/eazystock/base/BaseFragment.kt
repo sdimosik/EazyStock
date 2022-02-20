@@ -33,7 +33,7 @@ abstract class BaseFragment(
 
     protected open fun subscribe() {}
 
-    protected fun showError(view: View, msg: String) {
+    protected fun showError(msg: String) {
         StyleableToast.makeText(requireContext(), msg, Toast.LENGTH_SHORT, R.style.ErrorToast)
             .show()
     }

@@ -63,7 +63,7 @@ class MainActivity() : DaggerAppCompatActivity(R.layout.activity_main) {
 
     @SuppressLint("ResourceAsColor")
     private fun showAlert() {
-        val f = Alerter.create(this)
+        Alerter.create(this)
             .setLayoutGravity(Gravity.BOTTOM)
             .setBackgroundColorRes(R.color.black)
             .setTitle(getString(R.string.network_no_connection_error_message))
