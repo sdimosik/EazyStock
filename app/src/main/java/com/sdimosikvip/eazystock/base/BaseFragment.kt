@@ -10,7 +10,7 @@ import androidx.viewbinding.ViewBinding
 import com.google.android.material.snackbar.Snackbar
 import com.sdimosikvip.eazystock.R
 import dagger.android.support.DaggerFragment
-import io.github.muddz.styleabletoast.StyleableToast
+import es.dmoral.toasty.Toasty
 import javax.inject.Inject
 
 abstract class BaseFragment(
@@ -34,7 +34,6 @@ abstract class BaseFragment(
     protected open fun subscribe() {}
 
     protected fun showError(msg: String) {
-        StyleableToast.makeText(requireContext(), msg, Toast.LENGTH_SHORT, R.style.ErrorToast)
-            .show()
+        Toasty.error(requireContext(), msg, Toast.LENGTH_SHORT, true).show()
     }
 }
