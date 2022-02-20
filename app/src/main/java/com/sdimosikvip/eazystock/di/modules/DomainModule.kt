@@ -1,5 +1,7 @@
 package com.sdimosikvip.eazystock.di.modules
 
+import com.sdimosikvip.domain.interactor.FavouriteStockInteractor
+import com.sdimosikvip.domain.interactor.FavouriteStockInteractorImpl
 import com.sdimosikvip.domain.interactor.RecommendationStockInteractor
 import com.sdimosikvip.domain.interactor.RecommendationStockInteractorImpl
 import com.sdimosikvip.domain.repository.StockRepository
@@ -16,4 +18,11 @@ class DomainModule {
         stockRepository: StockRepository
     ): RecommendationStockInteractor =
         RecommendationStockInteractorImpl(stockRepository)
+
+    @Provides
+    @Reusable
+    fun provideFavouriteStockInteractor(
+        stockRepository: StockRepository
+    ): FavouriteStockInteractor =
+        FavouriteStockInteractorImpl(stockRepository)
 }

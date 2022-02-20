@@ -1,7 +1,10 @@
 package com.sdimosikvip.eazystock.di.modules
 
 import android.content.Context
+import androidx.room.Room
 import com.sdimosikvip.data.BuildConfig
+import com.sdimosikvip.data.db.FavouriteStockDAO
+import com.sdimosikvip.data.db.FavouriteStockDatabase
 import com.sdimosikvip.data.network.ConnectionManager
 import com.sdimosikvip.data.network.finnhub.FinnhubService
 import com.sdimosikvip.data.network.interceptors.AuthInterceptor
@@ -34,6 +37,22 @@ import javax.inject.Singleton
 
 @Module
 class DataModule {
+
+    @Singleton
+    @Provides
+    fun provideFavouriteStockDatabase(context: Context): FavouriteStockDatabase {
+        return Room.databaseBuilder(
+            context,
+            FavouriteStockDatabase::class.java,
+            "FavouriteStockDatabase.db"
+        ).build()
+    }
+
+    @Singleton
+    @Provides
+    fun provideFavouriteStockDAO(database: FavouriteStockDatabase): FavouriteStockDAO {
+        return database.favouriteStockDAO()
+    }
 
     @Singleton
     @Provides
@@ -126,7 +145,7 @@ class DataModule {
         StockPriceMapper()
 
     @Provides
-    fun provideTickersMapper():BaseMapper<MostWatchedTicketResponse, TickersDomain> =
+    fun provideTickersMapper(): BaseMapper<MostWatchedTicketResponse, TickersDomain> =
         TickersMapper()
 
     @Provides
@@ -148,8 +167,9 @@ class DataModule {
     @Provides
     @Reusable
     fun provideStockRepository(
-        remoteDataSource: StockRemoteSource
-    ): StockRepository = StockRepositoryImpl(remoteDataSource)
+        remoteDataSource: StockRemoteSource,
+        favouriteStockDao: FavouriteStockDAO
+    ): StockRepository = StockRepositoryImpl(remoteDataSource, favouriteStockDao)
 
 }
 

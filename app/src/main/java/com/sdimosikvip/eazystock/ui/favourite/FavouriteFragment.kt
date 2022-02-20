@@ -72,7 +72,7 @@ class FavouriteFragment() : BaseFragment(
                     }
                 }
                 is BaseViewModel.State.ShowToast -> {
-
+                    showError(getString(state.messageRes))
                 }
             }
         }
