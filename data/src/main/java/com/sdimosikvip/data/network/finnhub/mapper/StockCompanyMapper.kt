@@ -1,6 +1,6 @@
-package com.sdimosikvip.data.network.mapper
+package com.sdimosikvip.data.network.finnhub.mapper
 
-import com.sdimosikvip.data.network.models.StockCompanyResponse
+import com.sdimosikvip.data.network.finnhub.models.StockCompanyResponse
 import com.sdimosikvip.domain.mapper.BaseMapper
 import com.sdimosikvip.domain.models.StockCompanyDomain
 

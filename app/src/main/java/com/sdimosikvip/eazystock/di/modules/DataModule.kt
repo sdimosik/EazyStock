@@ -3,13 +3,13 @@ package com.sdimosikvip.eazystock.di.modules
 import android.content.Context
 import com.sdimosikvip.data.BuildConfig
 import com.sdimosikvip.data.network.ConnectionManager
-import com.sdimosikvip.data.network.StockService
-import com.sdimosikvip.data.network.interceptors.AuthInterceptor
-import com.sdimosikvip.data.network.interceptors.NetworkStatusInterceptor
-import com.sdimosikvip.data.network.mapper.StockCompanyMapper
-import com.sdimosikvip.data.network.mapper.StockPriceMapper
-import com.sdimosikvip.data.network.models.StockCompanyResponse
-import com.sdimosikvip.data.network.models.StockPriceResponse
+import com.sdimosikvip.data.network.finnhub.FinnhubService
+import com.sdimosikvip.data.network.finnhub.interceptors.AuthInterceptor
+import com.sdimosikvip.data.network.finnhub.interceptors.NetworkStatusInterceptor
+import com.sdimosikvip.data.network.finnhub.mapper.StockCompanyMapper
+import com.sdimosikvip.data.network.finnhub.mapper.StockPriceMapper
+import com.sdimosikvip.data.network.finnhub.models.StockCompanyResponse
+import com.sdimosikvip.data.network.finnhub.models.StockPriceResponse
 import com.sdimosikvip.data.repository.StockRepositoryImpl
 import com.sdimosikvip.data.sources.StockRemoteSource
 import com.sdimosikvip.data.sources.StockRemoteSourceImpl
@@ -52,13 +52,13 @@ class DataModule {
 
     @Singleton
     @Provides
-    fun provideStockService(okHttpClient: OkHttpClient): StockService {
+    fun provideStockService(okHttpClient: OkHttpClient): FinnhubService {
         return Retrofit.Builder()
             .baseUrl(BuildConfig.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .client(okHttpClient)
             .build()
-            .create(StockService::class.java)
+            .create(FinnhubService::class.java)
     }
 
     @Provides
@@ -71,10 +71,10 @@ class DataModule {
 
     @Provides
     fun provideStockRemoteSource(
-        stockService: StockService,
+        finnhubService: FinnhubService,
         stockCompanyMapper: BaseMapper<StockCompanyResponse, StockCompanyDomain>,
         stockPriceMapper: BaseMapper<StockPriceResponse, StockPriceDomain>,
-    ): StockRemoteSource = StockRemoteSourceImpl(stockService, stockCompanyMapper, stockPriceMapper)
+    ): StockRemoteSource = StockRemoteSourceImpl(finnhubService, stockCompanyMapper, stockPriceMapper)
 
     @Provides
     @Reusable

@@ -1,12 +1,12 @@
-package com.sdimosikvip.data.network
+package com.sdimosikvip.data.network.finnhub
 
-import com.sdimosikvip.data.network.models.StockCompanyResponse
-import com.sdimosikvip.data.network.models.StockPriceResponse
+import com.sdimosikvip.data.network.finnhub.models.StockCompanyResponse
+import com.sdimosikvip.data.network.finnhub.models.StockPriceResponse
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
 
-interface StockService {
+interface FinnhubService {
 
     @GET("stock/profile2")
     suspend fun getStockCompany(

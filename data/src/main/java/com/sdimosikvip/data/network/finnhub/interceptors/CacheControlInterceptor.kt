@@ -1,4 +1,4 @@
-package com.sdimosikvip.data.network.interceptors
+package com.sdimosikvip.data.network.finnhub.interceptors
 
 import com.sdimosikvip.data.network.ConnectionManager
 import okhttp3.Interceptor

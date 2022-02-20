@@ -12,6 +12,9 @@ import com.sdimosikvip.eazystock.utils.connection.ConnectionLiveData
 import com.tapadoo.alerter.Alert
 import com.tapadoo.alerter.Alerter
 import dagger.android.support.DaggerAppCompatActivity
+import okhttp3.Response
+import okhttp3.WebSocket
+import okhttp3.WebSocketListener
 import javax.inject.Inject
 
 

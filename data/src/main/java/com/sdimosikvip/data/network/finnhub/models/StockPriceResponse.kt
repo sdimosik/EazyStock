@@ -1,4 +1,4 @@
-package com.sdimosikvip.data.network.models
+package com.sdimosikvip.data.network.finnhub.models
 
 
 import com.google.gson.annotations.SerializedName
