@@ -1,5 +1,6 @@
 package com.sdimosikvip.eazystock.ui.adapters.delegates
 
+import android.animation.Animator
 import android.graphics.drawable.Drawable
 import com.bumptech.glide.RequestManager
 import com.bumptech.glide.load.DataSource
@@ -35,6 +36,27 @@ object StocksDelegates {
                         dayDeltaPriceTextview.setTextColor(getColor(R.color.plus_price))
                     } else {
                         dayDeltaPriceTextview.setTextColor(getColor(R.color.minus_price))
+                    }
+
+                    // it's plg now
+                    // TODO + add dialog confirm
+                    val isFav = true
+                    if (isFav) {
+                        favouriteImageview.setImageResource(R.drawable.star_active)
+                        favouriteImageview.contentDescription = "fav"
+                    } else {
+                        favouriteImageview.setImageResource(R.drawable.star_inactive)
+                        favouriteImageview.contentDescription = "not_fav"
+                    }
+
+                    favouriteImageview.setOnClickListener {
+                        if (favouriteImageview.contentDescription == "not_fav") {
+                            favouriteImageview.setImageResource(R.drawable.star_active)
+                            favouriteImageview.contentDescription = "fav"
+                        } else if (favouriteImageview.contentDescription == "fav") {
+                            favouriteImageview.setImageResource(R.drawable.star_inactive)
+                            favouriteImageview.contentDescription = "not_fav"
+                        }
                     }
 
                     glide.load(item.logo)
