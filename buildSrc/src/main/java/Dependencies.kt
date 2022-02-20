@@ -15,6 +15,7 @@ object Androidx {
     private const val lifecycle_livedata_ktx_version = "2.4.0"
     private const val constraintlayout_version = "2.1.3"
     private const val navigation_component = "2.4.0"
+    private const val swipe_to_refresh_layout_version = "1.1.0"
 
     const val core_ktx = "androidx.core:core-ktx:$core_ktx_version"
     const val app_compat = "androidx.appcompat:appcompat:$app_compat_version"
@@ -27,6 +28,8 @@ object Androidx {
     const val navigation_fragment_ktx =
         "androidx.navigation:navigation-fragment-ktx:$navigation_component"
     const val navigation_ui_ktx = "androidx.navigation:navigation-ui-ktx:$navigation_component"
+    const val swipe_to_refresh_layout =
+        "androidx.swiperefreshlayout:swiperefreshlayout:$swipe_to_refresh_layout_version"
 
 }
 

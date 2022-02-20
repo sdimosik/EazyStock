@@ -10,5 +10,4 @@ fun <VH : RecyclerView.ViewHolder> ShimmerRecyclerView.setup(
 ) {
     this.adapter = adapter
     setItemViewType { _, _ -> layoutId }
-    showShimmer()
 }

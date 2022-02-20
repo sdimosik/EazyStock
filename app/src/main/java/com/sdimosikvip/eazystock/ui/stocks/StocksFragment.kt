@@ -1,6 +1,7 @@
 package com.sdimosikvip.eazystock.ui.stocks
 
 import androidx.fragment.app.viewModels
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.bumptech.glide.Glide
 import com.bumptech.glide.RequestManager
@@ -17,7 +18,7 @@ import com.sdimosikvip.eazystock.utils.setup
 class StocksFragment() : BaseFragment(
     tittleRes = R.string.stocks_fragment_name,
     layoutId = R.layout.fragment_stocks
-) {
+), SwipeRefreshLayout.OnRefreshListener {
 
     companion object {
         const val TITTLE_ID = R.string.stocks_fragment_name
@@ -43,26 +44,38 @@ class StocksFragment() : BaseFragment(
 
         with(binding) {
             shimmerRecyclerView.setup(adapter, R.layout.shimmer_item_stock)
+            swipeRefreshLayout.setOnRefreshListener(this@StocksFragment)
         }
+    }
+
+    override fun onRefresh() {
+        if (stocksViewModel.state.value == BaseViewModel.State.Init){
+            binding.swipeRefreshLayout.isRefreshing = false
+            return
+        }
+
+        stocksViewModel.updateRecommendationStocks(false)
     }
 
     override fun subscribe() {
         super.subscribe()
 
-        stocksViewModel.state.observe(viewLifecycleOwner) {
-            when (it) {
+        stocksViewModel.state.observe(viewLifecycleOwner) { state ->
+            when (state) {
                 is BaseViewModel.State.Init -> {
                     binding.shimmerRecyclerView.showShimmer()
+                    stocksViewModel.updateRecommendationStocks(true)
                 }
                 is BaseViewModel.State.IsLoading -> {
-                    if (it.isLoading) {
-                        binding.shimmerRecyclerView.showShimmer()
+                    if (state.isLoading) {
+                        binding.swipeRefreshLayout.isRefreshing = true
                     } else {
+                        binding.swipeRefreshLayout.isRefreshing = false
                         binding.shimmerRecyclerView.hideShimmer()
                     }
                 }
                 is BaseViewModel.State.ShowToast -> {
-                    showError(getString(it.messageRes))
+                    showError(getString(state.messageRes))
                 }
             }
         }

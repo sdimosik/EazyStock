@@ -10,7 +10,7 @@ import kotlinx.coroutines.CoroutineExceptionHandler
 
 abstract class BaseViewModel : ViewModel() {
 
-    private val _state = MutableLiveData<State>()
+    private val _state = MutableLiveData<State>(State.Init)
     val state: LiveData<State> = _state
 
     protected val handlerException = CoroutineExceptionHandler { _, exception ->

@@ -57,6 +57,7 @@ dependencies {
     implementation Androidx.lifecycle_viewmodel_ktx
     implementation Androidx.navigation_fragment_ktx
     implementation Androidx.navigation_ui_ktx
+    implementation Androidx.swipe_to_refresh_layout
 
     implementation Google.material
 

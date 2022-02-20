@@ -19,10 +19,10 @@ class StocksViewModel @Inject constructor(
     private val _stock = MutableLiveData<List<StockUI>>()
     val stock: LiveData<List<StockUI>> = _stock
 
-    init {
+    fun updateRecommendationStocks(isFirstLoad: Boolean) {
         viewModelScope.launch(handlerException) {
             recommendationStockInteractor.execute().onStart {
-                setLoading()
+                if (!isFirstLoad) setLoading()
             }.onCompletion {
                 hideLoading()
             }.collect {
