@@ -97,6 +97,16 @@
             app:srcCompat="@drawable/star_inactive"
             tools:ignore="ContentDescription" />
 
+        <TextView
+            android:id="@+id/time_price"
+            style="@style/TextView.Semi.Inactive.XXXS"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            tools:text="12 February 15:00"
+            app:layout_constraintBottom_toTopOf="@+id/current_price_textview"
+            app:layout_constraintEnd_toEndOf="parent" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </com.google.android.material.card.MaterialCardView>

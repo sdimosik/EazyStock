@@ -88,6 +88,8 @@ dependencies {
 
     implementation Other.alert
     implementation Other.toast
+    implementation Other.timber
+    implementation Other.threetenabp
 
     androidTestImplementation UnitTest.junit4
     androidTestImplementation UnitTest.junit_ext

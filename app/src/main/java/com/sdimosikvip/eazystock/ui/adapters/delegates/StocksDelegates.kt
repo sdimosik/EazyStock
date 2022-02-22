@@ -30,6 +30,7 @@ object StocksDelegates {
                     companyTextview.text = item.company
                     currentPriceTextview.text = item.price
                     dayDeltaPriceTextview.text = item.deltaDayPrice
+                    timePrice.text = item.timestampString
 
                     if (item.isPositiveDelta) {
                         dayDeltaPriceTextview.setTextColor(getColor(R.color.plus_price))

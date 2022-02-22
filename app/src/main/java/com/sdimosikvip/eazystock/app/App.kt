@@ -1,6 +1,7 @@
 package com.sdimosikvip.eazystock.app
 
 import android.content.Context
+import com.jakewharton.threetenabp.AndroidThreeTen
 import com.sdimosikvip.eazystock.di.AppComponent
 import com.sdimosikvip.eazystock.di.DaggerAppComponent
 import dagger.android.AndroidInjector
@@ -11,6 +12,12 @@ class App : DaggerApplication() {
 
     override fun applicationInjector(): AndroidInjector<out DaggerApplication> =
         DaggerAppComponent.factory().create(this)
+
+    override fun onCreate() {
+        super.onCreate()
+
+        AndroidThreeTen.init(this)
+    }
 }
 
 val Context.appComponent: AppComponent

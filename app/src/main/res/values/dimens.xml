@@ -6,4 +6,5 @@
     <dimen name="S">14sp</dimen>
     <dimen name="XS">12sp</dimen>
     <dimen name="XXS">11sp</dimen>
+    <dimen name="XXXS">7sp</dimen>
 </resources>

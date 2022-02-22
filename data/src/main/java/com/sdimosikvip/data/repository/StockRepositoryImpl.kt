@@ -3,18 +3,14 @@ package com.sdimosikvip.data.repository
 import com.sdimosikvip.data.db.FavouriteStockDAO
 import com.sdimosikvip.data.db.models.FavouriteStocksDB
 import com.sdimosikvip.data.sources.StockRemoteSource
-import com.sdimosikvip.domain.models.FavouriteStocksDomain
-import com.sdimosikvip.domain.models.StockCompanyDomain
-import com.sdimosikvip.domain.models.StockPriceDomain
-import com.sdimosikvip.domain.models.TickersDomain
+import com.sdimosikvip.domain.models.*
 import com.sdimosikvip.domain.repository.StockRepository
 import com.sdimosikvip.domain.requireValue
-import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class StockRepositoryImpl @Inject constructor(
@@ -23,18 +19,38 @@ class StockRepositoryImpl @Inject constructor(
     private val defaultDispatcher: CoroutineDispatcher = Dispatchers.IO
 ) : StockRepository {
 
-    override suspend fun getCompanyStock(
-        ticker: String
-    ): StockCompanyDomain =
-        withContext(defaultDispatcher) { remoteDataSource.getCompanyStock(ticker).requireValue() }
+    override suspend fun getStocks(tickers: List<String>) =
+        flow {
+            coroutineScope {
+                val list: MutableList<StockItemDomain> = mutableListOf()
 
-    override suspend fun getPriceStock(
-        ticker: String
-    ): StockPriceDomain =
-        withContext(defaultDispatcher) { remoteDataSource.getPriceStock(ticker).requireValue() }
+                val listDef = mutableListOf<Deferred<Any>>()
+                for (ticker in tickers) {
+                    listDef.add(
+                        async {
+                            val stockDomain = getStock(ticker)
+                            synchronized(list) {
+                                list.add(stockDomain)
+                            }
+                        })
+                }
+                listDef.awaitAll()
 
-    override suspend fun getMostWatchedTickers(): TickersDomain =
-        withContext(defaultDispatcher) { remoteDataSource.getMostWatcherTickers().requireValue() }
+                list.sortBy { it.stockCompanyDomain.ticker }
+                emit(list)
+            }
+        }.flowOn(defaultDispatcher)
+
+    private suspend fun getStock(ticker: String) = withContext(defaultDispatcher) {
+        val isFavourite = localDataSource.getOneFavouriteStock(ticker) != null
+        val companyStock = remoteDataSource.getCompanyStock(ticker).requireValue()
+        val priceStock = remoteDataSource.getPriceStock(ticker).requireValue()
+        return@withContext StockItemDomain(
+            companyStock,
+            priceStock,
+            isFavourite
+        )
+    }
 
     override suspend fun saveFavouriteStock(ticker: String) =
         withContext(defaultDispatcher) {

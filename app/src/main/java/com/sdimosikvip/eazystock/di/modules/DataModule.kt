@@ -7,13 +7,13 @@ import com.sdimosikvip.data.db.FavouriteStockDAO
 import com.sdimosikvip.data.db.FavouriteStockDatabase
 import com.sdimosikvip.data.network.ConnectionManager
 import com.sdimosikvip.data.network.finnhub.FinnhubService
-import com.sdimosikvip.data.network.interceptors.AuthInterceptor
-import com.sdimosikvip.data.network.interceptors.NetworkStatusInterceptor
 import com.sdimosikvip.data.network.finnhub.mapper.StockCompanyMapper
 import com.sdimosikvip.data.network.finnhub.mapper.StockPriceMapper
 import com.sdimosikvip.data.network.finnhub.models.StockCompanyResponse
 import com.sdimosikvip.data.network.finnhub.models.StockPriceResponse
+import com.sdimosikvip.data.network.interceptors.AuthInterceptor
 import com.sdimosikvip.data.network.interceptors.CacheControlInterceptor
+import com.sdimosikvip.data.network.interceptors.NetworkStatusInterceptor
 import com.sdimosikvip.data.network.mboum.MboumService
 import com.sdimosikvip.data.network.mboum.mapper.TickersMapper
 import com.sdimosikvip.data.network.mboum.models.MostWatchedTicketResponse
@@ -28,10 +28,12 @@ import com.sdimosikvip.domain.repository.StockRepository
 import dagger.Module
 import dagger.Provides
 import dagger.Reusable
+import okhttp3.Cache
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.io.File
 import javax.inject.Qualifier
 import javax.inject.Singleton
 
@@ -75,14 +77,26 @@ class DataModule {
     ): CacheControlInterceptor = CacheControlInterceptor(connectionManager)
 
     @Singleton
+    @Provides
+    fun provideCacheOkHttp(context: Context): Cache {
+        val httpCacheDirectory = File(context.cacheDir, "http-cache")
+        val cacheSize = 10 * 1024 * 1024 // 10 MiB
+        return Cache(httpCacheDirectory, cacheSize.toLong())
+    }
+
+    @Singleton
     @Finnhub
     @Provides
     fun provideOkHttpClientFinnhub(
         loggingInterceptor: HttpLoggingInterceptor,
-        networkStatusInterceptor: NetworkStatusInterceptor
+        networkStatusInterceptor: NetworkStatusInterceptor,
+        cacheControlInterceptor: CacheControlInterceptor,
+        cache: Cache
     ): OkHttpClient {
         return OkHttpClient.Builder()
-            .addInterceptor(networkStatusInterceptor)
+            .addNetworkInterceptor(cacheControlInterceptor)
+            .cache(cache)
+            .addNetworkInterceptor(networkStatusInterceptor)
             .addInterceptor(loggingInterceptor)
             .addInterceptor(
                 AuthInterceptor(
@@ -99,11 +113,9 @@ class DataModule {
     fun provideOkHttpClientMboum(
         loggingInterceptor: HttpLoggingInterceptor,
         networkStatusInterceptor: NetworkStatusInterceptor,
-        cacheControlInterceptor: CacheControlInterceptor
     ): OkHttpClient {
         return OkHttpClient.Builder()
-            .addInterceptor(cacheControlInterceptor)
-            .addInterceptor(networkStatusInterceptor)
+            //.addInterceptor(networkStatusInterceptor)
             .addInterceptor(loggingInterceptor)
             .addInterceptor(
                 AuthInterceptor(
