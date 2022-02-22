@@ -18,7 +18,7 @@ import com.sdimosikvip.eazystock.utils.setup
 class StocksFragment() : BaseFragment(
     tittleRes = R.string.stocks_fragment_name,
     layoutId = R.layout.fragment_stocks
-    ), SwipeRefreshLayout.OnRefreshListener {
+), SwipeRefreshLayout.OnRefreshListener {
 
     companion object {
         const val TITTLE_ID = R.string.stocks_fragment_name
@@ -35,7 +35,11 @@ class StocksFragment() : BaseFragment(
 
     private val adapter: AsyncListDifferAdapter by lazy {
         AsyncListDifferAdapter(
-            AdapterDelegatesManager(StocksDelegates.lightAndDarkAdapterDelegate(glide))
+            AdapterDelegatesManager(StocksDelegates.lightAndDarkAdapterDelegate(
+                glide,
+                { stocksViewModel.addFavouriteStock(it.ticker) },
+                { stocksViewModel.deleteFavouriteStock(it.ticker) }
+            ))
         )
     }
 
@@ -49,7 +53,7 @@ class StocksFragment() : BaseFragment(
     }
 
     override fun onRefresh() {
-        if (stocksViewModel.state.value == BaseViewModel.State.Init){
+        if (stocksViewModel.state.value == BaseViewModel.State.Init) {
             binding.swipeRefreshLayout.isRefreshing = false
             return
         }

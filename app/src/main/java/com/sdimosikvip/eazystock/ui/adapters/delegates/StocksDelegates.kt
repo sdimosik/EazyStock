@@ -15,7 +15,11 @@ import com.sdimosikvip.eazystock.model.StockUI
 
 object StocksDelegates {
 
-    fun lightAndDarkAdapterDelegate(glide: RequestManager) =
+    fun lightAndDarkAdapterDelegate(
+        glide: RequestManager,
+        addFavourite: (StockUI) -> Unit,
+        deleteFavourite: (StockUI) -> Unit
+    ) =
         adapterDelegateViewBinding<StockUI, BaseDiffItem, ItemStockBinding>(
             { layoutInflater, parent -> ItemStockBinding.inflate(layoutInflater, parent, false) }
         ) {
@@ -38,24 +42,21 @@ object StocksDelegates {
                         dayDeltaPriceTextview.setTextColor(getColor(R.color.minus_price))
                     }
 
-                    // it's plg now
-                    // TODO + add dialog confirm
-                    val isFav = true
-                    if (isFav) {
+                    if (item.isFavourite) {
                         favouriteImageview.setImageResource(R.drawable.star_active)
-                        favouriteImageview.contentDescription = "fav"
                     } else {
                         favouriteImageview.setImageResource(R.drawable.star_inactive)
-                        favouriteImageview.contentDescription = "not_fav"
                     }
 
                     favouriteImageview.setOnClickListener {
-                        if (favouriteImageview.contentDescription == "not_fav") {
-                            favouriteImageview.setImageResource(R.drawable.star_active)
-                            favouriteImageview.contentDescription = "fav"
-                        } else if (favouriteImageview.contentDescription == "fav") {
+                        if (item.isFavourite) {
+                            deleteFavourite(item)
                             favouriteImageview.setImageResource(R.drawable.star_inactive)
-                            favouriteImageview.contentDescription = "not_fav"
+                            item.isFavourite = false
+                        } else {
+                            addFavourite(item)
+                            favouriteImageview.setImageResource(R.drawable.star_active)
+                            item.isFavourite = true
                         }
                     }
 

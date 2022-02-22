@@ -35,7 +35,11 @@ class FavouriteFragment() : BaseFragment(
 
     private val adapter: AsyncListDifferAdapter by lazy {
         AsyncListDifferAdapter(
-            AdapterDelegatesManager(StocksDelegates.lightAndDarkAdapterDelegate(glide))
+            AdapterDelegatesManager(
+                StocksDelegates.lightAndDarkAdapterDelegate(glide,
+                    { favouriteViewModel.addFavouriteStock(it.ticker) },
+                    { favouriteViewModel.deleteFavouriteStock(it.ticker) })
+            )
         )
     }
 
@@ -53,6 +57,8 @@ class FavouriteFragment() : BaseFragment(
             binding.swipeRefreshLayout.isRefreshing = false
             return
         }
+
+        favouriteViewModel.getFavouriteStocks(false)
     }
 
     override fun subscribe() {
@@ -62,6 +68,7 @@ class FavouriteFragment() : BaseFragment(
             when (state) {
                 is BaseViewModel.State.Init -> {
                     binding.shimmerRecyclerView.showShimmer()
+                    favouriteViewModel.getFavouriteStocks(true)
                 }
                 is BaseViewModel.State.IsLoading -> {
                     if (state.isLoading) {
@@ -76,6 +83,9 @@ class FavouriteFragment() : BaseFragment(
                 }
             }
         }
-    }
 
+        favouriteViewModel.stock.observe(viewLifecycleOwner) {
+            adapter.items = it
+        }
+    }
 }

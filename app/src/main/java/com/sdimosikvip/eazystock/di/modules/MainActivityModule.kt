@@ -12,6 +12,5 @@ interface MainActivityModule {
             FragmentBuildersModule::class
         ]
     )
-
     fun contributeMainActivity(): MainActivity
 }

@@ -10,7 +10,8 @@ import com.sdimosikvip.eazystock.utils.priceWithCurrencyToString
 
 fun StockCompanyAndPriceDomainToUI(
     stockCompanyDomain: StockCompanyDomain,
-    stockPriceDomain: StockPriceDomain
+    stockPriceDomain: StockPriceDomain,
+    isFav: Boolean
 ): StockUI = StockUI(
     isFirstId = false,
     ticker = stockCompanyDomain.ticker,
@@ -24,6 +25,7 @@ fun StockCompanyAndPriceDomainToUI(
     isPositiveDelta = stockPriceDomain.change >= 0,
     timestamp = stockPriceDomain.timestampResponse,
     timestampString = formatDayMonthTime(stockPriceDomain.timestampResponse),
+    isFavourite = isFav,
     logo = stockCompanyDomain.logo,
     secondId = stockCompanyDomain.ticker
 )

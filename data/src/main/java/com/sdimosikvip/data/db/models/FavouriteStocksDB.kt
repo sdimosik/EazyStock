@@ -6,11 +6,9 @@ import com.sdimosikvip.data.db.models.FavouriteStocksDB.Companion.TABLE_NAME
 
 @Entity(tableName = TABLE_NAME)
 data class FavouriteStocksDB(
+    @PrimaryKey
     val ticker: String
 ) {
-    @PrimaryKey(autoGenerate = true)
-    var id: Long = 0
-
     companion object {
         const val TABLE_NAME = "favorite_stock"
     }

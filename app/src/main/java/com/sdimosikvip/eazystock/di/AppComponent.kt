@@ -1,10 +1,10 @@
 package com.sdimosikvip.eazystock.di
 
-import android.content.Context
+import android.app.Application
 import com.sdimosikvip.eazystock.app.App
 import com.sdimosikvip.eazystock.di.modules.AppModule
 import com.sdimosikvip.eazystock.di.modules.DataModule
-import com.sdimosikvip.eazystock.di.modules.DomainModule
+import com.sdimosikvip.eazystock.di.modules.domain.DomainModule
 import com.sdimosikvip.eazystock.di.modules.MainActivityModule
 import dagger.BindsInstance
 import dagger.Component
@@ -22,11 +22,14 @@ import javax.inject.Singleton
         DataModule::class
     ]
 )
-interface AppComponent : AndroidInjector<App> {
+    interface AppComponent : AndroidInjector<App> {
 
-    @Component.Factory
-    interface Factory {
-        fun create(@BindsInstance applicationContext: Context): AppComponent
+
+    @Component.Builder
+    interface Builder {
+        @BindsInstance
+        fun application(application: Application): Builder
+        fun build(): AppComponent
     }
 
     override fun inject(app: App)

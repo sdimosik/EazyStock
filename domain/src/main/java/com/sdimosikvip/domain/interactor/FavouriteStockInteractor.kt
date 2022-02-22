@@ -1,6 +1,7 @@
 package com.sdimosikvip.domain.interactor
 
 import com.sdimosikvip.domain.models.FavouriteStocksDomain
+import com.sdimosikvip.domain.models.StockItemDomain
 import com.sdimosikvip.domain.repository.StockRepository
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
@@ -10,7 +11,8 @@ import javax.inject.Inject
 interface FavouriteStockInteractor {
     suspend fun save(ticker: String)
     suspend fun delete(ticker: String)
-    suspend fun get(): Flow<List<FavouriteStocksDomain>>
+    suspend fun getFavouriteTickers(): Flow<List<FavouriteStocksDomain>>
+    suspend fun getFavouriteStocks(tickers: List<String>): Flow<List<StockItemDomain>>
 }
 
 class FavouriteStockInteractorImpl @Inject constructor(
@@ -22,7 +24,10 @@ class FavouriteStockInteractorImpl @Inject constructor(
 
     override suspend fun delete(ticker: String) = stockRepository.deleteFavouriteStock(ticker)
 
-    override suspend fun get(): Flow<List<FavouriteStocksDomain>> =
+    override suspend fun getFavouriteTickers(): Flow<List<FavouriteStocksDomain>> =
         stockRepository.getFavouriteStocks()
+
+    override suspend fun getFavouriteStocks(tickers: List<String>) =
+        stockRepository.getStocks(tickers)
 
 }

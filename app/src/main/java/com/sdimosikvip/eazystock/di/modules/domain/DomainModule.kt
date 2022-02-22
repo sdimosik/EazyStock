@@ -1,4 +1,4 @@
-package com.sdimosikvip.eazystock.di.modules
+package com.sdimosikvip.eazystock.di.modules.domain
 
 import com.sdimosikvip.domain.interactor.FavouriteStockInteractor
 import com.sdimosikvip.domain.interactor.FavouriteStockInteractorImpl

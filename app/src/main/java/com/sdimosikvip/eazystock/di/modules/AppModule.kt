@@ -5,7 +5,7 @@ import android.content.Context
 import com.sdimosikvip.data.network.ConnectionManager
 import dagger.Module
 import dagger.Provides
-import javax.inject.Named
+import javax.inject.Singleton
 
 @Module(
     includes = [
@@ -15,10 +15,11 @@ import javax.inject.Named
 class AppModule {
 
     @Provides
-    @Named("application.context")
+    @Singleton
     fun provideContext(application: Application): Context = application.applicationContext
 
     @Provides
+    @Singleton
     fun provideConnectionManager(context: Context): ConnectionManager =
         ConnectionManager(context)
 }

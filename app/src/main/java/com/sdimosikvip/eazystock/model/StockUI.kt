@@ -14,6 +14,7 @@ data class StockUI(
     val isPositiveDelta: Boolean,
     val timestampString: String,
     val timestamp: Long,
+    var isFavourite: Boolean,
 
     override val secondId: String = "",
     override val firstId: Long = 0,
