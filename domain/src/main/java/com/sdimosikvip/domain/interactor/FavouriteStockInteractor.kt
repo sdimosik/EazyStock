@@ -11,8 +11,8 @@ import javax.inject.Inject
 interface FavouriteStockInteractor {
     suspend fun save(favouriteTickerDomain: FavouriteTickerDomain)
     suspend fun delete(favouriteTickerDomain: FavouriteTickerDomain)
-    suspend fun getFavouriteTickers(): Flow<List<FavouriteTickerDomain>>
-    suspend fun getFavouriteStocks(favouriteTickerDomainList: List<FavouriteTickerDomain>): Flow<List<StockItemDomain>>
+    fun getFavouriteTickers(): Flow<List<FavouriteTickerDomain>>
+    fun getFavouriteStocks(favouriteTickerDomainList: List<FavouriteTickerDomain>): Flow<List<StockItemDomain>>
 }
 
 class FavouriteStockInteractorImpl @Inject constructor(
@@ -26,10 +26,10 @@ class FavouriteStockInteractorImpl @Inject constructor(
     override suspend fun delete(favouriteTickerDomain: FavouriteTickerDomain) =
         stockRepository.deleteFavouriteStock(favouriteTickerDomain)
 
-    override suspend fun getFavouriteTickers(): Flow<List<FavouriteTickerDomain>> =
+    override fun getFavouriteTickers(): Flow<List<FavouriteTickerDomain>> =
         stockRepository.getFavouriteStocks()
 
-    override suspend fun getFavouriteStocks(favouriteTickerDomainList: List<FavouriteTickerDomain>) =
+    override fun getFavouriteStocks(favouriteTickerDomainList: List<FavouriteTickerDomain>) =
         stockRepository.getStocks(favouriteTickerDomainList)
 
 }

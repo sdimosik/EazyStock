@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 interface RecommendationStockInteractor {
-    suspend fun execute(): Flow<MutableList<StockItemDomain>>
+    fun execute(): Flow<List<StockItemDomain>>
 }
 
 class RecommendationStockInteractorImpl @Inject constructor(
@@ -17,7 +17,7 @@ class RecommendationStockInteractorImpl @Inject constructor(
     private val defaultDispatcher: CoroutineDispatcher = Dispatchers.IO
 ) : RecommendationStockInteractor {
 
-    override suspend fun execute() = stockRepository.getStocks(
+    override fun execute() = stockRepository.getStocks(
         listOf(
             FavouriteTickerDomain("FB"),
             FavouriteTickerDomain("AAPL"),

@@ -6,7 +6,7 @@ import kotlinx.coroutines.flow.Flow
 
 interface StockRepository {
 
-    suspend fun getStocks(
+    fun getStocks(
         favouriteTickerDomainList: List<FavouriteTickerDomain>
     ): Flow<MutableList<StockItemDomain>>
 
@@ -14,5 +14,5 @@ interface StockRepository {
 
     suspend fun deleteFavouriteStock(favouriteTickerDomain: FavouriteTickerDomain)
 
-    suspend fun getFavouriteStocks(): Flow<List<FavouriteTickerDomain>>
+    fun getFavouriteStocks(): Flow<List<FavouriteTickerDomain>>
 }

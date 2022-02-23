@@ -27,9 +27,15 @@
 
     </com.google.android.material.tabs.TabLayout>
 
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/main__view_pager"
+    <com.sdimosikvip.eazystock.base.CustomSwipeToRefresh
+        android:id="@+id/swipe_refresh_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent">
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/main__view_pager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </com.sdimosikvip.eazystock.base.CustomSwipeToRefresh>
 
 </LinearLayout>

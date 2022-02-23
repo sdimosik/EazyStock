@@ -2,10 +2,13 @@ package com.sdimosikvip.eazystock.app
 
 import android.content.Context
 import com.jakewharton.threetenabp.AndroidThreeTen
+import com.sdimosikvip.eazystock.BuildConfig
 import com.sdimosikvip.eazystock.di.AppComponent
 import com.sdimosikvip.eazystock.di.DaggerAppComponent
 import dagger.android.AndroidInjector
 import dagger.android.DaggerApplication
+import timber.log.Timber
+import timber.log.Timber.Forest.plant
 
 
 class App : DaggerApplication() {
@@ -17,6 +20,10 @@ class App : DaggerApplication() {
         super.onCreate()
 
         AndroidThreeTen.init(this)
+
+        if (BuildConfig.DEBUG) {
+            plant(Timber.DebugTree())
+        }
     }
 }
 

@@ -12,20 +12,21 @@ import com.sdimosikvip.eazystock.base.BaseViewModel
 import com.sdimosikvip.eazystock.databinding.FragmentFavouriteBinding
 import com.sdimosikvip.eazystock.ui.adapters.AsyncListDifferAdapter
 import com.sdimosikvip.eazystock.ui.adapters.delegates.StocksDelegates
+import com.sdimosikvip.eazystock.ui.home.HomeViewModel
 import com.sdimosikvip.eazystock.utils.setup
 
 
 class FavouriteFragment() : BaseFragment(
     tittleRes = R.string.favourite_fragment_name,
     layoutId = R.layout.fragment_favourite
-), SwipeRefreshLayout.OnRefreshListener {
+) {
 
     companion object {
         const val TITTLE_ID = R.string.favourite_fragment_name
     }
 
     override val binding by viewBinding(FragmentFavouriteBinding::bind)
-    private val favouriteViewModel: FavouriteViewModel by viewModels {
+    private val homeViewModel: HomeViewModel by viewModels {
         viewModelFactory
     }
 
@@ -37,8 +38,8 @@ class FavouriteFragment() : BaseFragment(
         AsyncListDifferAdapter(
             AdapterDelegatesManager(
                 StocksDelegates.lightAndDarkAdapterDelegate(glide,
-                    { favouriteViewModel.addFavouriteStock(it) },
-                    { favouriteViewModel.deleteFavouriteStock(it) })
+                    { homeViewModel.addFavouriteStock(it) },
+                    { homeViewModel.deleteFavouriteStock(it) })
             )
         )
     }
@@ -48,43 +49,27 @@ class FavouriteFragment() : BaseFragment(
 
         with(binding) {
             shimmerRecyclerView.setup(adapter, R.layout.shimmer_item_stock)
-            swipeRefreshLayout.setOnRefreshListener(this@FavouriteFragment)
         }
-    }
-
-    override fun onRefresh() {
-        if (favouriteViewModel.state.value == BaseViewModel.State.Init) {
-            binding.swipeRefreshLayout.isRefreshing = false
-            return
-        }
-
-        favouriteViewModel.getFavouriteStocks(false)
     }
 
     override fun subscribe() {
         super.subscribe()
 
-        favouriteViewModel.state.observe(viewLifecycleOwner) { state ->
+        homeViewModel.state.observe(viewLifecycleOwner) { state ->
             when (state) {
                 is BaseViewModel.State.Init -> {
                     binding.shimmerRecyclerView.showShimmer()
-                    favouriteViewModel.getFavouriteStocks(true)
                 }
                 is BaseViewModel.State.IsLoading -> {
-                    if (state.isLoading) {
-                        binding.swipeRefreshLayout.isRefreshing = true
-                    } else {
-                        binding.swipeRefreshLayout.isRefreshing = false
-                        binding.shimmerRecyclerView.hideShimmer()
-                    }
+                    if (!state.isLoading) binding.shimmerRecyclerView.hideShimmer()
                 }
-                is BaseViewModel.State.ShowToast -> {
-                    showError(getString(state.messageRes))
+                is BaseViewModel.State.ShowToast  -> {
+                    binding.shimmerRecyclerView.hideShimmer()
                 }
             }
         }
 
-        favouriteViewModel.stock.observe(viewLifecycleOwner) {
+        homeViewModel.stockFav.observe(viewLifecycleOwner) {
             adapter.items = it
         }
     }

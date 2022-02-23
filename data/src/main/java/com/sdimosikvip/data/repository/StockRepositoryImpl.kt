@@ -21,7 +21,7 @@ class StockRepositoryImpl @Inject constructor(
     private val defaultDispatcher: CoroutineDispatcher = Dispatchers.IO
 ) : StockRepository {
 
-    override suspend fun getStocks(favouriteTickerDomainList: List<FavouriteTickerDomain>) =
+    override fun getStocks(favouriteTickerDomainList: List<FavouriteTickerDomain>) =
         flow {
             coroutineScope {
                 val list: MutableList<StockItemDomain> = mutableListOf()
@@ -68,7 +68,7 @@ class StockRepositoryImpl @Inject constructor(
         )
 
 
-    override suspend fun getFavouriteStocks(): Flow<List<FavouriteTickerDomain>> =
+    override fun getFavouriteStocks(): Flow<List<FavouriteTickerDomain>> =
         db.getFavouriteStock().map { list ->
             list.map { favouriteTickerDBMapper.transform(it) }
         }.flowOn(defaultDispatcher)
