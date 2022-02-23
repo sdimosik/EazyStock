@@ -50,13 +50,13 @@ object StocksDelegates {
 
                     favouriteImageview.setOnClickListener {
                         if (item.isFavourite) {
-                            item.isFavourite = false
                             deleteFavourite(item)
                             favouriteImageview.setImageResource(R.drawable.star_inactive)
+                            item.isFavourite = false
                         } else {
-                            item.isFavourite = true
                             addFavourite(item)
                             favouriteImageview.setImageResource(R.drawable.star_active)
+                            item.isFavourite = true
                         }
                     }
 

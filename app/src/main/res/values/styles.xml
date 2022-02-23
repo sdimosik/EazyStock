@@ -21,8 +21,7 @@
 
     <!-- for text -->
     <style name="AppTabTextAppearance" parent="TextAppearance.Design.Tab">
-        <item name="android:fontFamily">@font/montserrat_bold</item>
-        <item name="android:textSize">@dimen/sp_L1</item>
+        <item name="android:textSize">18sp</item>
         <item name="android:textColor">@color/secondaryOnPrimary</item>
         <item name="textAllCaps">false</item>
     </style>
@@ -77,115 +76,115 @@
     </style>
 
     <style name="TextView.Default.Active.XL" parent="TextView.Default.Active">
-        <item name="android:textSize">@dimen/sp_XL</item>
+        <item name="android:textSize">@dimen/XL</item>
     </style>
 
     <style name="TextView.Default.Active.L" parent="TextView.Default.Active">
-        <item name="android:textSize">@dimen/sp_L</item>
+        <item name="android:textSize">@dimen/L</item>
     </style>
 
     <style name="TextView.Default.Active.M" parent="TextView.Default.Active">
-        <item name="android:textSize">@dimen/sp_M</item>
+        <item name="android:textSize">@dimen/M</item>
     </style>
 
     <style name="TextView.Default.Active.S" parent="TextView.Default.Active">
-        <item name="android:textSize">@dimen/sp_S</item>
+        <item name="android:textSize">@dimen/S</item>
     </style>
 
     <style name="TextView.Default.Active.XS" parent="TextView.Default.Active">
-        <item name="android:textSize">@dimen/sp_XS</item>
+        <item name="android:textSize">@dimen/XS</item>
     </style>
 
     <style name="TextView.Default.Active.XXS" parent="TextView.Default.Active">
-        <item name="android:textSize">@dimen/sp_XXS</item>
+        <item name="android:textSize">@dimen/XXS</item>
     </style>
 
     <style name="TextView.Default.Active.XXXS" parent="TextView.Default.Active">
-        <item name="android:textSize">@dimen/sp_XXXS</item>
+        <item name="android:textSize">@dimen/XXXS</item>
     </style>
 
     <style name="TextView.Default.Inactive.XL" parent="TextView.Default.Inactive">
-        <item name="android:textSize">@dimen/sp_XL</item>
+        <item name="android:textSize">@dimen/XL</item>
     </style>
 
     <style name="TextView.Default.Inactive.L" parent="TextView.Default.Inactive">
-        <item name="android:textSize">@dimen/sp_L</item>
+        <item name="android:textSize">@dimen/L</item>
     </style>
 
     <style name="TextView.Default.Inactive.M" parent="TextView.Default.Inactive">
-        <item name="android:textSize">@dimen/sp_M</item>
+        <item name="android:textSize">@dimen/M</item>
     </style>
 
     <style name="TextView.Default.Inactive.S" parent="TextView.Default.Inactive">
-        <item name="android:textSize">@dimen/sp_S</item>
+        <item name="android:textSize">@dimen/S</item>
     </style>
 
     <style name="TextView.Default.Inactive.XS" parent="TextView.Default.Inactive">
-        <item name="android:textSize">@dimen/sp_XS</item>
+        <item name="android:textSize">@dimen/XS</item>
     </style>
 
     <style name="TextView.Default.Inactive.XXS" parent="TextView.Default.Inactive">
-        <item name="android:textSize">@dimen/sp_XXS</item>
+        <item name="android:textSize">@dimen/XXS</item>
     </style>
 
     <style name="TextView.Default.Inactive.XXXS" parent="TextView.Default.Inactive">
-        <item name="android:textSize">@dimen/sp_XXXS</item>
+        <item name="android:textSize">@dimen/XXXS</item>
     </style>
 
     <style name="TextView.Semi.Active.XL" parent="TextView.Semi.Active">
-        <item name="android:textSize">@dimen/sp_XL</item>
+        <item name="android:textSize">@dimen/XL</item>
     </style>
 
     <style name="TextView.Semi.Active.L" parent="TextView.Semi.Active">
-        <item name="android:textSize">@dimen/sp_L</item>
+        <item name="android:textSize">@dimen/L</item>
     </style>
 
     <style name="TextView.Semi.Active.M" parent="TextView.Semi.Active">
-        <item name="android:textSize">@dimen/sp_M</item>
+        <item name="android:textSize">@dimen/M</item>
     </style>
 
     <style name="TextView.Semi.Active.S" parent="TextView.Semi.Active">
-        <item name="android:textSize">@dimen/sp_S</item>
+        <item name="android:textSize">@dimen/S</item>
     </style>
 
     <style name="TextView.Semi.Active.XS" parent="TextView.Semi.Active">
-        <item name="android:textSize">@dimen/sp_XS</item>
+        <item name="android:textSize">@dimen/XS</item>
     </style>
 
     <style name="TextView.Semi.Active.XXS" parent="TextView.Semi.Active">
-        <item name="android:textSize">@dimen/sp_XXS</item>
+        <item name="android:textSize">@dimen/XXS</item>
     </style>
 
     <style name="TextView.Semi.Active.XXXS" parent="TextView.Semi.Active">
-        <item name="android:textSize">@dimen/sp_XXXS</item>
+        <item name="android:textSize">@dimen/XXXS</item>
     </style>
 
     <style name="TextView.Semi.Inactive.XL" parent="TextView.Semi.Inactive">
-        <item name="android:textSize">@dimen/sp_XL</item>
+        <item name="android:textSize">@dimen/XL</item>
     </style>
 
     <style name="TextView.Semi.Inactive.L" parent="TextView.Semi.Inactive">
-        <item name="android:textSize">@dimen/sp_L</item>
+        <item name="android:textSize">@dimen/L</item>
     </style>
 
     <style name="TextView.Semi.Inactive.M" parent="TextView.Semi.Inactive">
-        <item name="android:textSize">@dimen/sp_M</item>
+        <item name="android:textSize">@dimen/M</item>
     </style>
 
     <style name="TextView.Semi.Inactive.S" parent="TextView.Semi.Inactive">
-        <item name="android:textSize">@dimen/sp_S</item>
+        <item name="android:textSize">@dimen/S</item>
     </style>
 
     <style name="TextView.Semi.Inactive.XS" parent="TextView.Semi.Inactive">
-        <item name="android:textSize">@dimen/sp_XS</item>
+        <item name="android:textSize">@dimen/XS</item>
     </style>
 
     <style name="TextView.Semi.Inactive.XXS" parent="TextView.Semi.Inactive">
-        <item name="android:textSize">@dimen/sp_XXS</item>
+        <item name="android:textSize">@dimen/XXS</item>
     </style>
 
     <style name="TextView.Semi.Inactive.XXXS" parent="TextView.Semi.Inactive">
-        <item name="android:textSize">@dimen/sp_XXXS</item>
+        <item name="android:textSize">@dimen/XXXS</item>
     </style>
 
 </resources>

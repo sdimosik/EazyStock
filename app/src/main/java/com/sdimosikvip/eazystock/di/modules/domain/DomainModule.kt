@@ -1,33 +1,28 @@
 package com.sdimosikvip.eazystock.di.modules.domain
 
-import com.sdimosikvip.domain.interactor.*
+import com.sdimosikvip.domain.interactor.FavouriteStockInteractor
+import com.sdimosikvip.domain.interactor.FavouriteStockInteractorImpl
+import com.sdimosikvip.domain.interactor.RecommendationStockInteractor
+import com.sdimosikvip.domain.interactor.RecommendationStockInteractorImpl
 import com.sdimosikvip.domain.repository.StockRepository
 import dagger.Module
 import dagger.Provides
-import javax.inject.Singleton
+import dagger.Reusable
 
 @Module
 class DomainModule {
 
     @Provides
-    @Singleton
-    fun provideRecommendationStocksInteractor(
+    @Reusable
+    fun provideRecommendationStockInteractor(
         stockRepository: StockRepository
     ): RecommendationStockInteractor =
         RecommendationStockInteractorImpl(stockRepository)
 
     @Provides
-    @Singleton
-    fun provideCacheStocksInteractor(
-        stockRepository: StockRepository
-    ): CacheStockInteractor =
-        CacheStockInteractorImpl(stockRepository)
-
-    @Provides
-    @Singleton
-    fun provideFavouriteStocksInteractor(
+    @Reusable
+    fun provideFavouriteStockInteractor(
         stockRepository: StockRepository
     ): FavouriteStockInteractor =
         FavouriteStockInteractorImpl(stockRepository)
-
 }

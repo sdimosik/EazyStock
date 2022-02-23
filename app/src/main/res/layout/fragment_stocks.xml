@@ -7,9 +7,15 @@
     android:orientation="vertical"
     tools:context=".ui.stocks.StocksFragment">
 
-    <com.todkars.shimmer.ShimmerRecyclerView
-        android:id="@+id/shimmer_recycler_view"
-        style="@style/Recycler.Linear.Vertical"
-        tools:listitem="@layout/item_stock" />
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_refresh_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.todkars.shimmer.ShimmerRecyclerView
+            android:id="@+id/shimmer_recycler_view"
+            style="@style/Recycler.Linear.Vertical"
+            tools:listitem="@layout/item_stock" />
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 </LinearLayout>
