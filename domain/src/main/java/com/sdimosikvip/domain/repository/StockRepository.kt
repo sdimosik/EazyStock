@@ -1,18 +1,18 @@
 package com.sdimosikvip.domain.repository
 
-import com.sdimosikvip.domain.models.FavouriteStocksDomain
+import com.sdimosikvip.domain.models.FavouriteTickerDomain
 import com.sdimosikvip.domain.models.StockItemDomain
 import kotlinx.coroutines.flow.Flow
 
 interface StockRepository {
 
     suspend fun getStocks(
-        tickers: List<String>
+        favouriteTickerDomainList: List<FavouriteTickerDomain>
     ): Flow<MutableList<StockItemDomain>>
 
-    suspend fun saveFavouriteStock(ticker: String)
+    suspend fun saveFavouriteStock(favouriteTickerDomain: FavouriteTickerDomain)
 
-    suspend fun deleteFavouriteStock(ticker: String)
+    suspend fun deleteFavouriteStock(favouriteTickerDomain: FavouriteTickerDomain)
 
-    suspend fun getFavouriteStocks(): Flow<List<FavouriteStocksDomain>>
+    suspend fun getFavouriteStocks(): Flow<List<FavouriteTickerDomain>>
 }

@@ -1,5 +1,5 @@
 package com.sdimosikvip.domain.models
 
-data class FavouriteStocksDomain(
+data class FavouriteTickerDomain(
     val ticker: String
 )

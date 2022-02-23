@@ -1,6 +1,6 @@
 package com.sdimosikvip.domain.interactor
 
-import com.sdimosikvip.domain.models.FavouriteStocksDomain
+import com.sdimosikvip.domain.models.FavouriteTickerDomain
 import com.sdimosikvip.domain.models.StockItemDomain
 import com.sdimosikvip.domain.repository.StockRepository
 import kotlinx.coroutines.CoroutineDispatcher
@@ -9,10 +9,10 @@ import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 interface FavouriteStockInteractor {
-    suspend fun save(ticker: String)
-    suspend fun delete(ticker: String)
-    suspend fun getFavouriteTickers(): Flow<List<FavouriteStocksDomain>>
-    suspend fun getFavouriteStocks(tickers: List<String>): Flow<List<StockItemDomain>>
+    suspend fun save(favouriteTickerDomain: FavouriteTickerDomain)
+    suspend fun delete(favouriteTickerDomain: FavouriteTickerDomain)
+    suspend fun getFavouriteTickers(): Flow<List<FavouriteTickerDomain>>
+    suspend fun getFavouriteStocks(favouriteTickerDomainList: List<FavouriteTickerDomain>): Flow<List<StockItemDomain>>
 }
 
 class FavouriteStockInteractorImpl @Inject constructor(
@@ -20,14 +20,16 @@ class FavouriteStockInteractorImpl @Inject constructor(
     private val defaultDispatcher: CoroutineDispatcher = Dispatchers.IO
 ) : FavouriteStockInteractor {
 
-    override suspend fun save(ticker: String) = stockRepository.saveFavouriteStock(ticker)
+    override suspend fun save(favouriteTickerDomain: FavouriteTickerDomain) =
+        stockRepository.saveFavouriteStock(favouriteTickerDomain)
 
-    override suspend fun delete(ticker: String) = stockRepository.deleteFavouriteStock(ticker)
+    override suspend fun delete(favouriteTickerDomain: FavouriteTickerDomain) =
+        stockRepository.deleteFavouriteStock(favouriteTickerDomain)
 
-    override suspend fun getFavouriteTickers(): Flow<List<FavouriteStocksDomain>> =
+    override suspend fun getFavouriteTickers(): Flow<List<FavouriteTickerDomain>> =
         stockRepository.getFavouriteStocks()
 
-    override suspend fun getFavouriteStocks(tickers: List<String>) =
-        stockRepository.getStocks(tickers)
+    override suspend fun getFavouriteStocks(favouriteTickerDomainList: List<FavouriteTickerDomain>) =
+        stockRepository.getStocks(favouriteTickerDomainList)
 
 }

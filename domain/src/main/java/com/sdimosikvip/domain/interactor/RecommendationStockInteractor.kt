@@ -1,5 +1,6 @@
 package com.sdimosikvip.domain.interactor
 
+import com.sdimosikvip.domain.models.FavouriteTickerDomain
 import com.sdimosikvip.domain.models.StockItemDomain
 import com.sdimosikvip.domain.repository.StockRepository
 import kotlinx.coroutines.CoroutineDispatcher
@@ -18,11 +19,11 @@ class RecommendationStockInteractorImpl @Inject constructor(
 
     override suspend fun execute() = stockRepository.getStocks(
         listOf(
-            "FB",
-            "AAPL",
-            "AMZN",
-            "NFLX",
-            "GOOGL"
+            FavouriteTickerDomain("FB"),
+            FavouriteTickerDomain("AAPL"),
+            FavouriteTickerDomain("AMZN"),
+            FavouriteTickerDomain("NFLX"),
+            FavouriteTickerDomain("GOOGL"),
         )
     )
 }

@@ -37,8 +37,8 @@ class FavouriteFragment() : BaseFragment(
         AsyncListDifferAdapter(
             AdapterDelegatesManager(
                 StocksDelegates.lightAndDarkAdapterDelegate(glide,
-                    { favouriteViewModel.addFavouriteStock(it.ticker) },
-                    { favouriteViewModel.deleteFavouriteStock(it.ticker) })
+                    { favouriteViewModel.addFavouriteStock(it) },
+                    { favouriteViewModel.deleteFavouriteStock(it) })
             )
         )
     }
