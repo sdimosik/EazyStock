@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 interface RecommendationStockInteractor {
-    suspend fun execute(): Flow<MutableList<StockItemDomain>>
+    suspend fun getRecommendationStock(): Flow<List<StockItemDomain>>
 }
 
 class RecommendationStockInteractorImpl @Inject constructor(
@@ -16,13 +16,15 @@ class RecommendationStockInteractorImpl @Inject constructor(
     private val defaultDispatcher: CoroutineDispatcher = Dispatchers.IO
 ) : RecommendationStockInteractor {
 
-    override suspend fun execute() = stockRepository.getStocks(
-        listOf(
-            "FB",
-            "AAPL",
-            "AMZN",
-            "NFLX",
-            "GOOGL"
+    // TODO api does not provide recommended
+    override suspend fun getRecommendationStock() =
+        stockRepository.updateOrLoadStocks (
+            listOf(
+                "FB",
+                "AAPL",
+                "AMZN",
+                "NFLX",
+                "GOOGL"
+            )
         )
-    )
 }

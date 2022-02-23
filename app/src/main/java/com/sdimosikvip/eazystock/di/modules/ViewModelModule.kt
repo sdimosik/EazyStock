@@ -11,6 +11,7 @@ import com.sdimosikvip.eazystock.ui.stocks.StocksViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
+import javax.inject.Singleton
 
 @Module
 interface ViewModelModule {
@@ -25,12 +26,14 @@ interface ViewModelModule {
     @ViewModelKey(FavouriteViewModel::class)
     fun bindFavouriteViewModel(favouriteViewModel: FavouriteViewModel): ViewModel
 
+    @Singleton
     @Binds
     @IntoMap
     @ViewModelKey(HomeViewModel::class)
     fun bindHomeViewModel(viewModel: HomeViewModel): ViewModel
 
 
+    @Singleton
     @Binds
     fun bindViewModelFactory(factory: ViewModelFactory): ViewModelProvider.Factory
 }

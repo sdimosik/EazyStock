@@ -16,6 +16,9 @@ data class StockUI(
     val timestamp: Long,
     var isFavourite: Boolean,
 
+    val stockCompanyUI: StockCompanyUI,
+    val stockPriceUI: StockPriceUI,
+
     override val secondId: String = "",
     override val firstId: Long = 0,
 
