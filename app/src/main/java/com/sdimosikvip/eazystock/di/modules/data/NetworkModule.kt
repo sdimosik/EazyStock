@@ -32,12 +32,6 @@ class NetworkModule {
 
     @Singleton
     @Provides
-    fun provideNetworkStatusInterceptorInterceptor(
-        connectionManager: ConnectionManager
-    ): NetworkStatusInterceptor = NetworkStatusInterceptor(connectionManager)
-
-    @Singleton
-    @Provides
     fun provideCacheOnlineControlInterceptor(): CacheOnlineControlInterceptor =
         CacheOnlineControlInterceptor()
 
@@ -60,7 +54,6 @@ class NetworkModule {
     @Provides
     fun provideOkHttpClientFinnhub(
         loggingInterceptor: HttpLoggingInterceptor,
-        networkStatusInterceptor: NetworkStatusInterceptor,
         cacheOnlineControlInterceptor: CacheOnlineControlInterceptor,
         cacheOfflineControlInterceptor: CacheOfflineControlInterceptor,
         cache: Cache
@@ -68,7 +61,6 @@ class NetworkModule {
         return OkHttpClient.Builder()
             .cache(cache)
             .addNetworkInterceptor(cacheOnlineControlInterceptor)
-            //.addInterceptor(networkStatusInterceptor)
             .addInterceptor(loggingInterceptor)
             .addInterceptor(cacheOfflineControlInterceptor)
             .addInterceptor(
@@ -85,10 +77,8 @@ class NetworkModule {
     @Provides
     fun provideOkHttpClientMboum(
         loggingInterceptor: HttpLoggingInterceptor,
-        networkStatusInterceptor: NetworkStatusInterceptor,
     ): OkHttpClient {
         return OkHttpClient.Builder()
-            //.addInterceptor(networkStatusInterceptor)
             .addInterceptor(loggingInterceptor)
             .addInterceptor(
                 AuthInterceptor(

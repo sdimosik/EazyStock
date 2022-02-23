@@ -1,4 +1,4 @@
-package com.sdimosikvip.data.sources
+package com.sdimosikvip.data.sources.remote
 
 import com.sdimosikvip.domain.Outcome
 import com.sdimosikvip.domain.models.StockCompanyDomain

@@ -1,8 +1,8 @@
 package com.sdimosikvip.data.repository
 
-import com.sdimosikvip.data.db.FavouriteTickerDAO
 import com.sdimosikvip.data.db.models.FavouriteTickerDB
-import com.sdimosikvip.data.sources.StockRemoteSource
+import com.sdimosikvip.data.sources.local.FavouriteLocalSource
+import com.sdimosikvip.data.sources.remote.StockRemoteSource
 import com.sdimosikvip.domain.mapper.BaseMapper
 import com.sdimosikvip.domain.models.*
 import com.sdimosikvip.domain.repository.StockRepository
@@ -15,8 +15,8 @@ import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
 class StockRepositoryImpl @Inject constructor(
-    private val remoteDataSource: StockRemoteSource,
-    private val localDataSource: FavouriteTickerDAO,
+    private val net: StockRemoteSource,
+    private val db: FavouriteLocalSource,
     private val favouriteTickerDBMapper: BaseMapper<FavouriteTickerDB, FavouriteTickerDomain>,
     private val defaultDispatcher: CoroutineDispatcher = Dispatchers.IO
 ) : StockRepository {
@@ -43,13 +43,13 @@ class StockRepositoryImpl @Inject constructor(
             }
         }.flowOn(defaultDispatcher)
 
-    private suspend fun getStock(ticker: String) = withContext(defaultDispatcher) {
+    private suspend fun getStock(ticker: String): StockItemDomain = withContext(defaultDispatcher) {
 
-        val isFavourite = localDataSource.getOneFavouriteStock(ticker) != null
-        val companyStock = remoteDataSource.getCompanyStock(ticker).requireValue()
-        val priceStock = remoteDataSource.getPriceStock(ticker).requireValue()
+        val isFavourite = db.getOneFavouriteStock(ticker) != null
+        val companyStock = net.getCompanyStock(ticker).requireValue()
+        val priceStock = net.getPriceStock(ticker).requireValue()
 
-        return@withContext StockItemDomain(
+        StockItemDomain(
             companyStock,
             priceStock,
             isFavourite
@@ -57,21 +57,19 @@ class StockRepositoryImpl @Inject constructor(
     }
 
     override suspend fun saveFavouriteStock(favouriteTickerDomain: FavouriteTickerDomain) =
-        withContext(defaultDispatcher) {
-            localDataSource.insertFavouriteStock(
-                favouriteTickerDBMapper.reverseTransform(favouriteTickerDomain)
-            )
-        }
+        db.insertFavouriteStock(
+            favouriteTickerDBMapper.reverseTransform(favouriteTickerDomain)
+        )
+
 
     override suspend fun deleteFavouriteStock(favouriteTickerDomain: FavouriteTickerDomain) =
-        withContext(defaultDispatcher) {
-            localDataSource.deleteFavoriteStock(
-                favouriteTickerDBMapper.reverseTransform(favouriteTickerDomain)
-            )
-        }
+        db.deleteFavoriteStock(
+            favouriteTickerDBMapper.reverseTransform(favouriteTickerDomain)
+        )
+
 
     override suspend fun getFavouriteStocks(): Flow<List<FavouriteTickerDomain>> =
-        localDataSource.getFavouriteStock().map { list ->
+        db.getFavouriteStock().map { list ->
             list.map { favouriteTickerDBMapper.transform(it) }
         }.flowOn(defaultDispatcher)
 }
