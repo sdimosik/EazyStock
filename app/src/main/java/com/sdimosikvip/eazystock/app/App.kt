@@ -1,12 +1,14 @@
 package com.sdimosikvip.eazystock.app
 
 import android.content.Context
+import android.graphics.Typeface
 import com.jakewharton.threetenabp.AndroidThreeTen
 import com.sdimosikvip.eazystock.BuildConfig
 import com.sdimosikvip.eazystock.di.AppComponent
 import com.sdimosikvip.eazystock.di.DaggerAppComponent
 import dagger.android.AndroidInjector
 import dagger.android.DaggerApplication
+import es.dmoral.toasty.Toasty
 import timber.log.Timber
 import timber.log.Timber.Forest.plant
 
@@ -24,6 +26,16 @@ class App : DaggerApplication() {
         if (BuildConfig.DEBUG) {
             plant(Timber.DebugTree())
         }
+
+        Toasty.Config.getInstance()
+            .setToastTypeface(
+                Typeface.createFromAsset(
+                    this.assets,
+                    "montserrat_semi_bold.ttf"
+                )
+            )
+            .setTextSize(14)
+            .apply()
     }
 }
 
