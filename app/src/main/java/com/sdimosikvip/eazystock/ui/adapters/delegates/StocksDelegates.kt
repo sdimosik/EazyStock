@@ -26,8 +26,8 @@ object StocksDelegates {
             bind {
                 with(binding) {
                     when (layoutPosition % 2 == 0) {
-                        true -> stockCard.setCardBackgroundColor(getColor(R.color.item_stock_1))
-                        false -> stockCard.setCardBackgroundColor(getColor(R.color.item_stock_2))
+                        true -> container.background = getDrawable(R.drawable.stock_odd_background)
+                        false -> container.background = getDrawable(R.drawable.stock_even_background)
                     }
 
                     tickerTextview.text = item.ticker

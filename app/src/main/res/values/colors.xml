@@ -13,8 +13,8 @@
     <color name="red">#B22424</color>
 
     <color name="transparent">#00000000</color>
-    <color name="item_stock_1">#F0F4F7</color>
-    <color name="item_stock_2">#FFFFFF</color>
+    <color name="item_stock_odd">#F0F4F7</color>
+    <color name="item_stock_even">#FFFFFF</color>
     <color name="plus_price">#24B25D</color>
     <color name="minus_price">@color/red</color>
 

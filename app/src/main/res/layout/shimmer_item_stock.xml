@@ -1,78 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/sh_stock_card"
+    android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginHorizontal="16dp"
     android:layout_marginTop="10dp"
-    app:cardBackgroundColor="@color/item_stock_2"
-    app:cardCornerRadius="16dp">
+    android:background="@drawable/stock_even_background">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/sh_logo_imageview"
+        android:layout_width="52dp"
+        android:layout_height="52dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@color/shimmer"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:shapeAppearanceOverlay="@style/RoundedImageView" />
 
-        <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/sh_logo_imageview"
-            android:layout_width="52dp"
-            android:layout_height="52dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            android:background="@color/shimmer"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:shapeAppearanceOverlay="@style/RoundedImageView" />
+    <View
+        android:id="@+id/sh_ticker_textview"
+        style="@style/TextView.Default.Active.L"
+        android:layout_width="120dp"
+        android:layout_height="15dp"
+        android:layout_marginStart="14dp"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/shimmer_background"
+        app:layout_constraintBottom_toTopOf="@+id/sh_company_textview"
+        app:layout_constraintStart_toEndOf="@+id/sh_logo_imageview"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <View
-            android:id="@+id/sh_ticker_textview"
-            style="@style/TextView.Default.Active.L"
-            android:layout_width="120dp"
-            android:layout_height="15dp"
-            android:layout_marginStart="14dp"
-            android:layout_marginTop="12dp"
-            android:background="@drawable/shimmer_background"
-            app:layout_constraintBottom_toTopOf="@+id/sh_company_textview"
-            app:layout_constraintStart_toEndOf="@+id/sh_logo_imageview"
-            app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:id="@+id/sh_company_textview"
+        style="@style/TextView.Semi.Active.XS"
+        android:layout_width="80dp"
+        android:layout_height="15dp"
+        android:layout_marginStart="14dp"
+        android:layout_marginBottom="12dp"
+        android:background="@drawable/shimmer_background"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/sh_logo_imageview" />
 
-        <TextView
-            android:id="@+id/sh_company_textview"
-            style="@style/TextView.Semi.Active.XS"
-            android:layout_width="80dp"
-            android:layout_height="15dp"
-            android:layout_marginStart="14dp"
-            android:layout_marginBottom="12dp"
-            android:background="@drawable/shimmer_background"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/sh_logo_imageview" />
+    <View
+        android:id="@+id/sh_current_price_textview"
+        style="@style/TextView.Default.Active.L"
+        android:layout_width="80dp"
+        android:layout_height="15dp"
+        android:layout_marginTop="14dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/shimmer_background"
+        app:layout_constraintBottom_toTopOf="@+id/sh_day_delta_price_textview"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <View
-            android:id="@+id/sh_current_price_textview"
-            style="@style/TextView.Default.Active.L"
-            android:layout_width="80dp"
-            android:layout_height="15dp"
-            android:layout_marginTop="14dp"
-            android:layout_marginEnd="16dp"
-            android:background="@drawable/shimmer_background"
-            app:layout_constraintBottom_toTopOf="@+id/sh_day_delta_price_textview"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+    <View
+        android:id="@+id/sh_day_delta_price_textview"
+        style="@style/TextView.Semi.Active.XS"
+        android:layout_width="45dp"
+        android:layout_height="15dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="14dp"
+        android:background="@drawable/shimmer_background"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
-        <View
-            android:id="@+id/sh_day_delta_price_textview"
-            style="@style/TextView.Semi.Active.XS"
-            android:layout_width="45dp"
-            android:layout_height="15dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="14dp"
-            android:background="@drawable/shimmer_background"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-</com.google.android.material.card.MaterialCardView>
+</androidx.constraintlayout.widget.ConstraintLayout>
