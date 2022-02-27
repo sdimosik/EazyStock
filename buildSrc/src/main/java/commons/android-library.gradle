@@ -1,0 +1,39 @@
+package commons
+
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'kotlin-parcelize'
+}
+
+android {
+    compileSdk Android.compileSdk
+
+    defaultConfig {
+        minSdk Android.minSdk
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation DI.dagger
+    implementation DI.dagger_android_support
+    kapt DI.dagger_compiler
+    kapt DI.dagger_android_processor
+
+    implementation Multithreading.coroutines
+    implementation Multithreading.coroutines_android
+
+    androidTestImplementation UnitTest.junit4
+    androidTestImplementation UnitTest.junit_extu
+
+    androidTestImplementation UITest.espresso
+}

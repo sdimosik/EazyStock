@@ -1,0 +1,62 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+    id 'kotlin-parcelize'
+}
+
+android {
+    compileSdk Android.compileSdk
+
+    defaultConfig {
+        minSdk Android.minSdk
+        targetSdk Android.targetSdk
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+
+        buildConfigField "String", "PARAMETR_API_TOKET_MBOUM", "\"apikey\""
+        buildConfigField "String", "API_TOKEN_MBOUM", "\"S8YoEbPR1DM2JCBffBYMt7x9TuFAkskk0VUtWNK2D5qmMTk3VGqqKcPDxsol\""
+        buildConfigField "String", "BASE_URL_MBOUM", "\"https://mboum.com/api/v1/\""
+
+        buildConfigField "String", "PARAMETR_API_TOKET_FINNHUB", "\"token\""
+        buildConfigField "String", "API_TOKEN_FINNHUB", "\"c14k75n48v6st2752cn0\""
+        buildConfigField "String", "BASE_URL_FINNHUB", "\"https://finnhub.io/api/v1/\""
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+
+    implementation project(Modules.domain)
+
+    implementation DI.dagger
+    implementation DI.dagger_android_support
+    kapt DI.dagger_compiler
+    kapt DI.dagger_android_processor
+
+    implementation Network.retrofit
+    implementation Network.retrofit_converter
+    implementation Network.okhttp
+
+    implementation DB.room
+    implementation DB.room_ktx
+    kapt DB.room_compiler
+
+    testImplementation UnitTest.junit4
+    androidTestImplementation UnitTest.junit_ext
+    androidTestImplementation UITest.espresso
+}

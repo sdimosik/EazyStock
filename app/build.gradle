@@ -1,0 +1,98 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'kotlin-parcelize'
+}
+
+android {
+    compileSdk Android.compileSdk
+
+    defaultConfig {
+        applicationId Android.appId
+        minSdk Android.minSdk
+        targetSdk Android.targetSdk
+        versionCode Android.versionCode
+        versionName Android.versionName
+
+        testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+
+    buildFeatures {
+        viewBinding true
+    }
+
+    // Allow references to generated code
+    kapt {
+        correctErrorTypes = true
+    }
+}
+
+dependencies {
+
+    implementation project(Modules.data)
+    implementation project(Modules.domain)
+
+    implementation Androidx.app_compat
+    implementation Androidx.constraintlayout
+    implementation Androidx.core_ktx
+    implementation Androidx.lifecycle_livedata_ktx
+    implementation Androidx.lifecycle_viewmodel_ktx
+    implementation Androidx.navigation_fragment_ktx
+    implementation Androidx.navigation_ui_ktx
+    implementation Androidx.swipe_to_refresh_layout
+
+    implementation Google.material
+
+    implementation DI.dagger
+    implementation DI.dagger_android_support
+    kapt DI.dagger_compiler
+    kapt DI.dagger_android_processor
+
+    implementation Network.retrofit
+    implementation Network.retrofit_converter
+    implementation Network.okhttp
+
+    implementation DB.room
+    implementation DB.room_ktx
+    kapt DB.room_compiler
+
+    implementation Extensions.view_binding_property_delegate
+
+    implementation Shimmer.facebook_shimmer
+    implementation Shimmer.shimmer_recyclerview
+
+    implementation AdapterDelegate.dsl
+    implementation AdapterDelegate.viewbinding
+
+    implementation Images.glide
+    kapt(Images.glide_compiler)
+    implementation Images.lottie_anim
+
+    implementation Other.alert
+    implementation Other.toast
+    implementation Other.timber
+    implementation Other.threetenabp
+
+    androidTestImplementation UnitTest.junit4
+    androidTestImplementation UnitTest.junit_ext
+
+    androidTestImplementation UITest.espresso
+}

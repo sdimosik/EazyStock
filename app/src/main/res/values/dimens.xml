@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="sp_XLL">32sp</dimen>
+    <dimen name="sp_XL">28sp</dimen>
+    <dimen name="sp_L1">22sp</dimen>
+    <dimen name="sp_L">18sp</dimen>
+    <dimen name="sp_M">16dp</dimen>
+    <dimen name="sp_S">14sp</dimen>
+    <dimen name="sp_XS">12sp</dimen>
+    <dimen name="sp_XXS">11sp</dimen>
+    <dimen name="sp_XXXS">7sp</dimen>
+</resources>
