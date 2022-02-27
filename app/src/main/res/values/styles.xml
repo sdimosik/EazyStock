@@ -27,6 +27,9 @@
         <item name="textAllCaps">false</item>
     </style>
 
+    <style name="SearchStyleText" parent="TextView.Semi.Active.M">
+    </style>
+
     <style name="Recycler.Default" parent="Widget.AppCompat.ListView">
         <item name="android:overScrollMode">never</item>
         <item name="android:clipToPadding">false</item>
@@ -46,10 +49,6 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:orientation">vertical</item>
-        <item name="android:paddingTop">8dp</item>
-        <item name="android:paddingBottom">8dp</item>
-        <item name="android:paddingStart">16dp</item>
-        <item name="android:paddingEnd">16dp</item>
     </style>
 
     <style name="TextView.Default" parent="Widget.MaterialComponents.TextView">

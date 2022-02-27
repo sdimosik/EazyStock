@@ -1,7 +1,6 @@
-package com.sdimosikvip.eazystock.ui.favourite
+package com.sdimosikvip.eazystock.ui.recommendation_stocks
 
 import androidx.fragment.app.viewModels
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.bumptech.glide.Glide
 import com.bumptech.glide.RequestManager
@@ -9,23 +8,23 @@ import com.hannesdorfmann.adapterdelegates4.AdapterDelegatesManager
 import com.sdimosikvip.eazystock.R
 import com.sdimosikvip.eazystock.base.BaseFragment
 import com.sdimosikvip.eazystock.base.BaseViewModel
-import com.sdimosikvip.eazystock.databinding.FragmentFavouriteBinding
+import com.sdimosikvip.eazystock.databinding.FragmentRecommendationStocksBinding
 import com.sdimosikvip.eazystock.ui.adapters.AsyncListDifferAdapter
 import com.sdimosikvip.eazystock.ui.adapters.delegates.StocksDelegates
 import com.sdimosikvip.eazystock.ui.home.HomeViewModel
 import com.sdimosikvip.eazystock.utils.setup
 
 
-class FavouriteFragment() : BaseFragment(
-    tittleRes = R.string.favourite_fragment_name,
-    layoutId = R.layout.fragment_favourite
+class RecommendationFragment() : BaseFragment(
+    tittleRes = R.string.recommendation_stocks_fragment_name,
+    layoutId = R.layout.fragment_recommendation_stocks
 ) {
 
     companion object {
-        const val TITTLE_ID = R.string.favourite_fragment_name
+        const val TITTLE_ID = R.string.recommendation_stocks_fragment_name
     }
 
-    override val binding by viewBinding(FragmentFavouriteBinding::bind)
+    override val binding by viewBinding(FragmentRecommendationStocksBinding::bind)
     private val homeViewModel: HomeViewModel by viewModels {
         viewModelFactory
     }
@@ -36,11 +35,11 @@ class FavouriteFragment() : BaseFragment(
 
     private val adapter: AsyncListDifferAdapter by lazy {
         AsyncListDifferAdapter(
-            AdapterDelegatesManager(
-                StocksDelegates.lightAndDarkAdapterDelegate(glide,
-                    { homeViewModel.addFavouriteStock(it) },
-                    { homeViewModel.deleteFavouriteStock(it) })
-            )
+            AdapterDelegatesManager(StocksDelegates.lightAndDarkAdapterDelegate(
+                glide,
+                { homeViewModel.addFavouriteStock(it) },
+                { homeViewModel.deleteFavouriteStock(it) }
+            ))
         )
     }
 
@@ -64,12 +63,12 @@ class FavouriteFragment() : BaseFragment(
                     if (!state.isLoading) binding.shimmerRecyclerView.hideShimmer()
                 }
                 is BaseViewModel.State.ShowToast  -> {
-                    binding.shimmerRecyclerView.hideShimmer()
+                     binding.shimmerRecyclerView.hideShimmer()
                 }
             }
         }
 
-        homeViewModel.stockFav.observe(viewLifecycleOwner) {
+        homeViewModel.stockTop.observe(viewLifecycleOwner) {
             adapter.items = it
         }
     }

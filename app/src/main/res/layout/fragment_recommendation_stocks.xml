@@ -5,11 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ui.favourite.FavouriteFragment">
+    tools:context=".ui.recommendation_stocks.RecommendationFragment">
 
     <com.todkars.shimmer.ShimmerRecyclerView
         android:id="@+id/shimmer_recycler_view"
         style="@style/Recycler.Linear.Vertical"
+        android:layout_height="match_parent"
+        android:paddingBottom="16dp"
         tools:listitem="@layout/item_stock" />
 
 </LinearLayout>

@@ -94,7 +94,7 @@
     <string name="tittle_stocks">Stocks</string>
     <string name="tittle_favourite">Favourite</string>
     <string name="title_notifications">Notifications</string>
-    <string name="stocks_fragment_name">Stocks</string>
+    <string name="recommendation_stocks_fragment_name">Stocks</string>
     <string name="favourite_fragment_name">Favourite</string>
     <string name="title_feature_home">Module Home</string>
     <string name="title_feature_top_stock_list">Module Top Stock List</string>
@@ -102,4 +102,9 @@
     <string name="fragment_home_name">Home</string>
     <string name="network_no_connection_error_message">No internet connection</string>
     <string name="generic_error_message">something went wrong</string>
+    <string name="fragment_stocks_name">Stocks</string>
+    <string name="fragment_search_name">Search</string>
+    <string name="search_hint">Find company or ticker</string>
+    <string name="cross_image_description">Cross</string>
+    <string name="back_image_description">Back</string>
 </resources>

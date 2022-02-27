@@ -5,9 +5,10 @@
     android:id="@+id/stock_card"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginHorizontal="16dp"
+    android:layout_marginTop="10dp"
     app:cardBackgroundColor="@color/item_stock_1"
-    app:cardCornerRadius="16dp"
-    app:cardUseCompatPadding="true">
+    app:cardCornerRadius="16dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -103,9 +104,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
-            tools:text="12 February 15:00"
             app:layout_constraintBottom_toTopOf="@+id/current_price_textview"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="12 February 15:00" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

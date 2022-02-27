@@ -24,6 +24,10 @@ class RecommendationStockInteractorImpl @Inject constructor(
             FavouriteTickerDomain("AMZN"),
             FavouriteTickerDomain("NFLX"),
             FavouriteTickerDomain("GOOGL"),
+            FavouriteTickerDomain("TSLA"),
+            FavouriteTickerDomain("COKE"),
+            FavouriteTickerDomain("EBAY"),
+            FavouriteTickerDomain("KOD"),
         )
     )
 }
