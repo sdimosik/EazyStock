@@ -23,6 +23,7 @@
     <TextView
         android:id="@+id/input"
         style="@style/SearchStyleText"
+        android:background="@drawable/ripple_effect"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="8dp"

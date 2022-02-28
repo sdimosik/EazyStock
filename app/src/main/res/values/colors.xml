@@ -20,5 +20,7 @@
 
     <color name="shimmer">#8E8E8E</color>
 
+    <color name="ripple">#DADADA</color>
+
 
 </resources>
