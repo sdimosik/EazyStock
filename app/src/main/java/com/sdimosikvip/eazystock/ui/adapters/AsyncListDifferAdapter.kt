@@ -8,7 +8,7 @@ import com.sdimosikvip.eazystock.base.BaseDiffItem
 
 
 class AsyncListDifferAdapter(
-    delegatesManager: AdapterDelegatesManager<List<BaseDiffItem>>,
+    delegatesManager: AdapterDelegatesManager<List<BaseDiffItem>>
 ) : AsyncListDifferDelegationAdapter<BaseDiffItem>(DIFF_CALLBACK, delegatesManager) {
 
     companion object {

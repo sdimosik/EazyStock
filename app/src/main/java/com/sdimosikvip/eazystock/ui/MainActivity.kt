@@ -1,6 +1,5 @@
 package com.sdimosikvip.eazystock.ui
 
-import android.content.Context
 import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
@@ -62,10 +61,15 @@ class MainActivity() : DaggerAppCompatActivity(R.layout.activity_main) {
         window.statusBarColor = getColor(R.color.colorPrimaryVariant)
     }
 
-    public fun showSoftKeyboard(view: View) {
+    fun showSoftKeyboard(view: View) {
         if (view.requestFocus()) {
-            val inputMethodManager: InputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            val inputMethodManager = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
             inputMethodManager.showSoftInput(view, InputMethodManager.SHOW_IMPLICIT)
         }
+    }
+
+    fun hideKeyboard(v: View) {
+        val inputMethodManager = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
+        inputMethodManager.hideSoftInputFromWindow(v.applicationWindowToken, 0)
     }
 }

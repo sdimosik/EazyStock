@@ -27,8 +27,7 @@
         <item name="textAllCaps">false</item>
     </style>
 
-    <style name="SearchStyleText" parent="TextView.Semi.Active.M">
-    </style>
+    <style name="SearchStyleText" parent="TextView.Semi.Active.M" />
 
     <style name="Recycler.Default" parent="Widget.AppCompat.ListView">
         <item name="android:overScrollMode">never</item>
@@ -37,6 +36,10 @@
 
     <style name="Recycler.Linear" parent="Recycler.Default">
         <item name="layoutManager">androidx.recyclerview.widget.LinearLayoutManager</item>
+    </style>
+
+    <style name="Recycler.StaggeredGrid" parent="Recycler.Default">
+        <item name="layoutManager">androidx.recyclerview.widget.StaggeredGridLayoutManager</item>
     </style>
 
     <style name="Recycler.Linear.Horizontal" parent="Recycler.Linear">
@@ -49,6 +52,13 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:orientation">vertical</item>
+    </style>
+
+    <style name="Recycler.StaggeredGrid.Horizontal" parent="Recycler.StaggeredGrid">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="spanCount">2</item>
     </style>
 
     <style name="TextView.Default" parent="Widget.MaterialComponents.TextView">
@@ -79,6 +89,10 @@
         <item name="android:textSize">@dimen/sp_XL</item>
     </style>
 
+    <style name="TextView.Default.Active.L2" parent="TextView.Default.Active">
+        <item name="android:textSize">@dimen/sp_L2</item>
+    </style>
+
     <style name="TextView.Default.Active.L" parent="TextView.Default.Active">
         <item name="android:textSize">@dimen/sp_L</item>
     </style>
@@ -105,6 +119,10 @@
 
     <style name="TextView.Default.Inactive.XL" parent="TextView.Default.Inactive">
         <item name="android:textSize">@dimen/sp_XL</item>
+    </style>
+
+    <style name="TextView.Default.Inactive.L2" parent="TextView.Default.Inactive">
+        <item name="android:textSize">@dimen/sp_L2</item>
     </style>
 
     <style name="TextView.Default.Inactive.L" parent="TextView.Default.Inactive">
@@ -135,6 +153,10 @@
         <item name="android:textSize">@dimen/sp_XL</item>
     </style>
 
+    <style name="TextView.Semi.Active.L2" parent="TextView.Semi.Active">
+        <item name="android:textSize">@dimen/sp_L2</item>
+    </style>
+
     <style name="TextView.Semi.Active.L" parent="TextView.Semi.Active">
         <item name="android:textSize">@dimen/sp_L</item>
     </style>
@@ -162,6 +184,11 @@
     <style name="TextView.Semi.Inactive.XL" parent="TextView.Semi.Inactive">
         <item name="android:textSize">@dimen/sp_XL</item>
     </style>
+
+    <style name="TextView.Semi.Inactive.L2" parent="TextView.Semi.Inactive">
+        <item name="android:textSize">@dimen/sp_L2</item>
+    </style>
+
 
     <style name="TextView.Semi.Inactive.L" parent="TextView.Semi.Inactive">
         <item name="android:textSize">@dimen/sp_L</item>

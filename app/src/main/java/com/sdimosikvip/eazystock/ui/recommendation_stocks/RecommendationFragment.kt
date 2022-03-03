@@ -10,7 +10,7 @@ import com.sdimosikvip.eazystock.base.BaseFragment
 import com.sdimosikvip.eazystock.base.BaseViewModel
 import com.sdimosikvip.eazystock.databinding.FragmentRecommendationStocksBinding
 import com.sdimosikvip.eazystock.ui.adapters.AsyncListDifferAdapter
-import com.sdimosikvip.eazystock.ui.adapters.delegates.StocksDelegates
+import com.sdimosikvip.eazystock.ui.adapters.delegates.MainDelegates
 import com.sdimosikvip.eazystock.ui.home.HomeViewModel
 import com.sdimosikvip.eazystock.utils.setup
 
@@ -35,7 +35,7 @@ class RecommendationFragment() : BaseFragment(
 
     private val adapter: AsyncListDifferAdapter by lazy {
         AsyncListDifferAdapter(
-            AdapterDelegatesManager(StocksDelegates.lightAndDarkAdapterDelegate(
+            AdapterDelegatesManager(MainDelegates.stockLightAndDarkAdapterDelegate(
                 glide,
                 { homeViewModel.addFavouriteStock(it) },
                 { homeViewModel.deleteFavouriteStock(it) }

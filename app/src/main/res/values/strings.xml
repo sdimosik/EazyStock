@@ -107,4 +107,10 @@
     <string name="search_hint">Find company or ticker</string>
     <string name="cross_image_description">Cross</string>
     <string name="back_image_description">Back</string>
+    <string name="tittle">Tittle</string>
+    <string name="ticker">Ticker</string>
+    <string name="show_more">Show more</string>
+    <string name="stocks_result_tittle">Stocks</string>
+    <string name="popular_request_tittle">Popular request</string>
+    <string name="history_search_tittle">History</string>
 </resources>

@@ -10,12 +10,14 @@ import com.hannesdorfmann.adapterdelegates4.dsl.adapterDelegateViewBinding
 import com.sdimosikvip.eazystock.R
 import com.sdimosikvip.eazystock.base.BaseDiffItem
 import com.sdimosikvip.eazystock.databinding.ItemStockBinding
+import com.sdimosikvip.eazystock.databinding.ItemTickerBinding
 import com.sdimosikvip.eazystock.model.StockUI
+import com.sdimosikvip.eazystock.model.TickerUI
 
 
-object StocksDelegates {
+object MainDelegates {
 
-    fun lightAndDarkAdapterDelegate(
+    fun stockLightAndDarkAdapterDelegate(
         glide: RequestManager,
         addFavourite: (StockUI) -> Unit,
         deleteFavourite: (StockUI) -> Unit
@@ -27,7 +29,8 @@ object StocksDelegates {
                 with(binding) {
                     when (layoutPosition % 2 == 0) {
                         true -> container.background = getDrawable(R.drawable.stock_odd_background)
-                        false -> container.background = getDrawable(R.drawable.stock_even_background)
+                        false -> container.background =
+                            getDrawable(R.drawable.stock_even_background)
                     }
 
                     tickerTextview.text = item.ticker
@@ -88,4 +91,19 @@ object StocksDelegates {
                 }
             }
         }
+
+    fun tickerDelegate(
+        changeCurrentSearchInput: (TickerUI) -> Unit
+    ) = adapterDelegateViewBinding<TickerUI, BaseDiffItem, ItemTickerBinding>(
+        { layoutInflater, parent -> ItemTickerBinding.inflate(layoutInflater, parent, false) }
+    ) {
+        bind {
+            with(binding) {
+                ticker.text = item.ticker
+                root.setOnClickListener {
+                    changeCurrentSearchInput(item)
+                }
+            }
+        }
+    }
 }
