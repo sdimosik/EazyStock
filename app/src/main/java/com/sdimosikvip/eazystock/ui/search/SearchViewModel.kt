@@ -3,7 +3,9 @@ package com.sdimosikvip.eazystock.ui.search
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.sdimosikvip.domain.interactor.FavouriteStockInteractor
 import com.sdimosikvip.domain.interactor.RecommendationStockInteractor
+import com.sdimosikvip.domain.models.FavouriteTickerDomain
 import com.sdimosikvip.eazystock.base.BaseViewModel
 import com.sdimosikvip.eazystock.mapper.stockDomainToUI
 import com.sdimosikvip.eazystock.model.StockUI
@@ -15,6 +17,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class SearchViewModel @Inject constructor(
+    private val favouriteStockInteractor: FavouriteStockInteractor,
     private val recommendationStockInteractor: RecommendationStockInteractor
 ) : BaseViewModel() {
 
@@ -30,7 +33,7 @@ class SearchViewModel @Inject constructor(
     val countItemResult = 3
 
     init {
-        _popularTickers.value =  listOf(
+        _popularTickers.value = listOf(
             TickerUI("APPL"),
             TickerUI("APPLsdsd"),
             TickerUI("APPL"),
@@ -47,7 +50,7 @@ class SearchViewModel @Inject constructor(
             TickerUI("trtew"),
         )
 
-        _historySearch.value =   listOf(
+        _historySearch.value = listOf(
             TickerUI("Tesla"),
             TickerUI("yannnndex"),
             TickerUI("Tesla"),
@@ -56,10 +59,12 @@ class SearchViewModel @Inject constructor(
             TickerUI("Tesla"),
             TickerUI("yannnndex"),
         )
+    }
 
-        viewModelScope.launch {
+    fun fetch(listFavTicker: List<FavouriteTickerDomain>) {
+        viewModelScope.launch(handlerException) {
             recommendationStockInteractor.execute()
-                .onStart {  setLoading() }
+                .onStart { setLoading() }
                 .onCompletion { hideLoading() }
                 .map { it.map { item -> stockDomainToUI(item) } }
                 .collect {

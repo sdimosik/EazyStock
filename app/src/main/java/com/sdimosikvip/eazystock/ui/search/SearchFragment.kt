@@ -4,6 +4,7 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
 import android.widget.TextView
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
@@ -15,6 +16,7 @@ import com.sdimosikvip.eazystock.base.BaseFragment
 import com.sdimosikvip.eazystock.base.BaseViewModel
 import com.sdimosikvip.eazystock.databinding.FragmentSearchBinding
 import com.sdimosikvip.eazystock.ui.MainActivity
+import com.sdimosikvip.eazystock.ui.MainViewModel
 import com.sdimosikvip.eazystock.ui.adapters.AsyncListDifferAdapter
 import com.sdimosikvip.eazystock.ui.adapters.delegates.MainDelegates
 
@@ -30,6 +32,10 @@ class SearchFragment() : BaseFragment(
 
     private val glide: RequestManager by lazy {
         Glide.with(this)
+    }
+
+    private val sharedViewModel: MainViewModel by activityViewModels {
+        viewModelFactory
     }
 
     private val adapter_popular_ticker: AsyncListDifferAdapter by lazy {
@@ -52,8 +58,8 @@ class SearchFragment() : BaseFragment(
         AsyncListDifferAdapter(
             AdapterDelegatesManager(MainDelegates.stockLightAndDarkAdapterDelegate(
                 glide,
-                { },
-                { }
+                { sharedViewModel.addFavouriteStock(it) },
+                { sharedViewModel.deleteFavouriteStock(it) }
             ))
         )
     }
@@ -126,6 +132,10 @@ class SearchFragment() : BaseFragment(
                 if (it.size < searchViewModel.countItemResult) it.size else searchViewModel.countItemResult
             )
             binding.resultStocks.showMore.visibility = View.VISIBLE
+        }
+
+        sharedViewModel.favouriteStocksLiveData.observe(viewLifecycleOwner) {
+            searchViewModel.fetch(it)
         }
 
         searchViewModel.state.observe(viewLifecycleOwner) { state ->

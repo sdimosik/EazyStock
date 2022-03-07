@@ -113,4 +113,6 @@
     <string name="stocks_result_tittle">Stocks</string>
     <string name="popular_request_tittle">Popular request</string>
     <string name="history_search_tittle">History</string>
+    <string name="favourite_tab">Favourite</string>
+    <string name="stocks_tab">Stocks</string>
 </resources>

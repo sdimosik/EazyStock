@@ -15,4 +15,6 @@ interface StockRepository {
     suspend fun deleteFavouriteStock(favouriteTickerDomain: FavouriteTickerDomain)
 
     fun getFavouriteStocks(): Flow<List<FavouriteTickerDomain>>
+
+    suspend fun getFavouriteStocksOneshot(): List<FavouriteTickerDomain>
 }

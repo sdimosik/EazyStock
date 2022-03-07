@@ -22,4 +22,4 @@ data class StockUI(
     override val secondId: String = "",
     override val firstId: Long = 0,
 
-) : BaseDiffItem(isFirstId, firstId, secondId)
+    ) : BaseDiffItem(isFirstId, firstId, secondId)

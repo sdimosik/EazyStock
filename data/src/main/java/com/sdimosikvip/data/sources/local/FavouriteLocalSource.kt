@@ -12,4 +12,6 @@ interface FavouriteLocalSource {
     suspend fun insertFavouriteStock(favouriteTickerDB: FavouriteTickerDB)
 
     suspend fun deleteFavoriteStock(favouriteTickerDB: FavouriteTickerDB)
+
+    suspend fun getFavouriteStockOneShot(): List<FavouriteTickerDB>
 }

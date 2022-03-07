@@ -11,6 +11,7 @@ import com.sdimosikvip.eazystock.R
 import com.sdimosikvip.eazystock.databinding.ActivityMainBinding
 import com.sdimosikvip.eazystock.utils.connection.ConnectionLiveData
 import dagger.android.support.DaggerAppCompatActivity
+import timber.log.Timber
 
 
 class MainActivity() : DaggerAppCompatActivity(R.layout.activity_main) {
@@ -71,5 +72,10 @@ class MainActivity() : DaggerAppCompatActivity(R.layout.activity_main) {
     fun hideKeyboard(v: View) {
         val inputMethodManager = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
         inputMethodManager.hideSoftInputFromWindow(v.applicationWindowToken, 0)
+    }
+
+    override fun finish() {
+        Timber.tag("mainactivity").i("finish")
+        super.finish()
     }
 }

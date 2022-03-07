@@ -7,20 +7,20 @@ import com.sdimosikvip.domain.interactor.RecommendationStockInteractorImpl
 import com.sdimosikvip.domain.repository.StockRepository
 import dagger.Module
 import dagger.Provides
-import dagger.Reusable
+import javax.inject.Singleton
 
 @Module
 class DomainModule {
 
     @Provides
-    @Reusable
+    @Singleton
     fun provideRecommendationStockInteractor(
         stockRepository: StockRepository
     ): RecommendationStockInteractor =
         RecommendationStockInteractorImpl(stockRepository)
 
     @Provides
-    @Reusable
+    @Singleton
     fun provideFavouriteStockInteractor(
         stockRepository: StockRepository
     ): FavouriteStockInteractor =

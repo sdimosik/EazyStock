@@ -32,4 +32,9 @@ class FavouriteLocalSourceImpl @Inject constructor(
             db.deleteFavoriteStock(favouriteTickerDB)
         }
 
+    override suspend fun getFavouriteStockOneShot(): List<FavouriteTickerDB> =
+        withContext(defaultDispatcher) {
+            db.getFavouriteStockOneshot()
+        }
+
 }

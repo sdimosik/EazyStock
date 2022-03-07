@@ -17,6 +17,7 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.io.File
+import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
 @Module
@@ -56,7 +57,7 @@ class NetworkModule {
         loggingInterceptor: HttpLoggingInterceptor,
         cacheOnlineControlInterceptor: CacheOnlineControlInterceptor,
         cacheOfflineControlInterceptor: CacheOfflineControlInterceptor,
-        cache: Cache
+        cache: Cache,
     ): OkHttpClient {
         return OkHttpClient.Builder()
             .cache(cache)

@@ -1,5 +1,6 @@
 package com.sdimosikvip.eazystock.ui.favourite_stocks
 
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.bumptech.glide.Glide
@@ -9,6 +10,7 @@ import com.sdimosikvip.eazystock.R
 import com.sdimosikvip.eazystock.base.BaseFragment
 import com.sdimosikvip.eazystock.base.BaseViewModel
 import com.sdimosikvip.eazystock.databinding.FragmentFavouriteStocksBinding
+import com.sdimosikvip.eazystock.ui.MainViewModel
 import com.sdimosikvip.eazystock.ui.adapters.AsyncListDifferAdapter
 import com.sdimosikvip.eazystock.ui.adapters.delegates.MainDelegates
 import com.sdimosikvip.eazystock.ui.home.HomeViewModel
@@ -25,7 +27,11 @@ class FavouriteFragment() : BaseFragment(
     }
 
     override val binding by viewBinding(FragmentFavouriteStocksBinding::bind)
-    private val homeViewModel: HomeViewModel by viewModels {
+    private val homeViewModel: HomeViewModel by viewModels(
+        ownerProducer = { requireParentFragment() },
+        factoryProducer = { viewModelFactory }
+    )
+    private val sharedViewModel: MainViewModel by activityViewModels {
         viewModelFactory
     }
 
@@ -37,8 +43,8 @@ class FavouriteFragment() : BaseFragment(
         AsyncListDifferAdapter(
             AdapterDelegatesManager(
                 MainDelegates.stockLightAndDarkAdapterDelegate(glide,
-                    { homeViewModel.addFavouriteStock(it) },
-                    { homeViewModel.deleteFavouriteStock(it) })
+                    { sharedViewModel.addFavouriteStock(it) },
+                    { sharedViewModel.deleteFavouriteStock(it) })
             )
         )
     }

@@ -72,4 +72,7 @@ class StockRepositoryImpl @Inject constructor(
         db.getFavouriteStock().map { list ->
             list.map { favouriteTickerDBMapper.transform(it) }
         }.flowOn(defaultDispatcher)
+
+    override suspend fun getFavouriteStocksOneshot(): List<FavouriteTickerDomain> =
+        db.getFavouriteStockOneShot().map { favouriteTickerDBMapper.transform(it) }
 }

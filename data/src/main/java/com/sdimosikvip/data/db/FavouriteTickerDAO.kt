@@ -10,6 +10,9 @@ interface FavouriteTickerDAO {
     @Query("SELECT * FROM ${FavouriteTickerDB.TABLE_NAME}")
     fun getFavouriteStock(): Flow<List<FavouriteTickerDB>>
 
+    @Query("SELECT * FROM ${FavouriteTickerDB.TABLE_NAME}")
+    fun getFavouriteStockOneshot(): List<FavouriteTickerDB>
+
     @Query("SELECT * FROM ${FavouriteTickerDB.TABLE_NAME} WHERE ticker = :ticker")
     suspend fun getOneFavouriteStock(ticker: String): FavouriteTickerDB?
 
