@@ -18,7 +18,7 @@
         android:indeterminateTint="@color/colorOnPrimary" />
 
     <androidx.core.widget.NestedScrollView
-        android:id="@+id/nested_scroll_view"
+        android:id="@+id/start_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="fill_vertical"
@@ -26,38 +26,31 @@
         android:overScrollMode="never">
 
         <LinearLayout
-            android:id="@+id/container"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <LinearLayout
-                android:id="@+id/start_container"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+            <include
+                android:id="@+id/popular_request"
+                layout="@layout/item_tickers" />
 
-                <include
-                    android:id="@+id/popular_request"
-                    layout="@layout/item_tickers" />
-
-                <include
-                    android:id="@+id/history_search"
-                    layout="@layout/item_tickers" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/result_container"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:visibility="gone">
-
-                <include
-                    android:id="@+id/result_stocks"
-                    layout="@layout/items_result_search" />
-            </LinearLayout>
+            <include
+                android:id="@+id/history_search"
+                layout="@layout/item_tickers" />
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
+
+    <LinearLayout
+        android:id="@+id/result_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <include
+            android:id="@+id/result_stocks"
+            layout="@layout/items_result_search" />
+    </LinearLayout>
+
 
 </LinearLayout>

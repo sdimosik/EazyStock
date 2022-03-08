@@ -7,7 +7,7 @@ data class StockUI(
     override val isFirstId: Boolean,
 
     val ticker: String,
-    val company: String,
+    val company: String?,
     val price: String,
     val deltaDayPrice: String,
     val logo: String,

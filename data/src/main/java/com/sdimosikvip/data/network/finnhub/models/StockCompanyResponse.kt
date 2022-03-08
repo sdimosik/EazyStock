@@ -5,27 +5,27 @@ import com.google.gson.annotations.SerializedName
 
 data class StockCompanyResponse(
     @SerializedName("country")
-    val country: String,
+    val country: String?,
     @SerializedName("currency")
-    val currency: String,
+    val currency: String?,
     @SerializedName("exchange")
-    val exchange: String,
+    val exchange: String?,
     @SerializedName("finnhubIndustry")
-    val finnhubIndustry: String,
+    val finnhubIndustry: String?,
     @SerializedName("ipo")
-    val ipo: String,
+    val ipo: String?,
     @SerializedName("logo")
-    val logo: String,
+    val logo: String?,
     @SerializedName("marketCapitalization")
-    val marketCapitalization: Double    ,
+    val marketCapitalization: Double?,
     @SerializedName("name")
-    val name: String,
+    val name: String?,
     @SerializedName("phone")
-    val phone: String,
+    val phone: String?,
     @SerializedName("shareOutstanding")
-    val shareOutstanding: Double,
+    val shareOutstanding: Double?,
     @SerializedName("ticker")
-    val ticker: String,
+    val ticker: String?,
     @SerializedName("weburl")
-    val weburl: String
+    val weburl: String?
 )

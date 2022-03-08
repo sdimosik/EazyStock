@@ -5,13 +5,13 @@
     android:id="@+id/container_stocks_with_title"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="20dp"
     android:orientation="vertical">
 
     <LinearLayout
         android:id="@+id/menu_recyclerview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
         android:orientation="horizontal"
         android:paddingHorizontal="16dp">
 
@@ -22,14 +22,6 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             tools:text="@string/tittle" />
-
-        <TextView
-            android:id="@+id/show_more"
-            style="@style/TextView.Semi.Active.XS"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/ripple_effect"
-            android:text="@string/show_more" />
 
     </LinearLayout>
 

@@ -1,7 +1,7 @@
-package com.sdimosikvip.data.db
+package com.sdimosikvip.data.db.favourite_tickers
 
 import androidx.room.*
-import com.sdimosikvip.data.db.models.FavouriteTickerDB
+import com.sdimosikvip.data.db.favourite_tickers.models.FavouriteTickerDB
 import kotlinx.coroutines.flow.Flow
 
 @Dao

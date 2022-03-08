@@ -1,6 +1,6 @@
-package com.sdimosikvip.data.db.mapper
+package com.sdimosikvip.data.db.favourite_tickers.mapper
 
-import com.sdimosikvip.data.db.models.FavouriteTickerDB
+import com.sdimosikvip.data.db.favourite_tickers.models.FavouriteTickerDB
 import com.sdimosikvip.domain.mapper.BaseMapper
 import com.sdimosikvip.domain.models.FavouriteTickerDomain
 

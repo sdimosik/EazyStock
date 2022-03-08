@@ -1,7 +1,6 @@
 package com.sdimosikvip.domain.repository
 
-import com.sdimosikvip.domain.models.FavouriteTickerDomain
-import com.sdimosikvip.domain.models.StockItemDomain
+import com.sdimosikvip.domain.models.*
 import kotlinx.coroutines.flow.Flow
 
 interface StockRepository {
@@ -17,4 +16,10 @@ interface StockRepository {
     fun getFavouriteStocks(): Flow<List<FavouriteTickerDomain>>
 
     suspend fun getFavouriteStocksOneshot(): List<FavouriteTickerDomain>
+
+    fun searchTicker(text: String): Flow<MutableList<StockItemDomain>>
+
+    fun getHistorySearch(): Flow<List<TickerDomain>>
+
+    suspend fun saveHistoryTickers(tickerDomain: TickerDomain)
 }

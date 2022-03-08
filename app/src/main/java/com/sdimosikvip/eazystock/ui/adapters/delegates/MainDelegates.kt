@@ -89,6 +89,9 @@ object MainDelegates {
                             }
 
                         })
+                        .placeholder(ColorDrawable(Color.BLACK))
+                        .error(ColorDrawable(Color.RED))
+                        .fallback(ColorDrawable(Color.GRAY))
                         .into(logoImageview)
                 }
             }
