@@ -7,14 +7,20 @@ import androidx.lifecycle.ViewModel
 import com.sdimosikvip.domain.NoConnectionException
 import com.sdimosikvip.eazystock.R
 import kotlinx.coroutines.CoroutineExceptionHandler
+import timber.log.Timber
 
 abstract class BaseViewModel : ViewModel() {
+
+    companion object{
+        const val TAG = "BaseViewModel"
+    }
 
     private val _state = MutableLiveData<State>(State.Init)
     val state: LiveData<State> = _state
 
     protected val handlerException = CoroutineExceptionHandler { _, exception ->
         run {
+            Timber.tag(TAG).e(exception)
             val messageRes = getMessageExceptionRes(exception)
             setToastMessage(messageRes)
         }

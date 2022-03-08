@@ -56,6 +56,8 @@ dependencies {
     implementation DB.room_ktx
     kapt DB.room_compiler
 
+    implementation Other.timber
+
     testImplementation UnitTest.junit4
     androidTestImplementation UnitTest.junit_ext
     androidTestImplementation UITest.espresso

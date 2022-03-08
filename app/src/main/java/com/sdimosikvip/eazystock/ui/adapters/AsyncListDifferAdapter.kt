@@ -2,15 +2,13 @@ package com.sdimosikvip.eazystock.ui.adapters
 
 import android.annotation.SuppressLint
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.RequestManager
 import com.hannesdorfmann.adapterdelegates4.AdapterDelegatesManager
 import com.hannesdorfmann.adapterdelegates4.AsyncListDifferDelegationAdapter
 import com.sdimosikvip.eazystock.base.BaseDiffItem
 
 
 class AsyncListDifferAdapter(
-    delegatesManager: AdapterDelegatesManager<List<BaseDiffItem>>,
+    delegatesManager: AdapterDelegatesManager<List<BaseDiffItem>>
 ) : AsyncListDifferDelegationAdapter<BaseDiffItem>(DIFF_CALLBACK, delegatesManager) {
 
     companion object {

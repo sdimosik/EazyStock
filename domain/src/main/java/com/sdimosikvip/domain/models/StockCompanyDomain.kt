@@ -1,7 +1,7 @@
 package com.sdimosikvip.domain.models
 
 data class StockCompanyDomain(
-    val country: String,
+    val country: String?,
     val currency: String,
     val exchange: String,
     val finnhubIndustry: String,
