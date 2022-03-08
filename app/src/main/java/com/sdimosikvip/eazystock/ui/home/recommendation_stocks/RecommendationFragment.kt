@@ -1,5 +1,6 @@
 package com.sdimosikvip.eazystock.ui.home.recommendation_stocks
 
+import androidx.core.os.bundleOf
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -14,6 +15,8 @@ import com.sdimosikvip.eazystock.databinding.FragmentRecommendationStocksBinding
 import com.sdimosikvip.eazystock.ui.MainViewModel
 import com.sdimosikvip.eazystock.ui.adapters.AsyncListDifferAdapter
 import com.sdimosikvip.eazystock.ui.adapters.delegates.MainDelegates
+import com.sdimosikvip.eazystock.ui.detail.DetailFragment
+import com.sdimosikvip.eazystock.ui.home.HomeFragmentDirections
 import com.sdimosikvip.eazystock.ui.home.HomeViewModel
 import com.sdimosikvip.eazystock.utils.setup
 import timber.log.Timber
@@ -27,6 +30,8 @@ class RecommendationFragment() : BaseFragment(
     companion object {
         const val TITTLE_ID = R.string.recommendation_stocks_fragment_name
         const val TAG_FRAGMENT = "recommendation_fragment"
+        private const val BASE = "com.sdimosikvip.eazystock.ui.home.recommendation_stocks"
+        const val STOCK_UI = "$BASE STOCK_UI"
     }
 
     override val binding by viewBinding(FragmentRecommendationStocksBinding::bind)
@@ -50,7 +55,13 @@ class RecommendationFragment() : BaseFragment(
                 glide,
                 { sharedViewModel.addFavouriteStock(it) },
                 { sharedViewModel.deleteFavouriteStock(it) },
-                { findNavController().navigate(R.id.action_fragment_home_to_fragment_detail) }
+                {
+                    val bundle = bundleOf(DetailFragment.STOCK_UI to it)
+                    findNavController().navigate(
+                        R.id.action_fragment_home_to_fragment_detail,
+                        bundle
+                    )
+                }
             ))
         )
     }

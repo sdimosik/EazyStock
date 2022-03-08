@@ -2,6 +2,7 @@ package com.sdimosikvip.eazystock.ui.search
 
 import android.view.View
 import android.widget.TextView
+import androidx.core.os.bundleOf
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -18,6 +19,7 @@ import com.sdimosikvip.eazystock.ui.MainActivity
 import com.sdimosikvip.eazystock.ui.MainViewModel
 import com.sdimosikvip.eazystock.ui.adapters.AsyncListDifferAdapter
 import com.sdimosikvip.eazystock.ui.adapters.delegates.MainDelegates
+import com.sdimosikvip.eazystock.ui.detail.DetailFragment
 import com.sdimosikvip.eazystock.utils.afterTextChangedDebounce
 
 
@@ -25,6 +27,12 @@ class SearchFragment() : BaseFragment(
     tittleRes = R.string.fragment_search_name,
     layoutId = R.layout.fragment_search,
 ) {
+
+    companion object {
+        private const val BASE = "com.sdimosikvip.eazystock.ui.search"
+        const val STOCK_UI = "$BASE STOCK_UI"
+    }
+
     override val binding by viewBinding(FragmentSearchBinding::bind)
     private val searchViewModel: SearchViewModel by viewModels {
         viewModelFactory
@@ -62,7 +70,13 @@ class SearchFragment() : BaseFragment(
                 glide,
                 { sharedViewModel.addFavouriteStock(it) },
                 { sharedViewModel.deleteFavouriteStock(it) },
-                { findNavController().navigate(R.id.action_fragment_search_to_fragment_detail) }
+                {
+                    val bundle = bundleOf(DetailFragment.STOCK_UI to it)
+                    findNavController().navigate(
+                        R.id.action_fragment_search_to_fragment_detail,
+                        bundle
+                    )
+                }
             ))
         )
     }
@@ -81,6 +95,8 @@ class SearchFragment() : BaseFragment(
             (requireActivity() as MainActivity).showSoftKeyboard(input)
 
             input.afterTextChangedDebounce(800) {
+                if (view == null) return@afterTextChangedDebounce
+
                 if (it.isEmpty()) {
                     changeVisibleResultContent(true)
                     return@afterTextChangedDebounce

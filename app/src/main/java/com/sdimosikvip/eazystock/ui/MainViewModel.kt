@@ -8,6 +8,7 @@ import com.sdimosikvip.domain.models.FavouriteTickerDomain
 import com.sdimosikvip.eazystock.base.BaseViewModel
 import com.sdimosikvip.eazystock.model.StockUI
 import kotlinx.coroutines.launch
+import timber.log.Timber
 import javax.inject.Inject
 
 class MainViewModel @Inject constructor(
@@ -18,12 +19,14 @@ class MainViewModel @Inject constructor(
     val favouriteStocksLiveData = favouriteStockInteractor.getFavouriteTickers().asLiveData()
 
     fun addFavouriteStock(stockUI: StockUI) {
+        Timber.tag(TAG).i("add fav stock")
         viewModelScope.launch {
             favouriteStockInteractor.save(FavouriteTickerDomain(stockUI.ticker))
         }
     }
 
     fun deleteFavouriteStock(stockUI: StockUI) {
+        Timber.tag(TAG).i("delete fav stock")
         viewModelScope.launch {
             favouriteStockInteractor.delete(FavouriteTickerDomain(stockUI.ticker))
         }

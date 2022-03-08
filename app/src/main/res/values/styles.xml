@@ -27,6 +27,27 @@
         <item name="textAllCaps">false</item>
     </style>
 
+    <style name="AppDetailTabLayout" parent="Widget.Design.TabLayout">
+
+        <item name="tabTextAppearance">@style/AppTabDetailTextAppearance</item>
+        <item name="tabGravity">center</item>
+        <item name="tabIndicatorColor">@color/colorOnPrimary</item>
+        <item name="tabIndicator">@drawable/tab_indicator</item>
+        <item name="tabIndicatorGravity">stretch</item>
+        <item name="tabSelectedTextColor">@color/colorPrimary</item>
+        <item name="tabMode">fixed</item>
+        <item name="tabRippleColor">@color/transparent</item>
+
+    </style>
+
+    <!-- for text -->
+    <style name="AppTabDetailTextAppearance" parent="TextAppearance.Design.Tab">
+        <item name="android:fontFamily">@font/montserrat_bold</item>
+        <item name="android:textSize">@dimen/sp_L</item>
+        <item name="android:textColor">@color/secondaryOnPrimary</item>
+        <item name="textAllCaps">false</item>
+    </style>
+
     <style name="SearchStyleText" parent="TextView.Semi.Active.M" />
 
     <style name="Recycler.Default" parent="Widget.AppCompat.ListView">
