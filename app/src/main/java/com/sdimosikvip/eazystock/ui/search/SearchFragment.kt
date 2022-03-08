@@ -61,7 +61,8 @@ class SearchFragment() : BaseFragment(
             AdapterDelegatesManager(MainDelegates.stockLightAndDarkAdapterDelegate(
                 glide,
                 { sharedViewModel.addFavouriteStock(it) },
-                { sharedViewModel.deleteFavouriteStock(it) }
+                { sharedViewModel.deleteFavouriteStock(it) },
+                { findNavController().navigate(R.id.action_fragment_search_to_fragment_detail) }
             ))
         )
     }

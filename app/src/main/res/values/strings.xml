@@ -115,4 +115,5 @@
     <string name="history_search_tittle">History</string>
     <string name="favourite_tab">Favourite</string>
     <string name="stocks_tab">Stocks</string>
+    <string name="fragment_detail_name">Detail</string>
 </resources>

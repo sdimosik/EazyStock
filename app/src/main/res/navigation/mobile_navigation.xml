@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_fragment_home_to_fragment_search"
             app:destination="@id/fragment_search" />
+        <action
+            android:id="@+id/action_fragment_home_to_fragment_detail"
+            app:destination="@id/fragment_detail" />
     </fragment>
 
     <fragment
@@ -23,5 +26,14 @@
         <action
             android:id="@+id/action_fragment_search_to_fragment_home"
             app:destination="@id/fragment_home" />
+        <action
+            android:id="@+id/action_fragment_search_to_fragment_detail"
+            app:destination="@id/fragment_detail" />
+    </fragment>
+
+    <fragment android:id="@+id/fragment_detail"
+        android:name="com.sdimosikvip.eazystock.ui.detail.DetailFragment"
+        android:label="@string/fragment_detail_name"
+        tools:layout="@layout/fragment_detail">
     </fragment>
 </navigation>

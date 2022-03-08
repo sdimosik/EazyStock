@@ -5,9 +5,10 @@ import androidx.lifecycle.ViewModelProvider
 import com.sdimosikvip.eazystock.di.ViewModelFactory
 import com.sdimosikvip.eazystock.di.ViewModelKey
 import com.sdimosikvip.eazystock.ui.MainViewModel
-import com.sdimosikvip.eazystock.ui.favourite_stocks.FavouriteViewModel
+import com.sdimosikvip.eazystock.ui.detail.DetailViewModel
+import com.sdimosikvip.eazystock.ui.home.favourite_stocks.FavouriteViewModel
 import com.sdimosikvip.eazystock.ui.home.HomeViewModel
-import com.sdimosikvip.eazystock.ui.recommendation_stocks.RecommendationViewModel
+import com.sdimosikvip.eazystock.ui.home.recommendation_stocks.RecommendationViewModel
 import com.sdimosikvip.eazystock.ui.search.SearchViewModel
 import dagger.Binds
 import dagger.Module
@@ -40,6 +41,11 @@ interface ViewModelModule {
     @IntoMap
     @ViewModelKey(MainViewModel::class)
     fun bindMainViewModel(viewModel: MainViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(DetailViewModel::class)
+    fun bindDetailViewModel(viewModel: DetailViewModel): ViewModel
 
     @Binds
     fun bindViewModelFactory(factory: ViewModelFactory): ViewModelProvider.Factory

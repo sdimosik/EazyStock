@@ -22,7 +22,8 @@ object MainDelegates {
     fun stockLightAndDarkAdapterDelegate(
         glide: RequestManager,
         addFavourite: (StockUI) -> Unit,
-        deleteFavourite: (StockUI) -> Unit
+        deleteFavourite: (StockUI) -> Unit,
+        onClick: (StockUI) -> Unit
     ) =
         adapterDelegateViewBinding<StockUI, BaseDiffItem, ItemStockBinding>(
             { layoutInflater, parent -> ItemStockBinding.inflate(layoutInflater, parent, false) }
@@ -63,6 +64,10 @@ object MainDelegates {
                             favouriteImageview.setImageResource(R.drawable.star_active)
                             item.isFavourite = true
                         }
+                    }
+
+                    root.setOnClickListener {
+                        onClick(item)
                     }
 
                     glide.load(item.logo)

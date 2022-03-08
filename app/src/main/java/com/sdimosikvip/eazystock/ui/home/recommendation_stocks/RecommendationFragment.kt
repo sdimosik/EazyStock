@@ -1,7 +1,8 @@
-package com.sdimosikvip.eazystock.ui.recommendation_stocks
+package com.sdimosikvip.eazystock.ui.home.recommendation_stocks
 
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.bumptech.glide.Glide
 import com.bumptech.glide.RequestManager
@@ -48,7 +49,8 @@ class RecommendationFragment() : BaseFragment(
             AdapterDelegatesManager(MainDelegates.stockLightAndDarkAdapterDelegate(
                 glide,
                 { sharedViewModel.addFavouriteStock(it) },
-                { sharedViewModel.deleteFavouriteStock(it) }
+                { sharedViewModel.deleteFavouriteStock(it) },
+                { findNavController().navigate(R.id.action_fragment_home_to_fragment_detail) }
             ))
         )
     }

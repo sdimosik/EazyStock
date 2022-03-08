@@ -3,7 +3,6 @@ package com.sdimosikvip.eazystock.ui.home
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import androidx.viewpager2.adapter.FragmentStateAdapter
@@ -18,8 +17,8 @@ import com.sdimosikvip.eazystock.base.BaseFragment
 import com.sdimosikvip.eazystock.base.BaseViewModel
 import com.sdimosikvip.eazystock.databinding.FragmentHomeBinding
 import com.sdimosikvip.eazystock.ui.MainViewModel
-import com.sdimosikvip.eazystock.ui.favourite_stocks.FavouriteFragment
-import com.sdimosikvip.eazystock.ui.recommendation_stocks.RecommendationFragment
+import com.sdimosikvip.eazystock.ui.home.favourite_stocks.FavouriteFragment
+import com.sdimosikvip.eazystock.ui.home.recommendation_stocks.RecommendationFragment
 
 
 private val screens = listOf(

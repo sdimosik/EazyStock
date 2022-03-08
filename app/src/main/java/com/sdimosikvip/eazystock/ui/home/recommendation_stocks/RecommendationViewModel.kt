@@ -1,4 +1,4 @@
-package com.sdimosikvip.eazystock.ui.recommendation_stocks
+package com.sdimosikvip.eazystock.ui.home.recommendation_stocks
 
 import com.sdimosikvip.eazystock.base.BaseViewModel
 import javax.inject.Inject
