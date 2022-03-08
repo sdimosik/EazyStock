@@ -20,6 +20,7 @@ import com.sdimosikvip.eazystock.ui.home.HomeFragmentDirections
 import com.sdimosikvip.eazystock.ui.home.HomeViewModel
 import com.sdimosikvip.eazystock.utils.setup
 import timber.log.Timber
+import javax.inject.Inject
 
 
 class RecommendationFragment() : BaseFragment(
@@ -45,9 +46,8 @@ class RecommendationFragment() : BaseFragment(
         viewModelFactory
     }
 
-    private val glide: RequestManager by lazy {
-        Glide.with(this)
-    }
+    @Inject
+    lateinit var glide: RequestManager
 
     private val adapter: AsyncListDifferAdapter by lazy {
         AsyncListDifferAdapter(

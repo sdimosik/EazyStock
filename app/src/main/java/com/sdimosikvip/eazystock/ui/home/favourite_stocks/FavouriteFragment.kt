@@ -19,6 +19,7 @@ import com.sdimosikvip.eazystock.ui.detail.DetailFragment
 import com.sdimosikvip.eazystock.ui.home.HomeFragmentDirections
 import com.sdimosikvip.eazystock.ui.home.HomeViewModel
 import com.sdimosikvip.eazystock.utils.setup
+import javax.inject.Inject
 
 
 class FavouriteFragment() : BaseFragment(
@@ -41,9 +42,8 @@ class FavouriteFragment() : BaseFragment(
         viewModelFactory
     }
 
-    private val glide: RequestManager by lazy {
-        Glide.with(this)
-    }
+    @Inject
+    lateinit var glide: RequestManager
 
     private val adapter: AsyncListDifferAdapter by lazy {
         AsyncListDifferAdapter(

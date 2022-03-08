@@ -21,6 +21,7 @@ import com.sdimosikvip.eazystock.ui.adapters.AsyncListDifferAdapter
 import com.sdimosikvip.eazystock.ui.adapters.delegates.MainDelegates
 import com.sdimosikvip.eazystock.ui.detail.DetailFragment
 import com.sdimosikvip.eazystock.utils.afterTextChangedDebounce
+import javax.inject.Inject
 
 
 class SearchFragment() : BaseFragment(
@@ -38,9 +39,8 @@ class SearchFragment() : BaseFragment(
         viewModelFactory
     }
 
-    private val glide: RequestManager by lazy {
-        Glide.with(this)
-    }
+    @Inject
+    lateinit var glide: RequestManager
 
     private val sharedViewModel: MainViewModel by activityViewModels {
         viewModelFactory
