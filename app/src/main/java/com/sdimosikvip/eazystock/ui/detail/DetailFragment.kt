@@ -4,12 +4,29 @@ import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
+import com.google.android.material.tabs.TabLayoutMediator
 import com.sdimosikvip.eazystock.R
 import com.sdimosikvip.eazystock.base.BaseFragment
 import com.sdimosikvip.eazystock.databinding.FragmentDetailBinding
 import com.sdimosikvip.eazystock.model.StockUI
 import com.sdimosikvip.eazystock.ui.MainViewModel
+import com.sdimosikvip.eazystock.ui.detail.chart.ChartFragment
+import com.sdimosikvip.eazystock.ui.detail.news.NewsFragment
+import com.sdimosikvip.eazystock.ui.detail.summary.SummaryFragment
+import com.sdimosikvip.eazystock.utils.ViewPagerWithTabLayoutHelper
 import timber.log.Timber
+
+private val screens = listOf(
+    ChartFragment::class.java,
+    NewsFragment::class.java,
+    SummaryFragment::class.java
+)
+
+private val screensTittle = listOf(
+    R.string.chart_fragment_name,
+    R.string.news_fragment_name,
+    R.string.summary_fragment_name
+)
 
 class DetailFragment() : BaseFragment(
     tittleRes = R.string.fragment_detail_name,
@@ -32,10 +49,24 @@ class DetailFragment() : BaseFragment(
         viewModelFactory
     }
 
+    private val helper: ViewPagerWithTabLayoutHelper by lazy {
+        ViewPagerWithTabLayoutHelper(
+            this,
+            screens,
+            screensTittle
+        )
+    }
+
     override fun setupViews() {
         super.setupViews()
 
         with(binding) {
+
+            mainViewPager.adapter = helper.getInstanceAdapter()
+            TabLayoutMediator(mainTabLayout, mainViewPager) { tab, position ->
+                tab.text = getString(helper.getOrderFragmentTittleId(position))
+            }.attach()
+
             backImage.setOnClickListener {
                 findNavController().navigateUp()
             }

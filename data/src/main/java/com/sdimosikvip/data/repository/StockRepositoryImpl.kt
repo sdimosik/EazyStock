@@ -70,10 +70,7 @@ class StockRepositoryImpl @Inject constructor(
 
             val companyStock = net.getNullableCompanyStock(ticker) ?: return@withContext null
             val company = companyStock.requireValue()
-            if (company.currency == null ||
-                company.currency?.isEmpty() == true ||
-                company.country == null ||
-                company.country?.isEmpty() == true
+            if (company.currency.isEmpty() || company.country == null || company.country?.isEmpty() == true
             ) return@withContext null
 
             val priceStock = net.getNullablePriceStock(ticker) ?: return@withContext null
@@ -91,12 +88,10 @@ class StockRepositoryImpl @Inject constructor(
             favouriteTickerDBMapper.reverseTransform(favouriteTickerDomain)
         )
 
-
     override suspend fun deleteFavouriteStock(favouriteTickerDomain: FavouriteTickerDomain) =
         db.deleteFavoriteStock(
             favouriteTickerDBMapper.reverseTransform(favouriteTickerDomain)
         )
-
 
     override fun getFavouriteStocks(): Flow<List<FavouriteTickerDomain>> =
         db.getFavouriteStock().map { list ->

@@ -12,11 +12,15 @@
         tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_fragment_home_to_fragment_search"
-            app:destination="@id/fragment_search" />
+            app:destination="@id/fragment_search"
+            app:enterAnim="@android:anim/fade_in"
+            app:popEnterAnim="@android:anim/fade_in" />
         <action
             android:id="@+id/action_fragment_home_to_fragment_detail"
-            app:destination="@id/fragment_detail">
-        </action>
+            app:destination="@id/fragment_detail"
+            app:enterAnim="@android:anim/fade_in"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popUpToInclusive="false"></action>
     </fragment>
 
     <fragment
@@ -26,8 +30,9 @@
         tools:layout="@layout/fragment_search">
         <action
             android:id="@+id/action_fragment_search_to_fragment_detail"
-            app:destination="@id/fragment_detail">
-        </action>
+            app:destination="@id/fragment_detail"
+            app:enterAnim="@android:anim/fade_in"
+            app:popEnterAnim="@android:anim/fade_in"></action>
     </fragment>
 
     <fragment

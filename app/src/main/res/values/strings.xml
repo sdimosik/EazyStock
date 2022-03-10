@@ -116,4 +116,7 @@
     <string name="favourite_tab">Favourite</string>
     <string name="stocks_tab">Stocks</string>
     <string name="fragment_detail_name">Detail</string>
+    <string name="chart_fragment_name">Chart</string>
+    <string name="news_fragment_name">News</string>
+    <string name="summary_fragment_name">Summary</string>
 </resources>

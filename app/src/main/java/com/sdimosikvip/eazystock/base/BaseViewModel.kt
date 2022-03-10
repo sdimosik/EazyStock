@@ -9,9 +9,9 @@ import com.sdimosikvip.eazystock.R
 import kotlinx.coroutines.CoroutineExceptionHandler
 import timber.log.Timber
 
-abstract class BaseViewModel : ViewModel() {
+abstract class BaseViewModel() : ViewModel() {
 
-    companion object{
+    companion object {
         const val TAG = "BaseViewModel"
     }
 
@@ -23,6 +23,7 @@ abstract class BaseViewModel : ViewModel() {
             Timber.tag(TAG).e(exception)
             val messageRes = getMessageExceptionRes(exception)
             setToastMessage(messageRes)
+            hideLoading()
         }
     }
 

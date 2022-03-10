@@ -1,5 +1,6 @@
 package com.sdimosikvip.eazystock.ui
 
+import androidx.annotation.StringRes
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.sdimosikvip.domain.interactor.FavouriteStockInteractor
