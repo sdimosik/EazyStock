@@ -119,4 +119,10 @@
     <string name="chart_fragment_name">Chart</string>
     <string name="news_fragment_name">News</string>
     <string name="summary_fragment_name">Summary</string>
+    <string name="short_day">D</string>
+    <string name="short_week">W</string>
+    <string name="short_month">M</string>
+    <string name="short_half_year">6M</string>
+    <string name="short_year">Y</string>
+    <string name="buy">Buy</string>
 </resources>

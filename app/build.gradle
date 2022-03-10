@@ -90,6 +90,7 @@ dependencies {
     implementation Other.toast
     implementation Other.timber
     implementation Other.threetenabp
+    implementation Other.chart
 
     androidTestImplementation UnitTest.junit4
     androidTestImplementation UnitTest.junit_ext

@@ -147,9 +147,11 @@ object Other {
     private const val toast_version = "1.5.2"
     private const val timber_version = "5.0.1"
     private const val threetenabp_version = "1.3.1"
+    private const val chart_version = "v3.1.0"
 
     const val alert = "com.github.tapadoo:alerter:$alert_version"
     const val toast = "com.github.GrenderG:Toasty:$toast_version"
     const val timber = "com.jakewharton.timber:timber:$timber_version"
     const val threetenabp = "com.jakewharton.threetenabp:threetenabp:$threetenabp_version"
+    const val chart = "com.github.PhilJay:MPAndroidChart:$chart_version"
 }

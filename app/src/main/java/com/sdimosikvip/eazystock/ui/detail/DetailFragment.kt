@@ -72,29 +72,33 @@ class DetailFragment() : BaseFragment(
             }
 
             val stockUI = arguments?.getParcelable<StockUI>(STOCK_UI)
+            if (stockUI != null) {
+                detailViewModel.stockUI = stockUI
+            }
+
             tickerTextview.text = stockUI?.ticker
             companyTextview.text = stockUI?.company
 
-            if (stockUI != null) {
-                if (stockUI.isFavourite) {
-                    favouriteImageview.setImageResource(R.drawable.star_active_detail)
-                } else {
-                    favouriteImageview.setImageResource(R.drawable.star_inactive_detail)
-                }
+
+            if (detailViewModel.stockUI.isFavourite) {
+                favouriteImageview.setImageResource(R.drawable.star_active_detail)
+            } else {
+                favouriteImageview.setImageResource(R.drawable.star_inactive_detail)
             }
+
 
             favouriteImageview.setOnClickListener {
                 if (stockUI == null) return@setOnClickListener
 
-                Timber.tag(TAG).i("stock UI is fav? ${stockUI.isFavourite}")
-                if (stockUI.isFavourite) {
-                    sharedViewModel.deleteFavouriteStock(stockUI)
+                Timber.tag(TAG).i("stock UI is fav? ${detailViewModel.stockUI.isFavourite}")
+                if (detailViewModel.stockUI.isFavourite) {
+                    sharedViewModel.deleteFavouriteStock(detailViewModel.stockUI)
                     favouriteImageview.setImageResource(R.drawable.star_inactive_detail)
-                    stockUI.isFavourite = false
+                    detailViewModel.stockUI.isFavourite = false
                 } else {
-                    sharedViewModel.addFavouriteStock(stockUI)
+                    sharedViewModel.addFavouriteStock(detailViewModel.stockUI)
                     favouriteImageview.setImageResource(R.drawable.star_active_detail)
-                    stockUI.isFavourite = true
+                    detailViewModel.stockUI.isFavourite = true
                 }
             }
         }
