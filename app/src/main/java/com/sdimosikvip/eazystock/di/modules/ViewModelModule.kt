@@ -10,6 +10,9 @@ import com.sdimosikvip.eazystock.ui.home.favourite_stocks.FavouriteViewModel
 import com.sdimosikvip.eazystock.ui.home.HomeViewModel
 import com.sdimosikvip.eazystock.ui.home.recommendation_stocks.RecommendationViewModel
 import com.sdimosikvip.eazystock.ui.search.SearchViewModel
+import com.sdimosikvip.eazystock.ui.detail.chart.ChartViewModel
+import com.sdimosikvip.eazystock.ui.detail.news.NewsViewModel
+import com.sdimosikvip.eazystock.ui.detail.summary.SummaryViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
@@ -46,6 +49,21 @@ interface ViewModelModule {
     @IntoMap
     @ViewModelKey(DetailViewModel::class)
     fun bindDetailViewModel(viewModel: DetailViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(NewsViewModel::class)
+    fun bindNewsViewModel(viewModel: NewsViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(ChartViewModel::class)
+    fun bindChartViewModel(viewModel: ChartViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(SummaryViewModel::class)
+    fun bindSummaryViewModel(viewModel: SummaryViewModel): ViewModel
 
     @Binds
     fun bindViewModelFactory(factory: ViewModelFactory): ViewModelProvider.Factory

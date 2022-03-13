@@ -5,9 +5,16 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <include
-        android:id="@+id/search"
-        layout="@layout/layout_search_active" />
+    <FrameLayout
+        android:id="@+id/frg_search_search_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingVertical="2dp">
+
+        <include
+            android:id="@+id/frg_search_search"
+            layout="@layout/layout_search_active" />
+    </FrameLayout>
 
     <ProgressBar
         android:id="@+id/progress_bar"

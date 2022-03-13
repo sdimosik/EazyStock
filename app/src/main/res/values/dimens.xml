@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="sp_XLL">32sp</dimen>
+    <dimen name="sp_XXL">32sp</dimen>
     <dimen name="sp_XL">28sp</dimen>
     <dimen name="sp_L2">24sp</dimen>
     <dimen name="sp_L1">22sp</dimen>

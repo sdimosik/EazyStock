@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <style name="DetailedInformationButton">
+        <item name="android:background">@drawable/selector_button</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:labelTextSize">12sp</item>
+        <item name="android:padding">16dp</item>
+        <item name="android:textColor">@drawable/selector_font</item>
+        <item name="lineHeight">18sp</item>
+        <item name="android:layout_margin">5dp</item>
+        <item name="android:textSize">@dimen/sp_XS</item>
+        <item name="android:button">@null</item>
+        <item name="android:fontFamily">@font/montserrat_semi_bold</item>
+    </style>
+
     <style name="RoundedImageView" parent="">
         <item name="cornerSize">12dp</item>
         <item name="cornerFamily">rounded</item>
@@ -23,6 +36,27 @@
     <style name="AppTabTextAppearance" parent="TextAppearance.Design.Tab">
         <item name="android:fontFamily">@font/montserrat_bold</item>
         <item name="android:textSize">@dimen/sp_L1</item>
+        <item name="android:textColor">@color/secondaryOnPrimary</item>
+        <item name="textAllCaps">false</item>
+    </style>
+
+    <style name="AppDetailTabLayout" parent="Widget.Design.TabLayout">
+
+        <item name="tabTextAppearance">@style/AppTabDetailTextAppearance</item>
+        <item name="tabGravity">center</item>
+        <item name="tabIndicatorColor">@color/colorOnPrimary</item>
+        <item name="tabIndicator">@drawable/tab_indicator</item>
+        <item name="tabIndicatorGravity">stretch</item>
+        <item name="tabSelectedTextColor">@color/colorPrimary</item>
+        <item name="tabMode">fixed</item>
+        <item name="tabRippleColor">@color/transparent</item>
+
+    </style>
+
+    <!-- for text -->
+    <style name="AppTabDetailTextAppearance" parent="TextAppearance.Design.Tab">
+        <item name="android:fontFamily">@font/montserrat_bold</item>
+        <item name="android:textSize">@dimen/sp_L</item>
         <item name="android:textColor">@color/secondaryOnPrimary</item>
         <item name="textAllCaps">false</item>
     </style>
@@ -87,6 +121,10 @@
 
     <style name="TextView.Default.Active.XL" parent="TextView.Default.Active">
         <item name="android:textSize">@dimen/sp_XL</item>
+    </style>
+
+    <style name="TextView.Default.Active.XXL" parent="TextView.Default.Active">
+        <item name="android:textSize">@dimen/sp_XXL</item>
     </style>
 
     <style name="TextView.Default.Active.L2" parent="TextView.Default.Active">

@@ -1,9 +1,8 @@
-plugins {
-    id 'com.android.application'
-    id 'kotlin-android'
-    id 'kotlin-kapt'
-    id 'kotlin-parcelize'
-}
+apply plugin: "com.android.application"
+apply plugin: "kotlin-android"
+apply plugin: "kotlin-kapt"
+apply plugin: "kotlin-parcelize"
+apply plugin: "androidx.navigation.safeargs.kotlin"
 
 android {
     compileSdk Android.compileSdk
@@ -91,6 +90,7 @@ dependencies {
     implementation Other.toast
     implementation Other.timber
     implementation Other.threetenabp
+    implementation Other.chart
 
     androidTestImplementation UnitTest.junit4
     androidTestImplementation UnitTest.junit_ext

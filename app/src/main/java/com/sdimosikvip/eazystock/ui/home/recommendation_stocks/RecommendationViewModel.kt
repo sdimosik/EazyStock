@@ -5,4 +5,7 @@ import javax.inject.Inject
 
 class RecommendationViewModel @Inject constructor() : BaseViewModel() {
 
+    companion object {
+        const val TAG = "RecommendationViewModel"
+    }
 }

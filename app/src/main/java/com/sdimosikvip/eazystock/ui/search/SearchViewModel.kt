@@ -13,6 +13,7 @@ import com.sdimosikvip.eazystock.base.BaseViewModel
 import com.sdimosikvip.eazystock.mapper.stockDomainToUI
 import com.sdimosikvip.eazystock.model.StockUI
 import com.sdimosikvip.eazystock.model.TickerUI
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import timber.log.Timber
@@ -46,16 +47,15 @@ class SearchViewModel @Inject constructor(
     val historySearch: LiveData<List<TickerUI>> =
         historySearchInteractor.history().map { it.map { TickerUI(it.ticker) } }.asLiveData()
 
-    private val _stockResult = MutableLiveData<List<StockUI>>(listOf())
-    val stockResult: LiveData<List<StockUI>> = _stockResult
-
     private val _res = MutableSharedFlow<List<StockUI>>(replay = 1)
     val res = _res.asSharedFlow()
 
     val countItemResult = 3
 
+    var searchJob: Job? = null
+
     fun search(text: String) {
-        viewModelScope.launch(handlerException) {
+        searchJob = viewModelScope.launch(handlerException) {
 
             historySearchInteractor.saveQueryHistory(TickerDomain(text, System.currentTimeMillis()))
 

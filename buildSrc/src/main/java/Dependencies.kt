@@ -14,7 +14,7 @@ object Androidx {
     private const val lifecycle_viewmodel_ktx_version = "2.4.0"
     private const val lifecycle_livedata_ktx_version = "2.4.0"
     private const val constraintlayout_version = "2.1.3"
-    private const val navigation_component = "2.4.0"
+    private const val navigation_component = "2.4.1"
     private const val swipe_to_refresh_layout_version = "1.1.0"
     private const val coordinatorlayout_version = "1.2.0"
 
@@ -28,6 +28,8 @@ object Androidx {
         "androidx.constraintlayout:constraintlayout:$constraintlayout_version"
     const val navigation_fragment_ktx =
         "androidx.navigation:navigation-fragment-ktx:$navigation_component"
+    const val navigation_args_plugin =
+        "androidx.navigation:navigation-safe-args-gradle-plugin:$navigation_component"
     const val navigation_ui_ktx = "androidx.navigation:navigation-ui-ktx:$navigation_component"
     const val swipe_to_refresh_layout =
         "androidx.swiperefreshlayout:swiperefreshlayout:$swipe_to_refresh_layout_version"
@@ -63,7 +65,7 @@ object DI {
 object Extensions {
 
     // To use only without reflection variants of viewBinding
-    private const val view_binding_property_delegate_version = "1.5.3"
+    private const val view_binding_property_delegate_version = "1.5.6"
     const val view_binding_property_delegate =
         "com.github.kirich1409:viewbindingpropertydelegate-noreflection:$view_binding_property_delegate_version"
 }
@@ -145,9 +147,11 @@ object Other {
     private const val toast_version = "1.5.2"
     private const val timber_version = "5.0.1"
     private const val threetenabp_version = "1.3.1"
+    private const val chart_version = "v3.1.0"
 
     const val alert = "com.github.tapadoo:alerter:$alert_version"
     const val toast = "com.github.GrenderG:Toasty:$toast_version"
     const val timber = "com.jakewharton.timber:timber:$timber_version"
     const val threetenabp = "com.jakewharton.threetenabp:threetenabp:$threetenabp_version"
+    const val chart = "com.github.PhilJay:MPAndroidChart:$chart_version"
 }

@@ -3,6 +3,7 @@ package com.sdimosikvip.eazystock.ui.adapters.delegates
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable
+import android.view.animation.AnimationUtils
 import com.bumptech.glide.RequestManager
 import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException
@@ -23,7 +24,7 @@ object MainDelegates {
         glide: RequestManager,
         addFavourite: (StockUI) -> Unit,
         deleteFavourite: (StockUI) -> Unit,
-        onClick: (StockUI) -> Unit
+        onClick: (StockUI, ItemStockBinding) -> Unit
     ) =
         adapterDelegateViewBinding<StockUI, BaseDiffItem, ItemStockBinding>(
             { layoutInflater, parent -> ItemStockBinding.inflate(layoutInflater, parent, false) }
@@ -67,7 +68,7 @@ object MainDelegates {
                     }
 
                     root.setOnClickListener {
-                        onClick(item)
+                        onClick(item, this)
                     }
 
                     glide.load(item.logo)

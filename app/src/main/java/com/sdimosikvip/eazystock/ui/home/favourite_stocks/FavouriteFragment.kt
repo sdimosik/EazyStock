@@ -1,10 +1,12 @@
 package com.sdimosikvip.eazystock.ui.home.favourite_stocks
 
+import android.os.Bundle
+import android.os.Parcelable
+import androidx.core.os.bundleOf
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
-import com.bumptech.glide.Glide
 import com.bumptech.glide.RequestManager
 import com.hannesdorfmann.adapterdelegates4.AdapterDelegatesManager
 import com.sdimosikvip.eazystock.R
@@ -14,8 +16,11 @@ import com.sdimosikvip.eazystock.databinding.FragmentFavouriteStocksBinding
 import com.sdimosikvip.eazystock.ui.MainViewModel
 import com.sdimosikvip.eazystock.ui.adapters.AsyncListDifferAdapter
 import com.sdimosikvip.eazystock.ui.adapters.delegates.MainDelegates
+import com.sdimosikvip.eazystock.ui.detail.DetailFragment
 import com.sdimosikvip.eazystock.ui.home.HomeViewModel
+import com.sdimosikvip.eazystock.ui.home.recommendation_stocks.RecommendationFragment
 import com.sdimosikvip.eazystock.utils.setup
+import javax.inject.Inject
 
 
 class FavouriteFragment() : BaseFragment(
@@ -25,6 +30,9 @@ class FavouriteFragment() : BaseFragment(
 
     companion object {
         const val TITTLE_ID = R.string.favourite_fragment_name
+        private const val BASE = "com.sdimosikvip.eazystock.ui.home.favourite_stocks"
+        const val STOCK_UI = "$BASE STOCK_UI"
+        const val BUNDLE_RECYCLER_LAYOUT = "${BASE}.recycler.layout"
     }
 
     override val binding by viewBinding(FragmentFavouriteStocksBinding::bind)
@@ -36,9 +44,8 @@ class FavouriteFragment() : BaseFragment(
         viewModelFactory
     }
 
-    private val glide: RequestManager by lazy {
-        Glide.with(this)
-    }
+    @Inject
+    lateinit var glide: RequestManager
 
     private val adapter: AsyncListDifferAdapter by lazy {
         AsyncListDifferAdapter(
@@ -46,7 +53,12 @@ class FavouriteFragment() : BaseFragment(
                 MainDelegates.stockLightAndDarkAdapterDelegate(glide,
                     { sharedViewModel.addFavouriteStock(it) },
                     { sharedViewModel.deleteFavouriteStock(it) },
-                    { findNavController().navigate(R.id.action_fragment_home_to_fragment_detail) }
+                    { stockUI, itemStockBinding ->
+                        val bundle = bundleOf(DetailFragment.STOCK_UI to stockUI)
+                        findNavController().navigate(
+                            R.id.action_fragment_home_to_fragment_detail,
+                            bundle)
+                    }
                 )
             )
         )
@@ -69,7 +81,11 @@ class FavouriteFragment() : BaseFragment(
                     binding.shimmerRecyclerView.showShimmer()
                 }
                 is BaseViewModel.State.IsLoading -> {
-                    if (!state.isLoading) binding.shimmerRecyclerView.hideShimmer()
+                    if (state.isLoading && adapter.items.isEmpty()) {
+                        binding.shimmerRecyclerView.showShimmer()
+                    } else {
+                        binding.shimmerRecyclerView.hideShimmer()
+                    }
                 }
                 is BaseViewModel.State.ShowToast -> {
                     binding.shimmerRecyclerView.hideShimmer()
@@ -80,5 +96,24 @@ class FavouriteFragment() : BaseFragment(
         homeViewModel.stockFav.observe(viewLifecycleOwner) {
             adapter.items = it
         }
+    }
+
+    override fun onViewStateRestored(savedInstanceState: Bundle?) {
+        super.onViewStateRestored(savedInstanceState)
+        if (savedInstanceState != null) {
+            val savedRecyclerLayoutState =
+                savedInstanceState.getParcelable<Parcelable>(BUNDLE_RECYCLER_LAYOUT)
+            binding.shimmerRecyclerView.layoutManager?.onRestoreInstanceState(
+                savedRecyclerLayoutState
+            )
+        }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putParcelable(
+            BUNDLE_RECYCLER_LAYOUT,
+            binding.shimmerRecyclerView.layoutManager?.onSaveInstanceState()
+        )
     }
 }

@@ -19,10 +19,17 @@
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
             app:titleEnabled="false">
 
-            <include
-                android:id="@+id/search"
-                layout="@layout/layout_search_inactive"
-                app:layout_collapseMode="parallax" />
+            <FrameLayout
+                android:id="@+id/frg_home__search_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingVertical="2dp">
+
+                <include
+                    android:id="@+id/frg_home__search"
+                    layout="@layout/layout_search_inactive"
+                    app:layout_collapseMode="parallax" />
+            </FrameLayout>
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
 
@@ -51,17 +58,12 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <com.sdimosikvip.eazystock.base.CustomSwipeToRefresh
-        android:id="@+id/swipe_refresh_layout"
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/main__view_pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
-        <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/main__view_pager"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
-    </com.sdimosikvip.eazystock.base.CustomSwipeToRefresh>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
