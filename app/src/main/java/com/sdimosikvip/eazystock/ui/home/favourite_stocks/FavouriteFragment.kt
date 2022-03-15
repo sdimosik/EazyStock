@@ -100,6 +100,7 @@ class FavouriteFragment() : BaseFragment(
 
     override fun onViewStateRestored(savedInstanceState: Bundle?) {
         super.onViewStateRestored(savedInstanceState)
+        if (view == null) return
         if (savedInstanceState != null) {
             val savedRecyclerLayoutState =
                 savedInstanceState.getParcelable<Parcelable>(BUNDLE_RECYCLER_LAYOUT)
@@ -111,6 +112,7 @@ class FavouriteFragment() : BaseFragment(
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
+        if (view == null) return
         outState.putParcelable(
             BUNDLE_RECYCLER_LAYOUT,
             binding.shimmerRecyclerView.layoutManager?.onSaveInstanceState()
